@@ -7,11 +7,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class ParkhausIFTest {
     ParkhausIF parkhaus;
     KundeIF kunde;
+    BezahlAutomatIF automat;
 
     @BeforeEach
     void setUp() {
         parkhaus = new Parkhaus();
         kunde = new Kunde();
+        automat = new BezahlAutomat();
     }
 
     @Test
@@ -41,6 +43,7 @@ class ParkhausIFTest {
     @DisplayName("Ausfahren mit einem Kunden im Parkhaus ist erfolgreich")
     void ausfahren_mitEinemKundenImParkhaus_istErfolgreich() {
         ParkticketIF ticket = parkhaus.einfahren(kunde);
+        automat.bezahlen(ticket);
         assertTrue(parkhaus.ausfahren(kunde, ticket));
     }
 
@@ -48,7 +51,16 @@ class ParkhausIFTest {
     @DisplayName("Ausfahren mit keinem Kunden im Parkhaus schlägt fehl")
     void ausfahren_mitKeinemKundenImParkhaus_schlaegtFehl() {
         ParkticketIF ticket = parkhaus.einfahren(kunde);
+        automat.bezahlen(ticket);
         parkhaus.ausfahren(kunde, ticket); //letzten Kunden ausfahren lassen
+        assertFalse(parkhaus.ausfahren(kunde, ticket));
+    }
+
+    @Test
+    @DisplayName("Ausfahren, wenn nicht bezahlt wurde, schlägt fehl")
+    void ausfahren_wennNichtBezahltWurde_schlaegtFehl() {
+        ParkticketIF ticket = parkhaus.einfahren(kunde);
+        parkhaus.ausfahren(kunde, ticket);
         assertFalse(parkhaus.ausfahren(kunde, ticket));
     }
 
