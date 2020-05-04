@@ -1,3 +1,3 @@
-public class Kunde implements KundeIF {
+class Kunde implements KundeIF {
 
 }
