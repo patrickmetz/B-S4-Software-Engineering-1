@@ -1,12 +1,21 @@
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class ParkhausTest {
+class ParkhausIFTest {
 
-    static ParkhausIF parkhaus;
+    @BeforeEach
+    void setUp() {
+    }
+
+    @Test
+    void einfahren() {
+    }
+
+    @Test
+    void ausfahren() {
+    }
 
     @BeforeAll
     static void setup() {
