@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParkhausIFTest {
-    ParkhausIF parkhaus;
-    KundeIF kunde;
-    BezahlAutomatIF automat;
+    private ParkhausIF parkhaus;
+    private KundeIF kunde;
+    private BezahlAutomatIF automat;
 
     @BeforeEach
     void setUp() {
@@ -31,9 +31,7 @@ class ParkhausIFTest {
             parkhaus.einfahren(kunde);
         }
 
-        RuntimeException exception = assertThrows(RuntimeException.class, ()-> {
-            parkhaus.einfahren(kunde);
-        });
+        RuntimeException exception = assertThrows(RuntimeException.class, ()-> parkhaus.einfahren(kunde));
 
         assertEquals("Das Parkhaus ist voll", exception.getMessage());
     }
@@ -53,9 +51,7 @@ class ParkhausIFTest {
         automat.bezahlen(ticket);
         parkhaus.ausfahren(kunde, ticket); //letzten Kunden ausfahren lassen
 
-        RuntimeException exception = assertThrows(RuntimeException.class, ()-> {
-            parkhaus.ausfahren(kunde, ticket);
-        });
+        RuntimeException exception = assertThrows(RuntimeException.class, ()-> parkhaus.ausfahren(kunde, ticket));
 
         assertEquals("Es gibt keinen Kunden mehr, der ausfahren könnte", exception.getMessage());
     }
@@ -64,11 +60,8 @@ class ParkhausIFTest {
     @DisplayName("Ausfahren, wenn nicht bezahlt wurde, schlägt fehl")
     void ausfahren_wennNichtBezahltWurde_schlaegtFehl() {
         ParkticketIF ticket = parkhaus.einfahren(kunde);
-        parkhaus.ausfahren(kunde, ticket);
 
-        RuntimeException exception = assertThrows(RuntimeException.class, ()-> {
-            parkhaus.ausfahren(kunde, ticket);
-        });
+        RuntimeException exception = assertThrows(RuntimeException.class, ()-> parkhaus.ausfahren(kunde, ticket));
 
         assertEquals("Der Kunde hat noch nicht gezahlt.", exception.getMessage());
     }
