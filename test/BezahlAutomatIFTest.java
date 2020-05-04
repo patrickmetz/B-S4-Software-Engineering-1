@@ -17,6 +17,16 @@ class BezahlAutomatIFTest {
     @Test
     @DisplayName("Bezahlen eines Parktickets läuft erfolgreich")
     void bezahlen_einesParktickets_laeuftErfolgreich() {
+        assertFalse(ticket.getBezahlt());
         assertTrue(automat.bezahlen(ticket));
+        assertTrue(ticket.getBezahlt());
     }
+
+    @Test
+    @DisplayName("Die Preisberechnung des Bezahlautomaten ist korrekt")
+    void getPreis_nachDemParken_laeuftErfolgreich() {
+        assertTrue(automat.getPreis(ticket) > 0);
+    }
+
+
 }
