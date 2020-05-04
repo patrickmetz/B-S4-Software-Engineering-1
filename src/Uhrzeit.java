@@ -2,6 +2,11 @@ public class Uhrzeit implements UhrzeitIF {
     private int h;
     private int m;
 
+    Uhrzeit(int h, int m) {
+        this.h = h;
+        this.m = m;
+    }
+
     @Override
     public int getStunden() {
         return h;

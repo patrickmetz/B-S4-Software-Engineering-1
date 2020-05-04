@@ -4,7 +4,7 @@ public class Parkhaus implements ParkhausIF {
     private int plaetzeFrei;
 
     @Override
-    public ParkticketIF einfahren(KundeIF kunde) {
+    public ParkticketIF einfahren(KundeIF kunde, UhrzeitIF zeit) {
         return null;
     }
 
