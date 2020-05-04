@@ -2,11 +2,12 @@ public class BezahlAutomat implements BezahlAutomatIF {
 
     @Override
     public boolean bezahlen(ParkticketIF parkTicket) {
-        return false;
+        parkTicket.setBezahlt(true);
+        return true;
     }
 
     @Override
-    public Double getPreis(ParkticketIF parkTicket) {
-        return null;
+    public float getPreis(ParkticketIF parkTicket) {
+        return parkTicket.getStundenPreis();
     }
 }
