@@ -4,4 +4,9 @@ public class BezahlAutomat implements BezahlAutomatIF {
     public boolean bezahlen(ParkticketIF parkTicket) {
         return false;
     }
+
+    @Override
+    public Double getPreis(ParkticketIF parkTicket) {
+        return null;
+    }
 }
