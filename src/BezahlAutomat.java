@@ -6,7 +6,7 @@ public class BezahlAutomat implements BezahlAutomatIF {
     }
 
     @Override
-    public Double getPreis(ParkticketIF parkTicket) {
+    public Double getStundenPreis(ParkticketIF parkTicket) {
         return null;
     }
 }
