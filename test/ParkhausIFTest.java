@@ -31,7 +31,11 @@ class ParkhausIFTest {
             parkhaus.einfahren(kunde);
         }
 
-        assertNull(parkhaus.einfahren(kunde));
+        RuntimeException exception = assertThrows(RuntimeException.class, ()-> {
+            parkhaus.einfahren(kunde);
+        });
+
+        assertEquals("Das Parkhaus ist voll", exception.getMessage());
     }
 
     @Test
@@ -48,7 +52,12 @@ class ParkhausIFTest {
         ParkticketIF ticket = parkhaus.einfahren(kunde);
         automat.bezahlen(ticket);
         parkhaus.ausfahren(kunde, ticket); //letzten Kunden ausfahren lassen
-        assertFalse(parkhaus.ausfahren(kunde, ticket));
+
+        RuntimeException exception = assertThrows(RuntimeException.class, ()-> {
+            parkhaus.ausfahren(kunde, ticket);
+        });
+
+        assertEquals("Es gibt keinen Kunden mehr, der ausfahren könnte", exception.getMessage());
     }
 
     @Test
@@ -56,7 +65,12 @@ class ParkhausIFTest {
     void ausfahren_wennNichtBezahltWurde_schlaegtFehl() {
         ParkticketIF ticket = parkhaus.einfahren(kunde);
         parkhaus.ausfahren(kunde, ticket);
-        assertFalse(parkhaus.ausfahren(kunde, ticket));
+
+        RuntimeException exception = assertThrows(RuntimeException.class, ()-> {
+            parkhaus.ausfahren(kunde, ticket);
+        });
+
+        assertEquals("Der Kunde hat noch nicht gezahlt.", exception.getMessage());
     }
 
 
