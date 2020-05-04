@@ -17,7 +17,7 @@ public class Parkticket implements ParkticketIF {
     }
 
     @Override
-    public float getPreis() {
+    public float getStundenPreis() {
         return 0;
     }
 }

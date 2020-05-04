@@ -4,5 +4,5 @@ public interface ParkticketIF {
 
     boolean getBezahlt();
 
-    float getPreis();
+    float getStundenPreis();
 }
