@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParkhausIFTest {
-    ParkhausIF p;
-    KundeIF k;
+    ParkhausIF parkhaus;
+    KundeIF kunde;
 
     @BeforeEach
     void setUp() {
-        p = new Parkhaus();
-        k = new Kunde();
+        parkhaus = new Parkhaus();
+        kunde = new Kunde();
     }
 
     @Test
@@ -22,7 +22,7 @@ class ParkhausIFTest {
     @Test
     @DisplayName("Einfahren mit leerem Parkhaus ist erfolgreich")
     void einfahren_mitLeeremParkhaus_istErfolgreich() {
-        ParkticketIF ticket = p.einfahren(k);
+        ParkticketIF ticket = parkhaus.einfahren(kunde);
         assertNotNull(ticket);
     }
 
@@ -31,25 +31,25 @@ class ParkhausIFTest {
     void einfahren_mitVollemParkhaus_schlaegtFehl() {
         //alle Plätze füllen
         for(int i=0; i <= 99; i++) {
-            p.einfahren(k);
+            parkhaus.einfahren(kunde);
         }
 
-        assertNull(p.einfahren(k));
+        assertNull(parkhaus.einfahren(kunde));
     }
 
     @Test
     @DisplayName("Ausfahren mit einem Kunden im Parkhaus ist erfolgreich")
     void ausfahren_mitEinemKundenImParkhaus_istErfolgreich() {
-        ParkticketIF ticket = p.einfahren(k);
-        assertTrue(p.ausfahren(k, ticket));
+        ParkticketIF ticket = parkhaus.einfahren(kunde);
+        assertTrue(parkhaus.ausfahren(kunde, ticket));
     }
 
     @Test
     @DisplayName("Ausfahren mit keinem Kunden im Parkhaus schlägt fehl")
     void ausfahren_mitKeinemKundenImParkhaus_schlaegtFehl() {
-        ParkticketIF ticket = p.einfahren(k);
-        p.ausfahren(k, ticket); //letzten Kunden ausfahren lassen
-        assertFalse(p.ausfahren(k, ticket));
+        ParkticketIF ticket = parkhaus.einfahren(kunde);
+        parkhaus.ausfahren(kunde, ticket); //letzten Kunden ausfahren lassen
+        assertFalse(parkhaus.ausfahren(kunde, ticket));
     }
 
 
