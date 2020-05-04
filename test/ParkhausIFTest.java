@@ -17,11 +17,6 @@ class ParkhausIFTest {
     }
 
     @Test
-    void einfahren() {
-
-    }
-
-    @Test
     @DisplayName("Einfahren mit leerem Parkhaus ist erfolgreich")
     void einfahren_mitLeeremParkhaus_istErfolgreich() {
         ParkticketIF ticket = parkhaus.einfahren(kunde);
