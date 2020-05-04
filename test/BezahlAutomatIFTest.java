@@ -26,9 +26,11 @@ class BezahlAutomatIFTest {
 
     @Test
     @DisplayName("Die Preisberechnung des Bezahlautomaten ist korrekt")
-    void getPreis_nachDemParken_laeuftErfolgreich() {
-        assertTrue(automat.getPreis(ticket, zeit) > 0);
+    void getPreis_nachDemParken_berechnetKorrekt() {
+        zeit.addStunden(1);
+        assertEquals(automat.getPreis(ticket, zeit), ticket.getStundenPreis());
+
+        zeit.addStunden(9);
+        assertEquals(automat.getPreis(ticket, zeit), 10 * ticket.getStundenPreis());
     }
-
-
 }
