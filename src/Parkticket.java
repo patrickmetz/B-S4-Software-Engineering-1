@@ -7,8 +7,13 @@ public class Parkticket implements ParkticketIF {
     private float preisStunde = 5.00f;
 
     @Override
-    public void setBezahlt() {
+    public void setBezahlt(boolean b) {
 
+    }
+
+    @Override
+    public boolean getBezahlt() {
+        return false;
     }
 
     @Override

@@ -1,6 +1,8 @@
 public interface ParkticketIF {
 
-    void setBezahlt();
+    void setBezahlt(boolean b);
+
+    boolean getBezahlt();
 
     float getPreis();
 }
