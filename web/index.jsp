@@ -6,9 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="author" content="Manfred Kaul <manfred.kaul@h-brs.de> 2017">
+<meta name="license" content="The MIT License (MIT)">
 <html>
   <head>
     <title>Parkhaus-Simulator</title>
+    <script src='https://ccmjs.github.io/mkaul-components/parkhaus/versions/ccm.parkhaus-7.0.0.js'></script><ccm-parkhaus-7-0-0 key='{"name":"parkhaus","server_url":"http://localhost:8080/parkhaus","extra_buttons":[{"extra_class":"Summe","extra_inner":"Summe","extra_popup_title":"Summe"},{"extra_class":"Durchschnitt","extra_inner":"Durchschnitt","extra_popup_title":"Durchschnitt"}],"extra_charts":[]}'></ccm-parkhaus-7-0-0>
   </head>
   <body>
     <h1>Parkhaus-Simulator</h1>
@@ -30,7 +35,6 @@
 
     <h2>Parkhaus-Belegung</h2>
     <div>todo</div>
-
 
   $END$
   </body>
