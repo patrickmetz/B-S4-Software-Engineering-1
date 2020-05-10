@@ -8,9 +8,30 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>Parkhaus-Simulator</title>
   </head>
   <body>
+    <h1>Parkhaus-Simulator</h1>
+
+    <h2>Freie Plätze</h2>
+    <div>todo</div>
+
+
+    <h2>Kunden</h2>
+    <div>todo</div>
+
+
+    <h2>Preise</h2>
+    <div>todo</div>
+
+
+    <h2>Einnahmen</h2>
+    <div>todo</div>
+
+    <h2>Parkhaus-Belegung</h2>
+    <div>todo</div>
+
+
   $END$
   </body>
 </html>
