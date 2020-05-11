@@ -1,3 +1,4 @@
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +14,7 @@ import java.util.List;
 public class ParkhausServlet extends HttpServlet {
 
     private List<Integer> einnahmen = new LinkedList<>();
+    private Parkhaus parkhaus;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HashMap<String, String> postMap = getPostHashMap(request);
@@ -22,6 +24,9 @@ public class ParkhausServlet extends HttpServlet {
 
         switch (postMap.get("cmd")) {
             case "enter":
+                KundeIF kunde = new Kunde();
+                UhrzeitIF zeit = new Uhrzeit(0, 0);
+                getParkhaus().einfahren(kunde, zeit);
                 break;
             case "leave":
                 // see https://kaul.inf.h-brs.de/se/#app-content-4-0&03_Technologien=page-61
@@ -130,5 +135,22 @@ public class ParkhausServlet extends HttpServlet {
 
     private static String formatCentAsEuro(int cent) {
         return "" + cent/100 + "," + cent%100 + "€";
+    }
+
+    private ServletContext getApplication() {
+        return getServletConfig().getServletContext();
+    }
+
+    private Parkhaus getParkhaus() {
+        if (null == parkhaus) {
+            parkhaus = (Parkhaus)getApplication().getAttribute("parkhaus");
+
+            if (null == parkhaus) {
+                parkhaus = new Parkhaus();
+                getApplication().setAttribute("parkhaus", parkhaus);
+            }
+        }
+
+        return parkhaus;
     }
 }
