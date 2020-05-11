@@ -25,7 +25,7 @@ public class ParkhausServlet extends HttpServlet {
 
         switch (postMap.get("cmd")) {
             case "enter":
-                handleGetEnter();
+                handlePostEnter();
                 break;
             case "leave":
                 handlePostLeave(response, postMap);
@@ -78,13 +78,6 @@ public class ParkhausServlet extends HttpServlet {
                 + " Durschnittsparkdauer: " + formatDauer(totalDuration / parkdauer.size()));
     }
 
-    private void handleGetEnter() {
-        KundeIF kunde = new Kunde();
-        UhrzeitIF zeit = new Uhrzeit(0, 0);
-        getParkhaus().einfahren(kunde, zeit);
-        return;
-    }
-
     private void handleGetSumme(HttpServletResponse response) throws IOException {
         int sum = 0;
         for (int einnahme : einnahmen) {
@@ -92,6 +85,13 @@ public class ParkhausServlet extends HttpServlet {
         }
 
         sendResponse(response, "" + formatCentAsEuro(sum));
+    }
+
+    private void handlePostEnter() {
+        KundeIF kunde = new Kunde();
+        UhrzeitIF zeit = new Uhrzeit(0, 0);
+        getParkhaus().einfahren(kunde, zeit);
+        return;
     }
 
     private void handlePostLeave(HttpServletResponse response, HashMap<String, String> postMap) throws IOException {
