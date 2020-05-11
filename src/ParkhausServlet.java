@@ -19,11 +19,17 @@ public class ParkhausServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HashMap<String, String> queryMap = getQueryHashMap(request);
 
-        if (queryMap.get("cmd").equals("config")) {
-            // see https://kaul.inf.h-brs.de/se/#app-content-4-0&03_Technologien=page-53
-            sendResponse(response, "100,6,24,100,10");
-        } else {
-            System.out.println("Invalid GET-command: " + request.getQueryString());
+        switch(queryMap.get("cmd")) {
+            case "config":
+                // see https://kaul.inf.h-brs.de/se/#app-content-4-0&03_Technologien=page-53
+                sendResponse(response, "100,6,24,100,10");
+                break;
+
+            case "Summe":
+                break;
+
+            default:
+                System.out.println("Invalid GET-command: " + request.getQueryString());
         }
     }
 
