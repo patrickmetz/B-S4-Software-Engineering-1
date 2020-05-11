@@ -4,16 +4,44 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+
 
 @WebServlet("/ParkhausServlet")
 public class ParkhausServlet extends HttpServlet {
+
+    private List<Integer> einnahmen = new LinkedList<>();
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HashMap<String, String> postMap = getPostHashMap(request);
 
         System.out.println("POST-command: " + postMap.get("cmd"));
         System.out.println("POST-csv: " + postMap.get("csv"));
+
+        switch (postMap.get("cmd")) {
+            case "enter":
+                break;
+            case "leave":
+                // see https://kaul.inf.h-brs.de/se/#app-content-4-0&03_Technologien=page-61
+                String[] params = postMap.get("csv").split(",");
+                int nr = Integer.parseInt(params[0]);
+                Double beginn = Double.parseDouble(params[1]);
+                Double dauer = Double.parseDouble(params[2]);
+                int preis = Integer.parseInt(params[3]);
+                String tickethash = params[4];
+                String farbe = params[5];
+                int slot = Integer.parseInt(params[6]);
+
+                einnahmen.add(preis);
+
+                sendResponse(response, postMap.get("csv"));
+                break;
+
+            default:
+                System.out.println("Invalid POST-command: " + request.getQueryString());
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,6 +54,12 @@ public class ParkhausServlet extends HttpServlet {
                 break;
 
             case "Summe":
+                int sum = 0;
+                for (int einnahme: einnahmen) {
+                    sum += einnahme;
+                }
+
+                sendResponse(response, "" + formatCentAsEuro(sum));
                 break;
 
             default:
@@ -82,5 +116,9 @@ public class ParkhausServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         out.println(htmlContent);
+    }
+
+    private static String formatCentAsEuro(int cent) {
+        return "" + cent/100 + "," + cent%100 + "€";
     }
 }
