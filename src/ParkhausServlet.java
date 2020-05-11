@@ -25,25 +25,10 @@ public class ParkhausServlet extends HttpServlet {
 
         switch (postMap.get("cmd")) {
             case "enter":
-                KundeIF kunde = new Kunde();
-                UhrzeitIF zeit = new Uhrzeit(0, 0);
-                getParkhaus().einfahren(kunde, zeit);
+                handleGetEnter();
                 break;
             case "leave":
-                // see https://kaul.inf.h-brs.de/se/#app-content-4-0&03_Technologien=page-61
-                String[] params = postMap.get("csv").split(",");
-                int nr = Integer.parseInt(params[0]);
-                Double beginn = Double.parseDouble(params[1]);
-                int dauer = Integer.parseInt(params[2]);
-                int preis = Integer.parseInt(params[3]);
-                String tickethash = params[4];
-                String farbe = params[5];
-                int slot = Integer.parseInt(params[6]);
-
-                einnahmen.add(preis);
-                parkdauer.add(dauer);
-
-                sendResponse(response, postMap.get("csv"));
+                handlePostLeave(response, postMap);
                 break;
 
             default:
@@ -54,40 +39,76 @@ public class ParkhausServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HashMap<String, String> queryMap = getQueryHashMap(request);
 
-        switch(queryMap.get("cmd")) {
+        switch (queryMap.get("cmd")) {
             case "config":
-                // see https://kaul.inf.h-brs.de/se/#app-content-4-0&03_Technologien=page-53
-                sendResponse(response, "100,6,24,100,10");
+                handleGetConfig(response);
                 break;
 
             case "Durchschnitt":
-                int totalMoney = 0;
-                int totalDuration = 0;
-
-                for (int einnahme : einnahmen) {
-                    totalMoney += einnahme;
-                }
-
-                for (int duration : parkdauer) {
-                    totalDuration += duration;
-                }
-
-                sendResponse(response, "Durchschnittseinahme: " +  formatCentAsEuro(totalMoney/einnahmen.size())
-                        + " Durschnittsparkdauer: " + formatDauer(totalDuration/parkdauer.size()));
+                handleGetDurchschnitt(response);
                 break;
 
             case "Summe":
-                int sum = 0;
-                for (int einnahme: einnahmen) {
-                    sum += einnahme;
-                }
-
-                sendResponse(response, "" + formatCentAsEuro(sum));
+                handleGetSumme(response);
                 break;
 
             default:
                 System.out.println("Invalid GET-command: " + request.getQueryString());
         }
+    }
+
+    private void handleGetConfig(HttpServletResponse response) throws IOException {
+        // see https://kaul.inf.h-brs.de/se/#app-content-4-0&03_Technologien=page-53
+        sendResponse(response, "100,6,24,100,10");
+    }
+
+    private void handleGetDurchschnitt(HttpServletResponse response) throws IOException {
+        int totalMoney = 0;
+        int totalDuration = 0;
+
+        for (int einnahme : einnahmen) {
+            totalMoney += einnahme;
+        }
+
+        for (int duration : parkdauer) {
+            totalDuration += duration;
+        }
+
+        sendResponse(response, "Durchschnittseinahme: " + formatCentAsEuro(totalMoney / einnahmen.size())
+                + " Durschnittsparkdauer: " + formatDauer(totalDuration / parkdauer.size()));
+    }
+
+    private void handleGetEnter() {
+        KundeIF kunde = new Kunde();
+        UhrzeitIF zeit = new Uhrzeit(0, 0);
+        getParkhaus().einfahren(kunde, zeit);
+        return;
+    }
+
+    private void handleGetSumme(HttpServletResponse response) throws IOException {
+        int sum = 0;
+        for (int einnahme : einnahmen) {
+            sum += einnahme;
+        }
+
+        sendResponse(response, "" + formatCentAsEuro(sum));
+    }
+
+    private void handlePostLeave(HttpServletResponse response, HashMap<String, String> postMap) throws IOException {
+        // see https://kaul.inf.h-brs.de/se/#app-content-4-0&03_Technologien=page-61
+        String[] params = postMap.get("csv").split(",");
+        int nr = Integer.parseInt(params[0]);
+        Double beginn = Double.parseDouble(params[1]);
+        int dauer = Integer.parseInt(params[2]);
+        int preis = Integer.parseInt(params[3]);
+        String tickethash = params[4];
+        String farbe = params[5];
+        int slot = Integer.parseInt(params[6]);
+
+        einnahmen.add(preis);
+        parkdauer.add(dauer);
+
+        sendResponse(response, postMap.get("csv"));
     }
 
     private static HashMap<String, String> getQueryHashMap(HttpServletRequest request) {
@@ -142,7 +163,7 @@ public class ParkhausServlet extends HttpServlet {
     }
 
     private static String formatCentAsEuro(int cent) {
-        return "" + cent/100 + "," + cent%100 + "€";
+        return "" + cent / 100 + "," + cent % 100 + "€";
     }
 
     private ServletContext getApplication() {
@@ -151,7 +172,7 @@ public class ParkhausServlet extends HttpServlet {
 
     private Parkhaus getParkhaus() {
         if (null == parkhaus) {
-            parkhaus = (Parkhaus)getApplication().getAttribute("parkhaus");
+            parkhaus = (Parkhaus) getApplication().getAttribute("parkhaus");
 
             if (null == parkhaus) {
                 parkhaus = new Parkhaus();
