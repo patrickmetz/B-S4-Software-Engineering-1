@@ -53,6 +53,16 @@ public class ParkhausServlet extends HttpServlet {
                 sendResponse(response, "100,6,24,100,10");
                 break;
 
+            case "Durchschnitt":
+                int total = 0;
+
+                for (int einnahme : einnahmen) {
+                    total += einnahme;
+                }
+
+                sendResponse(response, "" + formatCentAsEuro(total/einnahmen.size()));
+                break;
+
             case "Summe":
                 int sum = 0;
                 for (int einnahme: einnahmen) {
