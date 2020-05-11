@@ -10,10 +10,10 @@ import java.util.HashMap;
 @WebServlet("/ParkhausServlet")
 public class ParkhausServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HashMap<String, String> bodyMap = getPostHashMap(request);
+        HashMap<String, String> postMap = getPostHashMap(request);
 
-        System.out.println("POST-command: " + bodyMap.get("cmd"));
-        System.out.println("POST-csv: " + bodyMap.get("csv"));
+        System.out.println("POST-command: " + postMap.get("cmd"));
+        System.out.println("POST-csv: " + postMap.get("csv"));
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
