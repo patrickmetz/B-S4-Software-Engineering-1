@@ -14,6 +14,7 @@ import java.util.List;
 public class ParkhausServlet extends HttpServlet {
 
     private List<Integer> einnahmen = new LinkedList<>();
+    private List<Integer> parkdauer = new LinkedList<>();
     private Parkhaus parkhaus;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,13 +34,14 @@ public class ParkhausServlet extends HttpServlet {
                 String[] params = postMap.get("csv").split(",");
                 int nr = Integer.parseInt(params[0]);
                 Double beginn = Double.parseDouble(params[1]);
-                Double dauer = Double.parseDouble(params[2]);
+                int dauer = Integer.parseInt(params[2]);
                 int preis = Integer.parseInt(params[3]);
                 String tickethash = params[4];
                 String farbe = params[5];
                 int slot = Integer.parseInt(params[6]);
 
                 einnahmen.add(preis);
+                parkdauer.add(dauer);
 
                 sendResponse(response, postMap.get("csv"));
                 break;
@@ -59,13 +61,19 @@ public class ParkhausServlet extends HttpServlet {
                 break;
 
             case "Durchschnitt":
-                int total = 0;
+                int totalMoney = 0;
+                int totalDuration = 0;
 
                 for (int einnahme : einnahmen) {
-                    total += einnahme;
+                    totalMoney += einnahme;
                 }
 
-                sendResponse(response, "" + formatCentAsEuro(total/einnahmen.size()));
+                for (int duration : parkdauer) {
+                    totalDuration += duration;
+                }
+
+                sendResponse(response, "Durchschnittseinahme: " +  formatCentAsEuro(totalMoney/einnahmen.size())
+                        + " Durschnittsparkdauer: " + formatDauer(totalDuration/parkdauer.size()));
                 break;
 
             case "Summe":
@@ -152,5 +160,15 @@ public class ParkhausServlet extends HttpServlet {
         }
 
         return parkhaus;
+    }
+
+    private static String formatDauer(int dauer) {
+        String dauerString = String.format("%7s", Integer.toString(dauer)).replace(' ', '0');
+
+        StringBuilder formattedString = new StringBuilder(dauerString);
+        formattedString.insert(2, ':');
+        formattedString.insert(5, '.');
+
+        return formattedString.toString();
     }
 }
