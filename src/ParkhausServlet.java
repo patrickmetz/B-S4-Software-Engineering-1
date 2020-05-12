@@ -91,8 +91,9 @@ public class ParkhausServlet extends HttpServlet {
         KundenDatenIF kundenDaten = new KundenDaten(postMap.get("csv").split(","));
         KundeIF kunde = new Kunde();
         UhrzeitIF zeit = new Uhrzeit(0, 0);
-        getParkhaus().einfahren(kunde, zeit);
-        return;
+
+        ParkticketIF ticket = getParkhaus().einfahren(kunde, zeit);
+        getParkhaus().addParkticket(kundenDaten.getTickethash(), ticket);
     }
 
     private void handlePostLeave(HttpServletResponse response, HashMap<String, String> postMap) throws IOException {
@@ -100,6 +101,13 @@ public class ParkhausServlet extends HttpServlet {
 
         einnahmen.add(kundenDaten.getPreis());
         parkdauer.add(kundenDaten.getDauer());
+
+        BezahlAutomatIF automat = new BezahlAutomat();
+        ParkticketIF ticket = getParkhaus().getParkticket(kundenDaten.getTickethash());
+        UhrzeitIF zeit = new Uhrzeit(2, 2);
+
+        automat.bezahlen(ticket, zeit);
+        parkhaus.ausfahren(ticket.getKunde(), ticket);
 
         sendResponse(response, postMap.get("csv"));
     }

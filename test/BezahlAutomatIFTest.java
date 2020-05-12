@@ -12,7 +12,7 @@ class BezahlAutomatIFTest {
     @BeforeEach
     void setUp() {
         automat = new BezahlAutomat();
-        ticket = new Parkticket();
+        ticket = new Parkticket(new Kunde());
         zeit = new Uhrzeit(0, 0);
     }
 

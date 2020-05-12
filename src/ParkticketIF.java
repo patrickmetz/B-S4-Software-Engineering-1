@@ -5,4 +5,6 @@ public interface ParkticketIF {
     boolean getBezahlt();
 
     float getStundenPreis();
+
+    KundeIF getKunde();
 }

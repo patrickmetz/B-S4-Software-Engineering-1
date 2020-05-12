@@ -2,13 +2,17 @@ import Exceptions.NichtBezahltException;
 import Exceptions.ParkhausLeerException;
 import Exceptions.ParkhausVollException;
 
+import java.util.HashMap;
+
 public class Parkhaus implements ParkhausIF {
 
     private final int plaetze = 100;
     private int plaetzeFrei;
+    private HashMap<String, ParkticketIF> parktickets;
 
     Parkhaus() {
         plaetzeFrei = plaetze;
+        parktickets = new HashMap<>();
     }
 
     @Override
@@ -17,7 +21,7 @@ public class Parkhaus implements ParkhausIF {
         if(plaetzeFrei == 0) throw new ParkhausVollException();
         plaetzeFrei--;
 
-        return new Parkticket();
+        return new Parkticket(kunde);
     }
 
     @Override
@@ -33,5 +37,15 @@ public class Parkhaus implements ParkhausIF {
         plaetzeFrei++;
 
         return true;
+    }
+
+    @Override
+    public void addParkticket(String hash, ParkticketIF parkTicket) {
+        parktickets.put(hash, parkTicket);
+    }
+
+    @Override
+    public ParkticketIF getParkticket(String hash) {
+        return parktickets.get(hash);
     }
 }

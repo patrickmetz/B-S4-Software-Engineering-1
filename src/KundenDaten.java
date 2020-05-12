@@ -1,12 +1,12 @@
 public class KundenDaten implements KundenDatenIF {
-    public Integer nr;
-    public Double beginn;
-    public Integer dauer;
-    public Integer preis;
-    public String tickethash;
-    public String farbe;
-    public Integer slot;
-    public String kundengruppe;
+    private Integer nr;
+    private Double beginn;
+    private Integer dauer;
+    private Integer preis;
+    private String tickethash;
+    private String farbe;
+    private Integer slot;
+    private String kundengruppe;
 
     KundenDaten (String[] params) {
         // see https://kaul.inf.h-brs.de/se/#app-content-4-0&03_Technologien=page-61
