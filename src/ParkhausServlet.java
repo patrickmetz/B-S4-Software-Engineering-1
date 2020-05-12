@@ -25,7 +25,7 @@ public class ParkhausServlet extends HttpServlet {
 
         switch (postMap.get("cmd")) {
             case "enter":
-                handlePostEnter();
+                handlePostEnter(response, postMap);
                 break;
             case "leave":
                 handlePostLeave(response, postMap);
@@ -87,7 +87,8 @@ public class ParkhausServlet extends HttpServlet {
         sendResponse(response, "" + formatCentAsEuro(sum));
     }
 
-    private void handlePostEnter() {
+    private void handlePostEnter(HttpServletResponse response, HashMap<String, String> postMap) {
+        KundenDatenIF kundenDaten = new KundenDaten(postMap.get("csv").split(","));
         KundeIF kunde = new Kunde();
         UhrzeitIF zeit = new Uhrzeit(0, 0);
         getParkhaus().einfahren(kunde, zeit);
@@ -95,18 +96,10 @@ public class ParkhausServlet extends HttpServlet {
     }
 
     private void handlePostLeave(HttpServletResponse response, HashMap<String, String> postMap) throws IOException {
-        // see https://kaul.inf.h-brs.de/se/#app-content-4-0&03_Technologien=page-61
-        String[] params = postMap.get("csv").split(",");
-        int nr = Integer.parseInt(params[0]);
-        Double beginn = Double.parseDouble(params[1]);
-        int dauer = Integer.parseInt(params[2]);
-        int preis = Integer.parseInt(params[3]);
-        String tickethash = params[4];
-        String farbe = params[5];
-        int slot = Integer.parseInt(params[6]);
+        KundenDatenIF kundenDaten = new KundenDaten(postMap.get("csv").split(","));
 
-        einnahmen.add(preis);
-        parkdauer.add(dauer);
+        einnahmen.add(kundenDaten.getPreis());
+        parkdauer.add(kundenDaten.getDauer());
 
         sendResponse(response, postMap.get("csv"));
     }
