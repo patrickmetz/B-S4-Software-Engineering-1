@@ -1,5 +1,4 @@
 public class KundenDaten implements KundenDatenIF {
-    public String[] params;
     public Integer nr;
     public Double beginn;
     public Integer dauer;
