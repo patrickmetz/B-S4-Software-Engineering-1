@@ -39,8 +39,6 @@ public class ParkhausServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HashMap<String, String> queryMap = getQueryHashMap(request);
 
-        System.out.println(floatToEuro(222));
-
         switch (queryMap.get("cmd")) {
             case "config":
                 handleGetConfig(response);
