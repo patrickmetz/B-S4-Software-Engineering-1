@@ -14,7 +14,7 @@
     <ccm-parkhaus-8-0-0
             key='{"name":"parkhaus","server_url":"http://localhost:8080/ParkhausServlet",
             "client_categories": ["any", "family", "woman", "handicap"],
-            "extra_buttons":[{"extra_class":"Summe","extra_inner":"Summe","extra_popup_title":"Summe"},{"extra_class":"Durchschnitt","extra_inner":"Durchschnitt","extra_popup_title":"Durchschnitt"}],"extra_charts":[]}'></ccm-parkhaus-8-0-0>
+            "extra_buttons":[{"extra_class":"Umsatzsteuer","extra_inner":"Umsatzsteuer","extra_popup_title":"Umsatzsteuer"},{"extra_class":"Summe","extra_inner":"Summe","extra_popup_title":"Summe"},{"extra_class":"Durchschnitt","extra_inner":"Durchschnitt","extra_popup_title":"Durchschnitt"}],"extra_charts":[]}'></ccm-parkhaus-8-0-0>
   </head>
   <body>
     <h1>Parkhaus-Simulator</h1>

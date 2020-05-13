@@ -5,15 +5,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.text.NumberFormat;
+import java.util.*;
 
 
 @WebServlet("/ParkhausServlet")
 public class ParkhausServlet extends HttpServlet {
 
-    private List<Integer> einnahmen = new LinkedList<>();
+    //todo: better use application context for true persistent storage
+    private List<Float> einnahmen = new LinkedList<>();
     private List<Integer> parkdauer = new LinkedList<>();
     private Parkhaus parkhaus;
 
@@ -52,6 +52,10 @@ public class ParkhausServlet extends HttpServlet {
                 handleGetSumme(response);
                 break;
 
+            case "Umsatzsteuer":
+                handleGetUmsatzsteuer(response);
+                break;
+
             default:
                 System.out.println("Invalid GET-command: " + request.getQueryString());
         }
@@ -63,28 +67,42 @@ public class ParkhausServlet extends HttpServlet {
     }
 
     private void handleGetDurchschnitt(HttpServletResponse response) throws IOException {
-        int totalMoney = 0;
-        int totalDuration = 0;
+        float totalMoney = 0;
+        float totalDuration = 0;
 
-        for (int einnahme : einnahmen) {
+        for (float einnahme : einnahmen) {
             totalMoney += einnahme;
         }
 
-        for (int duration : parkdauer) {
+        for (float duration : parkdauer) {
             totalDuration += duration;
         }
 
-        sendResponse(response, "Durchschnittseinahme: " + formatCentAsEuro(totalMoney / einnahmen.size())
-                + " Durschnittsparkdauer: " + formatDauer(totalDuration / parkdauer.size()));
+        sendResponse(response, "Durchschnittseinahme: " + floatToEuro((totalMoney / einnahmen.size()))
+                + " Durschnittsparkdauer: " + formatDauer((int) (totalDuration / parkdauer.size())));
     }
 
     private void handleGetSumme(HttpServletResponse response) throws IOException {
-        int sum = 0;
-        for (int einnahme : einnahmen) {
+        float sum = 0;
+        for (float einnahme : einnahmen) {
             sum += einnahme;
         }
 
-        sendResponse(response, "" + formatCentAsEuro(sum));
+        sendResponse(response, "" + floatToEuro(sum));
+    }
+
+    private void handleGetUmsatzsteuer(HttpServletResponse response) throws IOException {
+        float umsatzsteuer = 0;
+
+        float steuersatz = 0.19f;
+        float prozentwert;
+
+        for (float einnahme : einnahmen) {
+            prozentwert = einnahme * (1 - steuersatz);
+            umsatzsteuer += (einnahme - prozentwert);
+        }
+
+        sendResponse(response, "" + floatToEuro(umsatzsteuer));
     }
 
     private void handlePostEnter(HttpServletResponse response, HashMap<String, String> postMap) {
@@ -163,8 +181,17 @@ public class ParkhausServlet extends HttpServlet {
         out.println(htmlContent);
     }
 
-    private static String formatCentAsEuro(int cent) {
-        return "" + cent / 100 + "," + cent % 100 + "€";
+    private String floatToEuro(float amount) {
+        // todo: put into separate class
+        // todo: don't instantiate a new object every time
+        // todo:  better use big decimals
+        // https://stackoverflow.com/questions/3730019/why-not-use-double-or-float-to-represent-currency
+
+        NumberFormat numberFormat =
+                NumberFormat.getCurrencyInstance(new Locale("de", "DE"));
+        numberFormat.setCurrency(Currency.getInstance("EUR"));
+
+        return numberFormat.format(amount);
     }
 
     private ServletContext getApplication() {

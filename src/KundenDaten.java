@@ -42,7 +42,7 @@ public class KundenDaten implements KundenDatenIF {
         return dauer;
     }
 
-    public Integer getPreis() {
+    public float getPreis() {
         return preis;
     }
 

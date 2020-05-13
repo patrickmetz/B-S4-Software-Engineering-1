@@ -5,7 +5,7 @@ public interface KundenDatenIF {
 
     public Integer getDauer();
 
-    public Integer getPreis();
+    public float getPreis();
 
     public String getTickethash();
 
