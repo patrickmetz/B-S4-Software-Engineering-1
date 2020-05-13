@@ -95,11 +95,10 @@ public class ParkhausServlet extends HttpServlet {
         float umsatzsteuer = 0;
 
         float steuersatz = 0.19f;
-        float prozentwert;
 
         for (float einnahme : einnahmen) {
-            prozentwert = einnahme * (1 - steuersatz);
-            umsatzsteuer += (einnahme - prozentwert);
+            float grundwert = einnahme / (1 + steuersatz);
+            umsatzsteuer += (einnahme - grundwert);
         }
 
         sendResponse(response, "" + floatToEuro(umsatzsteuer));
