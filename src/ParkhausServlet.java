@@ -92,16 +92,15 @@ public class ParkhausServlet extends HttpServlet {
     }
 
     private void handleGetUmsatzsteuer(HttpServletResponse response) throws IOException {
-        float umsatzsteuer = 0;
+        float salesTax = 0;
+        float taxRate = 0.19f;
 
-        float steuersatz = 0.19f;
-
-        for (float einnahme : einnahmen) {
-            float grundwert = einnahme / (1 + steuersatz);
-            umsatzsteuer += (einnahme - grundwert);
+        for (float revenue : einnahmen) {
+            float baseValue = revenue / (1 + taxRate);
+            salesTax += (revenue - baseValue);
         }
 
-        sendResponse(response, "" + floatToEuro(umsatzsteuer));
+        sendResponse(response, "" + floatToEuro(salesTax));
     }
 
     private void handlePostEnter(HttpServletResponse response, HashMap<String, String> postMap) {
