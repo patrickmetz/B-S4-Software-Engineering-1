@@ -2,7 +2,7 @@ public class KundenDaten implements KundenDatenIF {
     private Integer nr;
     private Double beginn;
     private Integer dauer;
-    private Integer preis;
+    private Float preis;
     private String tickethash;
     private String farbe;
     private Integer slot;
@@ -16,12 +16,11 @@ public class KundenDaten implements KundenDatenIF {
         dauer = null;
         if (! params[2].equals("_")) {
             dauer = Integer.parseInt(params[2]);
-
         }
 
         preis = null;
         if (! params[3].equals("_")) {
-            preis = Integer.parseInt(params[3]);
+            preis = Float.parseFloat(params[3])/100;
         }
 
         tickethash = params[4];
