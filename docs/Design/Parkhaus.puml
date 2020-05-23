@@ -1,0 +1,107 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor Kunde
+actor Betreiber
+actor Parkhausmitarbeiter
+actor Abonnent
+actor WeiblicherKunde
+actor KundeMitFamilie
+actor KundeMitBehinderung
+
+actor Ticketautomat
+actor ParkhausDisplay
+actor Finanzamt
+
+actor Einfahrtsschranke
+actor Ausfahrtsschranke
+
+package Betrieb {
+    ''Use-Cases
+
+    (Einfahrt-Schranke öffnen)
+    (Ausfahrt-Schranke öffnen)
+
+    (Ins Parkhaus einfahren)
+    (Aus Parkhaus ausfahren)
+
+    (Ticket erhalten)
+    (Ticket bezahlen)
+    (Ticketbezahlung überprüfen)
+
+    (Standard-Ticket erhalten)
+    (Frauen-Ticket erhalten)
+    (Ticket für Behinderten\n-Parkplatz erhalten)
+    (Ticket für größeren Parkpaltz erhalten)
+
+    (Abonnement kündigen)
+    (Abonnement starten)
+    (Rabatt erhalten)
+
+    (Freie Parkplätze einsehen)
+    (Freie Parkplätze überprüfen)
+
+    (Frauen-Parkplatz erhalten)
+    (Behinderten\n-Parkplatz erhalten)
+    (Größeren Parkplatz erhalten)
+}
+
+package Verwaltung {
+    (Preise pflegen)
+    (Finanzkennzahlen \n übermitteln)
+    (Automatische Preisberechnung)
+    (Übersicht über historische \n Belegung einsehen)
+    (Umsatzübersicht einsehen)
+}
+
+    ''Hierarchie
+    Kunde -|> Abonnent
+    Kunde -|> Parkhausmitarbeiter
+    Kunde -|> WeiblicherKunde
+    Kunde -|> KundeMitFamilie
+    Kunde -|> KundeMitBehinderung
+
+    '' Verbindungen
+    (Einfahrt-Schranke öffnen) ---- Einfahrtsschranke
+    (Ausfahrt-Schranke öffnen) ---- Ausfahrtsschranke
+
+    Kunde -- (Ins Parkhaus einfahren)
+    (Ins Parkhaus einfahren) ..> (Ticket erhalten) : <<include>>
+    (Ins Parkhaus einfahren) ..> (Freie Parkplätze überprüfen) : <<include>>
+    (Ins Parkhaus einfahren) ..> (Einfahrt-Schranke öffnen) : <<include>>
+
+    Kunde -- (Aus Parkhaus ausfahren)
+    (Aus Parkhaus ausfahren) ..> (Ticketbezahlung überprüfen) : <<include>>
+    (Aus Parkhaus ausfahren) ..> (Ausfahrt-Schranke öffnen) : <<include>>
+
+    (Ticket erhalten) --|> (Standard-Ticket erhalten)
+    (Ticket erhalten) --|> (Frauen-Ticket erhalten)
+    (Ticket erhalten) --|> (Ticket für Behinderten\n-Parkplatz erhalten)
+    (Ticket erhalten) --|> (Ticket für größeren Parkpaltz erhalten)
+
+    (WeiblicherKunde) -- (Frauen-Parkplatz erhalten)
+    KundeMitBehinderung -- (Behinderten\n-Parkplatz erhalten)
+    KundeMitFamilie -- (Größeren Parkplatz erhalten)
+
+    Kunde -- (Abonnement starten)
+    Kunde -- (Freie Parkplätze einsehen)
+    (Freie Parkplätze einsehen) ---- ParkhausDisplay
+
+    Kunde -- (Ticket bezahlen)
+    (Ticket bezahlen) ---- Ticketautomat
+    (Ticket bezahlen) ..> (Automatische Preisberechnung) : <<include>>
+
+    Abonnent -- (Abonnement kündigen)
+
+    Betreiber -- (Finanzkennzahlen \n übermitteln)
+    (Finanzkennzahlen \n übermitteln) ---- Finanzamt
+
+    Betreiber -- (Preise pflegen)
+    Betreiber -- (Umsatzübersicht einsehen)
+    Betreiber -- (Übersicht über historische \n Belegung einsehen)
+
+    Abonnent -- (Rabatt erhalten)
+    Parkhausmitarbeiter -- (Rabatt erhalten)
+
+
+@enduml
