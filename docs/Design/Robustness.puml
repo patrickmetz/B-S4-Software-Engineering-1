@@ -68,15 +68,15 @@ rectangle ParkhausSimulation{
 
 'relations: actors - boundaries
 '==============================
-Kunde -right- AbonnementVerwaltenSeite
-Kunde -right- ParkplaetzeEinsehenSeite
-Kunde -right- ParkhausEinfahrenSeite
-Kunde -right- ParkhausAusfahrenSeite
+Kunde - AbonnementVerwaltenSeite
+Kunde -- ParkplaetzeEinsehenSeite
+Kunde - ParkhausEinfahrenSeite
+Kunde - ParkhausAusfahrenSeite
 
-Betreiber -right- PreispflegeSeite
-Betreiber -right- BelegungHistorischSeite
-Betreiber -right- UmsatzübersichtSeite
-Betreiber -right- FinanzKennzahlenSeite
+Betreiber - PreispflegeSeite
+Betreiber - BelegungHistorischSeite
+Betreiber -- UmsatzübersichtSeite
+Betreiber - FinanzKennzahlenSeite
 
 'relations: boundaries - controllers
 '===================================
