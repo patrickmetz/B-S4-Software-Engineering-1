@@ -12,6 +12,6 @@ class KundenDatenUtilsTest {
 
     @Test
     void floatToEuro() {
-        assertEquals("1,23 €", KundenDatenUtils.floatToEuro(1.23f));
+        assertEquals("1,23 €", KundenDatenUtils.floatToEuro(1.23f));
     }
 }
