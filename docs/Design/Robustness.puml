@@ -16,18 +16,18 @@ skinparam defaultTextAlignment center
 '======
 rectangle ParkhausSimulation{
     package Betrieb{
-        boundary "AbonnementVerwalten\nSeite" as AbonnementVerwaltenSeite
+        boundary "AbonnementVerwalten\nDisplay" as AbonnementVerwaltenDisplay
         control "AbonnementVerwalten\nController" as AbonnementVerwaltenController
         control "AbonnementStarten\nController" as AbonnementStartenController
         control "AbonnementKuendigen\nController" as AbonnementKuendigenController
         entity Abonnement
 
-        boundary "ParkplaetzeEinsehen\nSeite" as ParkplaetzeEinsehenSeite
+        boundary "ParkplaetzeEinsehen\nDisplay" as ParkplaetzeEinsehenDisplay
         control "ParkplaetzeEinsehen\nController" as ParkplaetzeEinsehenController
         rectangle "<<dataType>>\nBelegungAktuell" as BelegungAktuell {
         }
 
-        boundary "ParkhausTransit\nSeite" as ParkhausTransitSeite
+        boundary "ParkhausTransit\nDisplay" as ParkhausTransitDisplay
         control "ParkhausTransit\nController" as ParkhausTransitController
         control "ParkhausEinfahren\nController" as ParkhausEinfahrenController
         control "Ticket\nController" as TicketController
@@ -44,22 +44,22 @@ rectangle ParkhausSimulation{
     }
 
     package Verwaltung{
-        boundary "Preispflege\nSeite" as PreispflegeSeite
+        boundary "Preispflege\nDisplay" as PreispflegeDisplay
         control "Preispflege\nController" as PreispflegeController
         entity Preis
         entity "Preis\nWeiblicherKunde" as PreisWeiblicherKunde
         entity "Preis\nKundeMitFamilie" as PreisKundeMitFamilie
         entity "Preis\nKundeMitBehinderung" as PreisKundeMitBehinderung
 
-        boundary "FinanzKennzahlen\nSeite" as FinanzKennzahlenSeite
+        boundary "FinanzKennzahlen\nDisplay" as FinanzKennzahlenDisplay
         control "FinanzKennzahlen\nController" as FinanzKennzahlenController
         entity Umsatz
 
-        boundary "BelegungHistorisch\nSeite" as BelegungHistorischSeite
+        boundary "BelegungHistorisch\nDisplay" as BelegungHistorischDisplay
         control "BelegungHistorisch\nController" as BelegungHistorischController
         entity BelegungHistorisch
 
-        boundary "Umsatzübersicht\nSeite" as UmsatzübersichtSeite
+        boundary "Umsatzübersicht\nDisplay" as UmsatzübersichtDisplay
         control "Umsatzübersicht\nController" as UmsatzübersichtController
         entity Kennzahlen
     }
@@ -73,27 +73,27 @@ rectangle ParkhausSimulation{
 
 'relations: actors - boundaries
 '==============================
-Kunde - AbonnementVerwaltenSeite
-Kunde -- ParkplaetzeEinsehenSeite
-Kunde - ParkhausTransitSeite
+Kunde - AbonnementVerwaltenDisplay
+Kunde -- ParkplaetzeEinsehenDisplay
+Kunde - ParkhausTransitDisplay
 
-Betreiber - PreispflegeSeite
-Betreiber - BelegungHistorischSeite
-Betreiber -- UmsatzübersichtSeite
-Betreiber - FinanzKennzahlenSeite
+Betreiber - PreispflegeDisplay
+Betreiber - BelegungHistorischDisplay
+Betreiber -- UmsatzübersichtDisplay
+Betreiber - FinanzKennzahlenDisplay
 
 'relations: boundaries - controllers
 '===================================
-AbonnementVerwaltenSeite <.right. AbonnementVerwaltenController : <<use>>
+AbonnementVerwaltenDisplay <.right. AbonnementVerwaltenController : <<use>>
 
-ParkplaetzeEinsehenSeite <.right. ParkplaetzeEinsehenController : <<use>>
+ParkplaetzeEinsehenDisplay <.right. ParkplaetzeEinsehenController : <<use>>
 
-ParkhausTransitSeite <.right. ParkhausTransitController : <<use>>
+ParkhausTransitDisplay <.right. ParkhausTransitController : <<use>>
 
-PreispflegeSeite <.right. PreispflegeController : <<use>>
-BelegungHistorischSeite <.right. BelegungHistorischController : <<use>>
-UmsatzübersichtSeite <.right. UmsatzübersichtController : <<use>>
-FinanzKennzahlenSeite <.right. FinanzKennzahlenController : <<use>>
+PreispflegeDisplay <.right. PreispflegeController : <<use>>
+BelegungHistorischDisplay <.right. BelegungHistorischController : <<use>>
+UmsatzübersichtDisplay <.right. UmsatzübersichtController : <<use>>
+FinanzKennzahlenDisplay <.right. FinanzKennzahlenController : <<use>>
 
 'relations: controllers - others
 '===============================
@@ -129,13 +129,13 @@ ParkhausTransitController <|-down- ParkhausAusfahrenController
 
 ' fixing layout
 '==============
-AbonnementVerwaltenSeite -[hidden]down-- ParkplaetzeEinsehenSeite
-ParkplaetzeEinsehenSeite -[hidden]down-- ParkhausTransitSeite
-ParkhausTransitSeite -[hidden]down-- ParkhausTransitSeite
+AbonnementVerwaltenDisplay -[hidden]down-- ParkplaetzeEinsehenDisplay
+ParkplaetzeEinsehenDisplay -[hidden]down-- ParkhausTransitDisplay
+ParkhausTransitDisplay -[hidden]down-- ParkhausTransitDisplay
 
-PreispflegeSeite -[hidden]down-- BelegungHistorischSeite
-BelegungHistorischSeite -[hidden]down- UmsatzübersichtSeite
-UmsatzübersichtSeite -[hidden]down- FinanzKennzahlenSeite
+PreispflegeDisplay -[hidden]down-- BelegungHistorischDisplay
+BelegungHistorischDisplay -[hidden]down- UmsatzübersichtDisplay
+UmsatzübersichtDisplay -[hidden]down- FinanzKennzahlenDisplay
 
 Betrieb ----[hidden]down---- Verwaltung
 
