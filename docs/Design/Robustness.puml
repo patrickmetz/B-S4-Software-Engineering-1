@@ -4,14 +4,15 @@ skinparam defaultTextAlignment center
 
 ' actors
 '=======
-:Kunde:
 :Betreiber:
 :Finanzamt: as finanzamt <<externes System>>
-':Abonnent:
-':Parkhausmitarbeiter:
-':WeiblicherKunde:
-':KundeMitFamilie:
-':KundeMitBehinderung:
+
+:Kunde:
+:Abonnent:
+:Parkhausmitarbeiter:
+:WeiblicherKunde:
+:KundeMitFamilie:
+:KundeMitBehinderung:
 
 'system
 '======
@@ -73,23 +74,25 @@ rectangle ParkhausSimulation{
 }
 'relations: actors - actors
 '==========================
-'WeiblicherKunde --|> Kunde
-'KundeMitBehinderung --|> Kunde
-'KundeMitFamilie --|> Kunde
-'Parkhausmitarbeiter --|> Kunde
+WeiblicherKunde -up-|> Kunde
+KundeMitBehinderung -up-|> Kunde
+KundeMitFamilie -up-|> Kunde
+Abonnent -up-|> Kunde
 
 'relations: actors - boundaries
 '==============================
 Kunde - AbonnementVerwaltenDisplay
 Kunde -- ParkplaetzeEinsehenDisplay
-Kunde - ParkhausTransitDisplay
+Kunde -- ParkhausTransitDisplay
 
 Betreiber - PreispflegeDisplay
 Betreiber - BelegungHistorischDisplay
 Betreiber -- UmsatzübersichtDisplay
 Betreiber - FinanzKennzahlenDisplay
 
+Parkhausmitarbeiter -- ParkhausTransitDisplay
 finanzamt - FinanzKennzahlenInterface
+
 
 'relations: boundaries - controllers
 '===================================
@@ -154,7 +157,11 @@ BelegungHistorischDisplay -[hidden]down- UmsatzübersichtDisplay
 UmsatzübersichtDisplay -[hidden]down- FinanzKennzahlenDisplay
 
 Betrieb ----[hidden]down---- Verwaltung
-
+Abonnent -[hidden]up- Kunde
+WeiblicherKunde -[hidden]up- Abonnent
+KundeMitFamilie -[hidden]up- WeiblicherKunde
+KundeMitBehinderung -[hidden]up- KundeMitFamilie
+KundeMitBehinderung -[hidden]up- KundeMitFamilie
 
 
 
