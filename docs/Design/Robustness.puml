@@ -16,11 +16,11 @@ skinparam defaultTextAlignment center
 '======
 rectangle ParkhausSimulation{
     package Betrieb{
-        boundary "AbonnementStarten\nSeite" as AbonnementStartenSeite
-        boundary "AbonnementStarten\nController" as AbonnementStartenController
-
-        boundary "AbonnementKuendigen\nSeite" as AbonnementKuendigenSeite
+        boundary "AbonnementVerwalten\nSeite" as AbonnementVerwaltenSeite
+        control "AbonnementVerwalten\nController" as AbonnementVerwaltenController
+        control "AbonnementStarten\nController" as AbonnementStartenController
         control "AbonnementKuendigen\nController" as AbonnementKuendigenController
+        entity Abonnement
 
         boundary "ParkplaetzeEinsehen\nSeite" as ParkplaetzeEinsehenSeite
         control "ParkplaetzeEinsehen\nController" as ParkplaetzeEinsehenController
@@ -66,21 +66,20 @@ rectangle ParkhausSimulation{
 
 'relations: actors - boundaries
 '==============================
-Kunde -right- AbonnementStartenSeite
+Kunde -right- AbonnementVerwaltenSeite
 Kunde -right- ParkplaetzeEinsehenSeite
-Kunde -right- AbonnementKuendigenSeite
-Kunde -- ParkhausEinfahrenSeite
-Kunde -right-- ParkhausAusfahrenSeite
+Kunde -right- ParkhausEinfahrenSeite
+Kunde -right- ParkhausAusfahrenSeite
 
 Betreiber -right- PreispflegeSeite
 Betreiber -right- HistorischeBelegungSeite
-Betreiber -- UmsatzübersichtSeite
+Betreiber -right- UmsatzübersichtSeite
 Betreiber -right- FinanzKennzahlenSeite
 
 'relations: boundaries - controllers
 '===================================
-AbonnementStartenSeite <.right. AbonnementStartenController : <<use>>
-AbonnementKuendigenSeite <.right. AbonnementKuendigenController : <<use>>
+AbonnementVerwaltenSeite <.right. AbonnementVerwaltenController : <<use>>
+
 ParkplaetzeEinsehenSeite <.right. ParkplaetzeEinsehenController : <<use>>
 ParkhausEinfahrenSeite <.right. ParkhausEinfahrenController : <<use>>
 ParkhausAusfahrenSeite <.right. ParkhausAusfahrenController : <<use>>
@@ -92,6 +91,7 @@ FinanzKennzahlenSeite <.right. FinanzKennzahlenController : <<use>>
 
 'relations: controllers - others
 '===============================
+AbonnementVerwaltenController .right.> Abonnement : <<use>>
 PreispflegeController .right.> Preis : <<use>>
 HistorischeBelegungController .right.> Belegung : <<use>>
 UmsatzübersichtController .right.> Umsatz : <<use>>
@@ -103,11 +103,15 @@ Preis <|-down- PreisWeiblicherKunde
 Preis <|-down- PreisKundeMitBehinderung
 Preis <|-down- PreisKundeMitFamilie
 
+' relations: controllers - specializations
+'=========================================
+AbonnementVerwaltenController <|-down- AbonnementKuendigenController
+AbonnementVerwaltenController <|-down- AbonnementStartenController
+
 
 ' fixing layout
 '==============
-AbonnementKuendigenSeite -[hidden]down- AbonnementStartenSeite
-AbonnementStartenSeite -[hidden]down- ParkplaetzeEinsehenSeite
+AbonnementVerwaltenSeite -[hidden]down- ParkplaetzeEinsehenSeite
 ParkplaetzeEinsehenSeite -[hidden]down- ParkhausEinfahrenSeite
 ParkhausEinfahrenSeite -[hidden]down- ParkhausAusfahrenSeite
 
