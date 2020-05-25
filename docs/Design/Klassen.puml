@@ -1,13 +1,13 @@
 @startuml
 left to right direction
 skinparam packageStyle rectangle
-actor Kunde
+actor kunde.Kunde
 actor Betreiber
 actor Parkhausmitarbeiter
 actor Abonnent
-actor WeiblicherKunde
+actor kunde.WeiblicherKunde
 actor KundeMitFamilie
-actor KundeMitBehinderung
+actor kunde.KundeMitBehinderung
 
 actor Ticketautomat
 actor ParkhausDisplay
@@ -55,22 +55,22 @@ package Verwaltung {
 }
 
     ''Hierarchie
-    Kunde -|> Abonnent
-    Kunde -|> Parkhausmitarbeiter
-    Kunde -|> WeiblicherKunde
-    Kunde -|> KundeMitFamilie
-    Kunde -|> KundeMitBehinderung
+    kunde.Kunde -|> Abonnent
+    kunde.Kunde -|> Parkhausmitarbeiter
+    kunde.Kunde -|> kunde.WeiblicherKunde
+    kunde.Kunde -|> KundeMitFamilie
+    kunde.Kunde -|> kunde.KundeMitBehinderung
 
     '' Verbindungen
     (Einfahrt-Schranke öffnen) ---- Einfahrtsschranke
     (Ausfahrt-Schranke öffnen) ---- Ausfahrtsschranke
 
-    Kunde -- (Ins Parkhaus einfahren)
+    kunde.Kunde -- (Ins Parkhaus einfahren)
     (Ins Parkhaus einfahren) ..> (Ticket erhalten) : <<include>>
     (Ins Parkhaus einfahren) ..> (Freie Parkplätze überprüfen) : <<include>>
     (Ins Parkhaus einfahren) ..> (Einfahrt-Schranke öffnen) : <<include>>
 
-    Kunde -- (Aus Parkhaus ausfahren)
+    kunde.Kunde -- (Aus Parkhaus ausfahren)
     (Aus Parkhaus ausfahren) ..> (Ticketbezahlung überprüfen) : <<include>>
     (Aus Parkhaus ausfahren) ..> (Ausfahrt-Schranke öffnen) : <<include>>
 
@@ -79,15 +79,15 @@ package Verwaltung {
     (Ticket erhalten) --|> (Ticket für Behinderten\n-Parkplatz erhalten)
     (Ticket erhalten) --|> (Ticket für größeren Parkpaltz erhalten)
 
-    (WeiblicherKunde) -- (Frauen-Parkplatz erhalten)
-    KundeMitBehinderung -- (Behinderten\n-Parkplatz erhalten)
+    (kunde.WeiblicherKunde) -- (Frauen-Parkplatz erhalten)
+    kunde.KundeMitBehinderung -- (Behinderten\n-Parkplatz erhalten)
     KundeMitFamilie -- (Größeren Parkplatz erhalten)
 
-    Kunde -- (Abonnement starten)
-    Kunde -- (Freie Parkplätze einsehen)
+    kunde.Kunde -- (Abonnement starten)
+    kunde.Kunde -- (Freie Parkplätze einsehen)
     (Freie Parkplätze einsehen) ---- ParkhausDisplay
 
-    Kunde -- (Ticket bezahlen)
+    kunde.Kunde -- (Ticket bezahlen)
     (Ticket bezahlen) ---- Ticketautomat
     (Ticket bezahlen) ..> (Automatische Preisberechnung) : <<include>>
 

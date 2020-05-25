@@ -1,8 +1,10 @@
+import kunde.KundeIF;
+
 public interface ParkticketIF {
 
     void setBezahlt(boolean b);
 
-    boolean getBezahlt();
+    boolean isBezahlt();
 
     float getStundenPreis();
 

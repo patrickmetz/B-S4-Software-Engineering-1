@@ -1,6 +1,10 @@
+package kunde;
+
+import java.util.Date;
+
 public class KundenDaten implements KundenDatenIF {
     private Integer nr;
-    private Double beginn;
+    private Date beginn;
     private Integer dauer;
     private Float preis;
     private String tickethash;
@@ -8,10 +12,10 @@ public class KundenDaten implements KundenDatenIF {
     private Integer slot;
     private String kundengruppe;
 
-    KundenDaten (String[] params) {
+    public KundenDaten (String[] params) {
         // see https://kaul.inf.h-brs.de/se/#app-content-4-0&03_Technologien=page-61
         nr = Integer.parseInt(params[0]);
-        beginn = Double.parseDouble(params[1]);
+        beginn = new Date(Long.parseLong(params[1]));
 
         dauer = null;
         if (! params[2].equals("_")) {
@@ -29,11 +33,16 @@ public class KundenDaten implements KundenDatenIF {
         kundengruppe = params[7];
     }
 
+    public void updateDaten(KundenDatenIF kundenDaten) {
+        this.dauer = kundenDaten.getDauer();
+        this.preis = kundenDaten.getPreis();
+    }
+
     public Integer getNr() {
         return nr;
     }
 
-    public Double getBeginn() {
+    public Date getBeginn() {
         return beginn;
     }
 
@@ -41,7 +50,7 @@ public class KundenDaten implements KundenDatenIF {
         return dauer;
     }
 
-    public float getPreis() {
+    public Float getPreis() {
         return preis;
     }
 

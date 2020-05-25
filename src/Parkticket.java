@@ -1,4 +1,4 @@
-import java.time.LocalTime;
+import kunde.KundeIF;
 
 class Parkticket implements ParkticketIF {
 
@@ -16,7 +16,7 @@ class Parkticket implements ParkticketIF {
     }
 
     @Override
-    public boolean getBezahlt() {
+    public boolean isBezahlt() {
         return bezahlt;
     }
 

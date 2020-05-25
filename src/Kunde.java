@@ -1,3 +1,0 @@
-class Kunde implements KundeIF {
-
-}

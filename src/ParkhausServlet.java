@@ -1,3 +1,8 @@
+import kunde.Kunde;
+import kunde.KundeIF;
+import kunde.KundenDaten;
+import kunde.KundenDatenIF;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -5,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.text.NumberFormat;
 import java.util.*;
 
 
@@ -13,11 +17,17 @@ import java.util.*;
 public class ParkhausServlet extends HttpServlet {
 
     //todo: better use application context for true persistent storage
-    private List<Float> einnahmen = new LinkedList<>();
-    private List<Integer> parkdauer = new LinkedList<>();
     private Parkhaus parkhaus;
+    private KundenDatenProcessor kundenDatenProcessor;
+    private ParkhausChartProcessor parkhausChartProcessor;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void init() {
+        parkhaus = getParkhaus();
+        kundenDatenProcessor = getKundenDatenProcessor();
+        parkhausChartProcessor = getParkhausChartProcessor();
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HashMap<String, String> postMap = getPostHashMap(request);
 
         System.out.println("POST-command: " + postMap.get("cmd"));
@@ -36,7 +46,7 @@ public class ParkhausServlet extends HttpServlet {
         }
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HashMap<String, String> queryMap = getQueryHashMap(request);
 
         switch (queryMap.get("cmd")) {
@@ -45,15 +55,25 @@ public class ParkhausServlet extends HttpServlet {
                 break;
 
             case "Durchschnitt":
-                handleGetDurchschnitt(response);
+                sendResponse(response,
+                        "Durchschnittseinahme: " + KundenDatenUtils.floatToEuro(getKundenDatenProcessor().getDurschnittsPreis())
+                                + " Durschnittsparkdauer: " + KundenDatenUtils.formatDauer(getKundenDatenProcessor().getDurchschnittsDauer()));
                 break;
 
             case "Summe":
-                handleGetSumme(response);
+                sendResponse(response, KundenDatenUtils.floatToEuro(getKundenDatenProcessor().getSumme()));
                 break;
 
             case "Umsatzsteuer":
-                handleGetUmsatzsteuer(response);
+                sendResponse(response, KundenDatenUtils.floatToEuro(getKundenDatenProcessor().getUmsatzSteuer()));
+                break;
+
+            case "Parkdauer%20Diagramm":
+                sendResponse(response, parkhausChartProcessor.getKundenBarChart());
+                break;
+
+            case "Gruppen%20Diagramm":
+                sendResponse(response, parkhausChartProcessor.getKundenPieChart());
                 break;
 
             default:
@@ -66,64 +86,22 @@ public class ParkhausServlet extends HttpServlet {
         sendResponse(response, "100,6,24,100,10");
     }
 
-    private void handleGetDurchschnitt(HttpServletResponse response) throws IOException {
-        float totalMoney = 0;
-        float totalDuration = 0;
-
-        for (float einnahme : einnahmen) {
-            totalMoney += einnahme;
-        }
-
-        for (float duration : parkdauer) {
-            totalDuration += duration;
-        }
-
-        sendResponse(response, "Durchschnittseinahme: " + floatToEuro((totalMoney / einnahmen.size()))
-                + " Durschnittsparkdauer: " + formatDauer((int) (totalDuration / parkdauer.size())));
-    }
-
-    private void handleGetSumme(HttpServletResponse response) throws IOException {
-        float sum = 0;
-        for (float einnahme : einnahmen) {
-            sum += einnahme;
-        }
-
-        sendResponse(response, "" + floatToEuro(sum));
-    }
-
-    private void handleGetUmsatzsteuer(HttpServletResponse response) throws IOException {
-        float salesTax = 0;
-        float taxRate = 0.19f;
-
-        for (float revenue : einnahmen) {
-            float baseValue = revenue / (1 + taxRate);
-            salesTax += (revenue - baseValue);
-        }
-
-        sendResponse(response, "" + floatToEuro(salesTax));
-    }
-
     private void handlePostEnter(HttpServletResponse response, HashMap<String, String> postMap) {
         KundenDatenIF kundenDaten = new KundenDaten(postMap.get("csv").split(","));
-        KundeIF kunde = new Kunde();
-        UhrzeitIF zeit = new Uhrzeit(0, 0);
+        KundeIF kunde = new Kunde(kundenDaten);
 
-        ParkticketIF ticket = getParkhaus().einfahren(kunde, zeit);
+        ParkticketIF ticket = getParkhaus().einfahren(kunde);
         getParkhaus().addParkticket(kundenDaten.getTickethash(), ticket);
     }
 
     private void handlePostLeave(HttpServletResponse response, HashMap<String, String> postMap) throws IOException {
         KundenDatenIF kundenDaten = new KundenDaten(postMap.get("csv").split(","));
 
-        einnahmen.add(kundenDaten.getPreis());
-        parkdauer.add(kundenDaten.getDauer());
-
         BezahlAutomatIF automat = new BezahlAutomat();
         ParkticketIF ticket = getParkhaus().getParkticket(kundenDaten.getTickethash());
-        UhrzeitIF zeit = new Uhrzeit(2, 2);
 
-        automat.bezahlen(ticket, zeit);
-        parkhaus.ausfahren(ticket.getKunde(), ticket);
+        automat.bezahlen(ticket);
+        parkhaus.ausfahren(ticket, kundenDaten);
 
         sendResponse(response, postMap.get("csv"));
     }
@@ -157,12 +135,10 @@ public class ParkhausServlet extends HttpServlet {
             if (inputStream != null) {
                 bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
                 char[] charBuffer = new char[128];
-                int bytesRead = -1;
+                int bytesRead;
                 while ((bytesRead = bufferedReader.read(charBuffer)) > 0) {
                     stringBuilder.append(charBuffer, 0, bytesRead);
                 }
-            } else {
-                stringBuilder.append("");
             }
         } finally {
             if (bufferedReader != null) {
@@ -177,19 +153,6 @@ public class ParkhausServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         out.println(htmlContent);
-    }
-
-    private String floatToEuro(float amount) {
-        // todo: put into separate class
-        // todo: don't instantiate a new object every time
-        // todo:  better use big decimals
-        // https://stackoverflow.com/questions/3730019/why-not-use-double-or-float-to-represent-currency
-
-        NumberFormat numberFormat =
-                NumberFormat.getCurrencyInstance(new Locale("de", "DE"));
-        numberFormat.setCurrency(Currency.getInstance("EUR"));
-
-        return numberFormat.format(amount);
     }
 
     private ServletContext getApplication() {
@@ -209,13 +172,29 @@ public class ParkhausServlet extends HttpServlet {
         return parkhaus;
     }
 
-    private static String formatDauer(int dauer) {
-        String dauerString = String.format("%7s", Integer.toString(dauer)).replace(' ', '0');
+    private KundenDatenProcessor getKundenDatenProcessor() {
+        if (null == kundenDatenProcessor) {
+            kundenDatenProcessor = (KundenDatenProcessor) getApplication().getAttribute("datenProcessor");
 
-        StringBuilder formattedString = new StringBuilder(dauerString);
-        formattedString.insert(2, ':');
-        formattedString.insert(5, '.');
+            if (null == kundenDatenProcessor) {
+                kundenDatenProcessor = new KundenDatenProcessor(getParkhaus());
+                getApplication().setAttribute("datenProcessor", kundenDatenProcessor);
+            }
+        }
 
-        return formattedString.toString();
+        return kundenDatenProcessor;
+    }
+
+    private ParkhausChartProcessor getParkhausChartProcessor() {
+        if (null == parkhausChartProcessor) {
+            parkhausChartProcessor = (ParkhausChartProcessor) getApplication().getAttribute("chartProcessor");
+
+            if (null == parkhausChartProcessor) {
+                parkhausChartProcessor = new ParkhausChartProcessor(getParkhaus());
+                getApplication().setAttribute("chartProcessor", parkhausChartProcessor);
+            }
+        }
+
+        return parkhausChartProcessor;
     }
 }

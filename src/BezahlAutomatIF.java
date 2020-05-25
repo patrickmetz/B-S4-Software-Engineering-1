@@ -1,6 +1,7 @@
+import java.util.Date;
+
 public interface BezahlAutomatIF {
 
-    boolean bezahlen(ParkticketIF parkTicket, UhrzeitIF zeit);
+    boolean bezahlen(ParkticketIF parkTicket);
 
-    float getPreis(ParkticketIF parkTicket, UhrzeitIF zeit);
 }
