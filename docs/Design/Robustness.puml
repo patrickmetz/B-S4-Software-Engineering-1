@@ -1,0 +1,106 @@
+@startuml
+
+skinparam defaultTextAlignment center
+
+' actors
+'=======
+:Kunde:
+:Betreiber:
+':Abonnent:
+':Parkhausmitarbeiter:
+':WeiblicherKunde:
+':KundeMitFamilie:
+':KundeMitBehinderung:
+
+'system
+'======
+rectangle ParkhausSimulation{
+    package Betrieb{
+        boundary "AbonnementStarten\nSeite" as AbonnementStartenSeite
+        boundary "AbonnementStarten\nController" as AbonnementStartenController
+
+        boundary "AbonnementKuendigen\nSeite" as AbonnementKuendigenSeite
+        control "AbonnementKuendigen\nController" as AbonnementKuendigenController
+
+        boundary "ParkplaetzeEinsehen\nSeite" as ParkplaetzeEinsehenSeite
+        control "ParkplaetzeEinsehen\nController" as ParkplaetzeEinsehenController
+
+        boundary "ParkhausEinfahren\nSeite" as ParkhausEinfahrenSeite
+        control "ParkhausEinfahren\nController" as ParkhausEinfahrenController
+
+        boundary "ParkhausAusfahren\nSeite" as ParkhausAusfahrenSeite
+        control "ParkhausAusfahren\nController" as ParkhausAusfahrenController
+
+        'boundary "ParkplatzErhalten\nSeite" as ParkplatzErhaltenSeite
+        'boundary "TicketBezahlen\nSeite" as TicketBezahlenSeite
+
+    }
+
+    package Verwaltung{
+        boundary "Preispflege\nSeite" as PreispflegeSeite
+        control "Preispflege\nController" as PreispflegeController
+
+        boundary "FinanzKennzahlen\nSeite" as FinanzKennzahlenSeite
+        control "FinanzKennzahlen\nController" as FinanzKennzahlenController
+
+        boundary "HistorischeBelegung\nSeite" as HistorischeBelegungSeite
+        control "HistorischeBelegung\nController" as HistorischeBelegungController
+
+        boundary "Umsatzübersicht\nSeite" as UmsatzübersichtSeite
+        control "Umsatzübersicht\nController" as UmsatzübersichtController
+    }
+}
+'relations: actors - actors
+'==========================
+'WeiblicherKunde --|> Kunde
+'KundeMitBehinderung --|> Kunde
+'KundeMitFamilie --|> Kunde
+'Parkhausmitarbeiter --|> Kunde
+
+'relations: actors - boundaries
+'==============================
+Kunde -right- AbonnementStartenSeite
+Kunde -right- ParkplaetzeEinsehenSeite
+Kunde -right- AbonnementKuendigenSeite
+Kunde -- ParkhausEinfahrenSeite
+Kunde -right- ParkhausAusfahrenSeite
+
+Betreiber -right- PreispflegeSeite
+Betreiber -right- HistorischeBelegungSeite
+Betreiber -- UmsatzübersichtSeite
+Betreiber -right- FinanzKennzahlenSeite
+
+'relations: boundaries - controllers
+'===================================
+AbonnementStartenSeite <.right. AbonnementStartenController : <<use>>
+AbonnementKuendigenSeite <.right. AbonnementKuendigenController : <<use>>
+ParkplaetzeEinsehenSeite <.right. ParkplaetzeEinsehenController : <<use>>
+ParkhausEinfahrenSeite <.right. ParkhausEinfahrenController : <<use>>
+ParkhausAusfahrenSeite <.right. ParkhausAusfahrenController : <<use>>
+
+PreispflegeSeite <.right. PreispflegeController : <<use>>
+HistorischeBelegungSeite <.right. HistorischeBelegungController : <<use>>
+UmsatzübersichtSeite <.right. UmsatzübersichtController : <<use>>
+FinanzKennzahlenSeite <.right. FinanzKennzahlenController : <<use>>
+
+' fixing layout
+'==============
+AbonnementKuendigenSeite -[hidden]down- AbonnementStartenSeite
+AbonnementStartenSeite -[hidden]down- ParkplaetzeEinsehenSeite
+ParkplaetzeEinsehenSeite -[hidden]down- ParkhausEinfahrenSeite
+ParkhausEinfahrenSeite -[hidden]down- ParkhausAusfahrenSeite
+
+ParkhausAusfahrenSeite -[hidden]down- PreispflegeSeite
+
+PreispflegeSeite -[hidden]down- HistorischeBelegungSeite
+HistorischeBelegungSeite -[hidden]down- UmsatzübersichtSeite
+UmsatzübersichtSeite -[hidden]down- FinanzKennzahlenSeite
+
+
+
+
+
+
+
+
+@enduml
