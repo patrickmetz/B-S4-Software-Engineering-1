@@ -36,6 +36,7 @@ rectangle ParkhausSimulation{
         rectangle "<<dataType>>\nParkhausSchranke" as ParkhausSchranke {
         }
         control "Ticket\nController" as TicketController
+        control "PreisBerechnung\nController" as PreisBerechnungController
         entity Ticket
         entity "Ticket\nWeiblicherKunde" as TicketWeiblicherKunde
         entity "Ticket\nKundeMitFamilie" as TicketKundeMitFamilie
@@ -111,6 +112,8 @@ ParkplaetzeEinsehenController .right.> BelegungAktuell : <<use>>
 ParkhausTransitController .right.> TicketController : <<use>>
 ParkhausTransitController .up.> ParkhausSchrankeController : <<use>>
 TicketController .right.> Ticket : <<use>>
+TicketController .down.> PreisBerechnungController : <<use>>
+PreisBerechnungController .down.> Preis : <<use>>
 ParkhausTransitController .down.> Parkplatz : <<use>>
 ParkhausSchrankeController .right.> ParkhausSchranke : <<use>>
 
