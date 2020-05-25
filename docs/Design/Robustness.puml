@@ -53,6 +53,8 @@ rectangle ParkhausSimulation{
         entity "Preis\nWeiblicherKunde" as PreisWeiblicherKunde
         entity "Preis\nKundeMitFamilie" as PreisKundeMitFamilie
         entity "Preis\nKundeMitBehinderung" as PreisKundeMitBehinderung
+        entity "Preis\nAbonnent" as PreisAbonnent
+        entity "Preis\nParkhausMitarbeiter" as PreisParkhausMitarbeiter
 
         boundary "FinanzKennzahlen\nDisplay" as FinanzKennzahlenDisplay
         control "FinanzKennzahlen\nController" as FinanzKennzahlenController
@@ -115,9 +117,11 @@ FinanzKennzahlenController .right.> Kennzahlen : <<use>>
 
 ' relations: entities - specializations
 '======================================
-Preis <|-down- PreisWeiblicherKunde
-Preis <|-down- PreisKundeMitBehinderung
 Preis <|-down- PreisKundeMitFamilie
+Preis <|-down- PreisKundeMitBehinderung
+Preis <|-down- PreisWeiblicherKunde
+Preis <|-down- PreisParkhausMitarbeiter
+Preis <|-down- PreisAbonnent
 
 Ticket <|-down- TicketKundeMitFamilie
 Ticket <|-down- TicketKundeMitBehinderung
