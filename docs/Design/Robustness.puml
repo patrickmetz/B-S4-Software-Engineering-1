@@ -27,7 +27,8 @@ rectangle ParkhausSimulation{
         rectangle "<<dataType>>\nBelegungAktuell" as BelegungAktuell {
         }
 
-        boundary "ParkhausEinfahren\nSeite" as ParkhausEinfahrenSeite
+        boundary "ParkhausTransit\nSeite" as ParkhausTransitSeite
+        control "ParkhausTransit\nController" as ParkhausTransitController
         control "ParkhausEinfahren\nController" as ParkhausEinfahrenController
         control "Ticket\nController" as TicketController
         entity Ticket
@@ -39,7 +40,6 @@ rectangle ParkhausSimulation{
         rectangle "<<dataType>>\nParkplatz" as Parkplatz {
         }
 
-        boundary "ParkhausAusfahren\nSeite" as ParkhausAusfahrenSeite
         control "ParkhausAusfahren\nController" as ParkhausAusfahrenController
     }
 
@@ -75,8 +75,7 @@ rectangle ParkhausSimulation{
 '==============================
 Kunde - AbonnementVerwaltenSeite
 Kunde -- ParkplaetzeEinsehenSeite
-Kunde - ParkhausEinfahrenSeite
-Kunde - ParkhausAusfahrenSeite
+Kunde - ParkhausTransitSeite
 
 Betreiber - PreispflegeSeite
 Betreiber - BelegungHistorischSeite
@@ -89,8 +88,7 @@ AbonnementVerwaltenSeite <.right. AbonnementVerwaltenController : <<use>>
 
 ParkplaetzeEinsehenSeite <.right. ParkplaetzeEinsehenController : <<use>>
 
-ParkhausEinfahrenSeite <.right. ParkhausEinfahrenController : <<use>>
-ParkhausAusfahrenSeite <.right. ParkhausAusfahrenController : <<use>>
+ParkhausTransitSeite <.right. ParkhausTransitController : <<use>>
 
 PreispflegeSeite <.right. PreispflegeController : <<use>>
 BelegungHistorischSeite <.right. BelegungHistorischController : <<use>>
@@ -101,9 +99,9 @@ FinanzKennzahlenSeite <.right. FinanzKennzahlenController : <<use>>
 '===============================
 AbonnementVerwaltenController .right.> Abonnement : <<use>>
 ParkplaetzeEinsehenController .right.> BelegungAktuell : <<use>>
-ParkhausEinfahrenController .right.> TicketController : <<use>>
+ParkhausTransitController .right.> TicketController : <<use>>
 TicketController .right.> Ticket : <<use>>
-ParkhausEinfahrenController .down.> Parkplatz : <<use>>
+ParkhausTransitController .down.> Parkplatz : <<use>>
 
 PreispflegeController .right.> Preis : <<use>>
 BelegungHistorischController .right.> BelegungHistorisch : <<use>>
@@ -126,19 +124,20 @@ Ticket <|-down- TicketAbonnent
 '=========================================
 AbonnementVerwaltenController <|-down- AbonnementKuendigenController
 AbonnementVerwaltenController <|-down- AbonnementStartenController
-
+ParkhausTransitController <|-down- ParkhausEinfahrenController
+ParkhausTransitController <|-down- ParkhausAusfahrenController
 
 ' fixing layout
 '==============
 AbonnementVerwaltenSeite -[hidden]down-- ParkplaetzeEinsehenSeite
-ParkplaetzeEinsehenSeite -[hidden]down-- ParkhausEinfahrenSeite
-ParkhausEinfahrenSeite -[hidden]down-- ParkhausAusfahrenSeite
-
-ParkhausAusfahrenSeite -[hidden]down-- PreispflegeSeite
+ParkplaetzeEinsehenSeite -[hidden]down-- ParkhausTransitSeite
+ParkhausTransitSeite -[hidden]down-- ParkhausTransitSeite
 
 PreispflegeSeite -[hidden]down-- BelegungHistorischSeite
 BelegungHistorischSeite -[hidden]down- UmsatzübersichtSeite
 UmsatzübersichtSeite -[hidden]down- FinanzKennzahlenSeite
+
+Betrieb ----[hidden]down---- Verwaltung
 
 
 
