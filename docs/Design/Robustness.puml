@@ -6,6 +6,7 @@ skinparam defaultTextAlignment center
 '=======
 :Kunde:
 :Betreiber:
+:Finanzamt: as finanzamt <<externes System>>
 ':Abonnent:
 ':Parkhausmitarbeiter:
 ':WeiblicherKunde:
@@ -58,15 +59,15 @@ rectangle ParkhausSimulation{
 
         boundary "FinanzKennzahlen\nDisplay" as FinanzKennzahlenDisplay
         control "FinanzKennzahlen\nController" as FinanzKennzahlenController
-        entity Umsatz
-
+        entity Kennzahlen
+        boundary  "FinanzKennzahlen\nInterface" as FinanzKennzahlenInterface
         boundary "BelegungHistorisch\nDisplay" as BelegungHistorischDisplay
         control "BelegungHistorisch\nController" as BelegungHistorischController
         entity BelegungHistorisch
 
         boundary "Umsatzübersicht\nDisplay" as UmsatzübersichtDisplay
         control "Umsatzübersicht\nController" as UmsatzübersichtController
-        entity Kennzahlen
+        entity Umsatz
     }
 }
 'relations: actors - actors
@@ -87,6 +88,8 @@ Betreiber - BelegungHistorischDisplay
 Betreiber -- UmsatzübersichtDisplay
 Betreiber - FinanzKennzahlenDisplay
 
+finanzamt - FinanzKennzahlenInterface
+
 'relations: boundaries - controllers
 '===================================
 AbonnementVerwaltenDisplay <.right. AbonnementVerwaltenController : <<use>>
@@ -99,6 +102,7 @@ PreispflegeDisplay <.right. PreispflegeController : <<use>>
 BelegungHistorischDisplay <.right. BelegungHistorischController : <<use>>
 UmsatzübersichtDisplay <.right. UmsatzübersichtController : <<use>>
 FinanzKennzahlenDisplay <.right. FinanzKennzahlenController : <<use>>
+FinanzKennzahlenController <.right. FinanzKennzahlenInterface : <<use>>
 
 'relations: controllers - others
 '===============================
@@ -113,7 +117,7 @@ ParkhausSchrankeController .right.> ParkhausSchranke : <<use>>
 PreispflegeController .right.> Preis : <<use>>
 BelegungHistorischController .right.> BelegungHistorisch : <<use>>
 UmsatzübersichtController .right.> Umsatz : <<use>>
-FinanzKennzahlenController .right.> Kennzahlen : <<use>>
+FinanzKennzahlenController .down.> Kennzahlen : <<use>>
 
 ' relations: entities - specializations
 '======================================
