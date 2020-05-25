@@ -29,13 +29,18 @@ rectangle ParkhausSimulation{
 
         boundary "ParkhausEinfahren\nSeite" as ParkhausEinfahrenSeite
         control "ParkhausEinfahren\nController" as ParkhausEinfahrenController
+        control "Ticket\nController" as TicketController
+        entity Ticket
+        entity "Ticket\nWeiblicherKunde" as TicketWeiblicherKunde
+        entity "Ticket\nKundeMitFamilie" as TicketKundeMitFamilie
+        entity "Ticket\nKundeMitBehinderung" as TicketKundeMitBehinderung
+        entity "Ticket\nParkhausmitarbeiter" as TicketParkhausmitarbeiter
+        entity "Ticket\nAbonnent" as  TicketAbonnent
+        rectangle "<<dataType>>\nParkplatz" as Parkplatz {
+        }
 
         boundary "ParkhausAusfahren\nSeite" as ParkhausAusfahrenSeite
         control "ParkhausAusfahren\nController" as ParkhausAusfahrenController
-
-        'boundary "ParkplatzErhalten\nSeite" as ParkplatzErhaltenSeite
-        'boundary "TicketBezahlen\nSeite" as TicketBezahlenSeite
-
     }
 
     package Verwaltung{
@@ -83,6 +88,7 @@ Betreiber - FinanzKennzahlenSeite
 AbonnementVerwaltenSeite <.right. AbonnementVerwaltenController : <<use>>
 
 ParkplaetzeEinsehenSeite <.right. ParkplaetzeEinsehenController : <<use>>
+
 ParkhausEinfahrenSeite <.right. ParkhausEinfahrenController : <<use>>
 ParkhausAusfahrenSeite <.right. ParkhausAusfahrenController : <<use>>
 
@@ -95,6 +101,9 @@ FinanzKennzahlenSeite <.right. FinanzKennzahlenController : <<use>>
 '===============================
 AbonnementVerwaltenController .right.> Abonnement : <<use>>
 ParkplaetzeEinsehenController .right.> BelegungAktuell : <<use>>
+ParkhausEinfahrenController .right.> TicketController : <<use>>
+TicketController .right.> Ticket : <<use>>
+ParkhausEinfahrenController .down.> Parkplatz : <<use>>
 
 PreispflegeController .right.> Preis : <<use>>
 BelegungHistorischController .right.> BelegungHistorisch : <<use>>
@@ -106,6 +115,12 @@ FinanzKennzahlenController .right.> Kennzahlen : <<use>>
 Preis <|-down- PreisWeiblicherKunde
 Preis <|-down- PreisKundeMitBehinderung
 Preis <|-down- PreisKundeMitFamilie
+
+Ticket <|-down- TicketKundeMitFamilie
+Ticket <|-down- TicketKundeMitBehinderung
+Ticket <|-down- TicketWeiblicherKunde
+Ticket <|-down- TicketParkhausmitarbeiter
+Ticket <|-down- TicketAbonnent
 
 ' relations: controllers - specializations
 '=========================================
