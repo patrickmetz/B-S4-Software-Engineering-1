@@ -40,6 +40,9 @@ rectangle ParkhausSimulation{
         boundary "Preispflege\nSeite" as PreispflegeSeite
         control "Preispflege\nController" as PreispflegeController
         entity Preis
+        entity "Preis\nWeiblicherKunde" as PreisWeiblicherKunde
+        entity "Preis\nKundeMitFamilie" as PreisKundeMitFamilie
+        entity "Preis\nKundeMitBehinderung" as PreisKundeMitBehinderung
 
         boundary "FinanzKennzahlen\nSeite" as FinanzKennzahlenSeite
         control "FinanzKennzahlen\nController" as FinanzKennzahlenController
@@ -93,6 +96,13 @@ PreispflegeController .right.> Preis : <<use>>
 HistorischeBelegungController .right.> Belegung : <<use>>
 UmsatzübersichtController .right.> Umsatz : <<use>>
 FinanzKennzahlenController .right.> Kennzahlen : <<use>>
+
+' relations: entities - specializations
+'======================================
+Preis <|-down- PreisWeiblicherKunde
+Preis <|-down- PreisKundeMitBehinderung
+Preis <|-down- PreisKundeMitFamilie
+
 
 ' fixing layout
 '==============
