@@ -24,6 +24,8 @@ rectangle ParkhausSimulation{
 
         boundary "ParkplaetzeEinsehen\nSeite" as ParkplaetzeEinsehenSeite
         control "ParkplaetzeEinsehen\nController" as ParkplaetzeEinsehenController
+        rectangle "<<dataType>>\nBelegungAktuell" as BelegungAktuell {
+        }
 
         boundary "ParkhausEinfahren\nSeite" as ParkhausEinfahrenSeite
         control "ParkhausEinfahren\nController" as ParkhausEinfahrenController
@@ -48,9 +50,9 @@ rectangle ParkhausSimulation{
         control "FinanzKennzahlen\nController" as FinanzKennzahlenController
         entity Umsatz
 
-        boundary "HistorischeBelegung\nSeite" as HistorischeBelegungSeite
-        control "HistorischeBelegung\nController" as HistorischeBelegungController
-        entity Belegung
+        boundary "BelegungHistorisch\nSeite" as BelegungHistorischSeite
+        control "BelegungHistorisch\nController" as BelegungHistorischController
+        entity BelegungHistorisch
 
         boundary "Umsatzübersicht\nSeite" as UmsatzübersichtSeite
         control "Umsatzübersicht\nController" as UmsatzübersichtController
@@ -72,7 +74,7 @@ Kunde -right- ParkhausEinfahrenSeite
 Kunde -right- ParkhausAusfahrenSeite
 
 Betreiber -right- PreispflegeSeite
-Betreiber -right- HistorischeBelegungSeite
+Betreiber -right- BelegungHistorischSeite
 Betreiber -right- UmsatzübersichtSeite
 Betreiber -right- FinanzKennzahlenSeite
 
@@ -85,15 +87,17 @@ ParkhausEinfahrenSeite <.right. ParkhausEinfahrenController : <<use>>
 ParkhausAusfahrenSeite <.right. ParkhausAusfahrenController : <<use>>
 
 PreispflegeSeite <.right. PreispflegeController : <<use>>
-HistorischeBelegungSeite <.right. HistorischeBelegungController : <<use>>
+BelegungHistorischSeite <.right. BelegungHistorischController : <<use>>
 UmsatzübersichtSeite <.right. UmsatzübersichtController : <<use>>
 FinanzKennzahlenSeite <.right. FinanzKennzahlenController : <<use>>
 
 'relations: controllers - others
 '===============================
 AbonnementVerwaltenController .right.> Abonnement : <<use>>
+ParkplaetzeEinsehenController .right.> BelegungAktuell : <<use>>
+
 PreispflegeController .right.> Preis : <<use>>
-HistorischeBelegungController .right.> Belegung : <<use>>
+BelegungHistorischController .right.> BelegungHistorisch : <<use>>
 UmsatzübersichtController .right.> Umsatz : <<use>>
 FinanzKennzahlenController .right.> Kennzahlen : <<use>>
 
@@ -111,16 +115,15 @@ AbonnementVerwaltenController <|-down- AbonnementStartenController
 
 ' fixing layout
 '==============
-AbonnementVerwaltenSeite -[hidden]down- ParkplaetzeEinsehenSeite
-ParkplaetzeEinsehenSeite -[hidden]down- ParkhausEinfahrenSeite
-ParkhausEinfahrenSeite -[hidden]down- ParkhausAusfahrenSeite
+AbonnementVerwaltenSeite -[hidden]down-- ParkplaetzeEinsehenSeite
+ParkplaetzeEinsehenSeite -[hidden]down-- ParkhausEinfahrenSeite
+ParkhausEinfahrenSeite -[hidden]down-- ParkhausAusfahrenSeite
 
-ParkhausAusfahrenSeite -[hidden]down- PreispflegeSeite
+ParkhausAusfahrenSeite -[hidden]down-- PreispflegeSeite
 
-PreispflegeSeite -[hidden]down- HistorischeBelegungSeite
-HistorischeBelegungSeite -[hidden]down- UmsatzübersichtSeite
+PreispflegeSeite -[hidden]down-- BelegungHistorischSeite
+BelegungHistorischSeite -[hidden]down- UmsatzübersichtSeite
 UmsatzübersichtSeite -[hidden]down- FinanzKennzahlenSeite
-
 
 
 
