@@ -30,6 +30,10 @@ rectangle ParkhausSimulation{
         boundary "ParkhausTransit\nDisplay" as ParkhausTransitDisplay
         control "ParkhausTransit\nController" as ParkhausTransitController
         control "ParkhausEinfahren\nController" as ParkhausEinfahrenController
+        control "ParkhausAusfahren\nController" as ParkhausAusfahrenController
+        control "ParkhausSchranke\nController" as ParkhausSchrankeController
+        rectangle "<<dataType>>\nParkhausSchranke" as ParkhausSchranke {
+        }
         control "Ticket\nController" as TicketController
         entity Ticket
         entity "Ticket\nWeiblicherKunde" as TicketWeiblicherKunde
@@ -40,7 +44,6 @@ rectangle ParkhausSimulation{
         rectangle "<<dataType>>\nParkplatz" as Parkplatz {
         }
 
-        control "ParkhausAusfahren\nController" as ParkhausAusfahrenController
     }
 
     package Verwaltung{
@@ -100,8 +103,10 @@ FinanzKennzahlenDisplay <.right. FinanzKennzahlenController : <<use>>
 AbonnementVerwaltenController .right.> Abonnement : <<use>>
 ParkplaetzeEinsehenController .right.> BelegungAktuell : <<use>>
 ParkhausTransitController .right.> TicketController : <<use>>
+ParkhausTransitController .up.> ParkhausSchrankeController : <<use>>
 TicketController .right.> Ticket : <<use>>
 ParkhausTransitController .down.> Parkplatz : <<use>>
+ParkhausSchrankeController .right.> ParkhausSchranke : <<use>>
 
 PreispflegeController .right.> Preis : <<use>>
 BelegungHistorischController .right.> BelegungHistorisch : <<use>>
