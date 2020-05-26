@@ -67,8 +67,8 @@ rectangle ParkhausSimulation{
         control "BelegungHistorisch\nController" as BelegungHistorischController
         entity BelegungHistorisch
 
-        boundary "Umsatzübersicht\nDisplay" as UmsatzübersichtDisplay
-        control "Umsatzübersicht\nController" as UmsatzübersichtController
+        boundary "Umsatzuebersicht\nDisplay" as UmsatzuebersichtDisplay
+        control "Umsatzuebersicht\nController" as UmsatzuebersichtController
         entity Umsatz
     }
 }
@@ -87,7 +87,7 @@ Kunde -- ParkhausTransitDisplay
 
 Betreiber - PreispflegeDisplay
 Betreiber - BelegungHistorischDisplay
-Betreiber -- UmsatzübersichtDisplay
+Betreiber -- UmsatzuebersichtDisplay
 Betreiber - FinanzKennzahlenDisplay
 
 Parkhausmitarbeiter -- ParkhausTransitDisplay
@@ -104,7 +104,7 @@ ParkhausTransitDisplay <.right. ParkhausTransitController : <<use>>
 
 PreispflegeDisplay <.right. PreispflegeController : <<use>>
 BelegungHistorischDisplay <.right. BelegungHistorischController : <<use>>
-UmsatzübersichtDisplay <.right. UmsatzübersichtController : <<use>>
+UmsatzuebersichtDisplay <.right. UmsatzuebersichtController : <<use>>
 FinanzKennzahlenDisplay <.right. FinanzKennzahlenController : <<use>>
 FinanzKennzahlenController <.right. FinanzKennzahlenInterface : <<use>>
 
@@ -122,7 +122,7 @@ ParkhausSchrankeController .right.> ParkhausSchranke : <<use>>
 
 PreispflegeController .right.> Preis : <<use>>
 BelegungHistorischController .right.> BelegungHistorisch : <<use>>
-UmsatzübersichtController .right.> Umsatz : <<use>>
+UmsatzuebersichtController .right.> Umsatz : <<use>>
 FinanzKennzahlenController .down.> Kennzahlen : <<use>>
 
 ' relations: entities - specializations
@@ -153,8 +153,8 @@ ParkplaetzeEinsehenDisplay -[hidden]down-- ParkhausTransitDisplay
 ParkhausTransitDisplay -[hidden]down-- ParkhausTransitDisplay
 
 PreispflegeDisplay -[hidden]down-- BelegungHistorischDisplay
-BelegungHistorischDisplay -[hidden]down- UmsatzübersichtDisplay
-UmsatzübersichtDisplay -[hidden]down- FinanzKennzahlenDisplay
+BelegungHistorischDisplay -[hidden]down- UmsatzuebersichtDisplay
+UmsatzuebersichtDisplay -[hidden]down- FinanzKennzahlenDisplay
 
 Betrieb ----[hidden]down---- Verwaltung
 Abonnent -[hidden]up- Kunde
