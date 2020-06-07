@@ -3,6 +3,9 @@ package kunde;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * @author Tobias Lohmüller
+ */
 public class Kunde implements KundeIF {
 
     private int dauer;

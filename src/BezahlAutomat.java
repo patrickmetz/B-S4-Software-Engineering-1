@@ -1,6 +1,9 @@
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * @author Tobias Lohmüller
+ */
 public class BezahlAutomat implements BezahlAutomatIF {
 
     @Override

@@ -1,5 +1,9 @@
 import kunde.KundeIF;
 
+/**
+ * @author Patrick Metz
+ * @author Johannes Kratzsch
+ */
 class Parkticket implements ParkticketIF {
 
     private boolean bezahlt = false;

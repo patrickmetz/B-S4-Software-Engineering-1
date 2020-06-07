@@ -1,3 +1,8 @@
+/**
+ * @author Tobias Lohmüller
+ * @author Patrick Metz
+ * @author Johannes Kratzsch
+ */
 public class KundenDatenProcessor implements KundenDatenProcessorIF {
 
     private ParkhausIF parkhaus;

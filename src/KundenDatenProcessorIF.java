@@ -1,3 +1,6 @@
+/**
+ * @author Tobias Lohmüller
+ */
 public interface KundenDatenProcessorIF {
 
     float getSumme();

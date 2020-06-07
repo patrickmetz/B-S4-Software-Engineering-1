@@ -2,6 +2,9 @@ import java.text.NumberFormat;
 import java.util.Currency;
 import java.util.Locale;
 
+/**
+ * @author Tobias Lohmüller
+ */
 public class KundenDatenUtils {
 
     public static String formatDauer(int dauer) {

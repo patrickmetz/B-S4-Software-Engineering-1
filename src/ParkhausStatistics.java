@@ -1,6 +1,9 @@
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * @author Tobias Lohmüller
+ */
 public class ParkhausStatistics {
 
     //Still not good enough

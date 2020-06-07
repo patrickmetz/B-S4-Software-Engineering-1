@@ -6,6 +6,9 @@ import javax.json.JsonObject;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Tobias Lohmüller
+ */
 public class ParkhausChartProcessor implements ParkhausChartProcessorIF {
 
     private Parkhaus parkhaus;

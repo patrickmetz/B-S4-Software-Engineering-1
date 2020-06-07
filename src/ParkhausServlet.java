@@ -12,7 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.*;
 
-
+/**
+ * @author Tobias Lohmüller
+ * @author Patrick Metz
+ * @author Johannes Kratzsch
+ */
 @WebServlet("/ParkhausServlet")
 public class ParkhausServlet extends HttpServlet {
 

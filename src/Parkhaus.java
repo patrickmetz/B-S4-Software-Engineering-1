@@ -7,6 +7,11 @@ import kunde.KundenDatenIF;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * @author Tobias Lohmüller
+ * @author Patrick Metz
+ * @author Johannes Kratzsch
+ */
 public class Parkhaus implements ParkhausIF {
 
     private final int plaetze = 100;

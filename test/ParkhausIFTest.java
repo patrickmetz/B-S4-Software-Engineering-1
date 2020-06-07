@@ -9,6 +9,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author Tobias Lohmüller
+ * @author Johannes Kratzsch
+ */
 class ParkhausIFTest {
     private ParkhausIF parkhaus;
     private KundeIF kunde;

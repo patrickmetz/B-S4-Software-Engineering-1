@@ -4,6 +4,11 @@ import kunde.KundenDatenIF;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * @author Tobias Lohmüller
+ * @author Patrick Metz
+ * @author Johannes Kratzsch
+ */
 public interface ParkhausIF {
 
     ParkticketIF einfahren(KundeIF kunde);

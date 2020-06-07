@@ -2,6 +2,10 @@ package kunde;
 
 import java.util.Date;
 
+/**
+ * @author Tobias Lohmüller
+ * @author Johannes Kratzsch
+ */
 public class KundenDaten implements KundenDatenIF {
     private Integer nr;
     private Date beginn;
