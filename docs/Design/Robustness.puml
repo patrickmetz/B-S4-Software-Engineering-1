@@ -1,0 +1,171 @@
+@startuml
+
+skinparam defaultTextAlignment center
+
+' actors
+'=======
+:Betreiber:
+:Finanzamt: as finanzamt <<externes System>>
+
+:Kunde:
+:Abonnent:
+:Parkhausmitarbeiter:
+:WeiblicherKunde:
+:KundeMitFamilie:
+:KundeMitBehinderung:
+
+'system
+'======
+rectangle ParkhausSimulation{
+    package Betrieb{
+        boundary "AbonnementVerwalten\nDisplay" as AbonnementVerwaltenDisplay
+        control "AbonnementVerwalten\nController" as AbonnementVerwaltenController
+        control "AbonnementStarten\nController" as AbonnementStartenController
+        control "AbonnementKuendigen\nController" as AbonnementKuendigenController
+        entity Abonnement
+
+        boundary "ParkplaetzeEinsehen\nDisplay" as ParkplaetzeEinsehenDisplay
+        control "ParkplaetzeEinsehen\nController" as ParkplaetzeEinsehenController
+        rectangle "<<dataType>>\nBelegungAktuell" as BelegungAktuell {
+        }
+
+        boundary "ParkhausTransit\nDisplay" as ParkhausTransitDisplay
+        control "ParkhausTransit\nController" as ParkhausTransitController
+        control "ParkhausEinfahren\nController" as ParkhausEinfahrenController
+        control "ParkhausAusfahren\nController" as ParkhausAusfahrenController
+        control "ParkhausSchranke\nController" as ParkhausSchrankeController
+        rectangle "<<dataType>>\nParkhausSchranke" as ParkhausSchranke {
+        }
+        control "Ticket\nController" as TicketController
+        control "PreisBerechnung\nController" as PreisBerechnungController
+        entity Ticket
+        entity "Ticket\nWeiblicherKunde" as TicketWeiblicherKunde
+        entity "Ticket\nKundeMitFamilie" as TicketKundeMitFamilie
+        entity "Ticket\nKundeMitBehinderung" as TicketKundeMitBehinderung
+        entity "Ticket\nParkhausmitarbeiter" as TicketParkhausmitarbeiter
+        entity "Ticket\nAbonnent" as  TicketAbonnent
+        rectangle "<<dataType>>\nParkplatz" as Parkplatz {
+        }
+
+    }
+
+    package Verwaltung{
+        boundary "Preispflege\nDisplay" as PreispflegeDisplay
+        control "Preispflege\nController" as PreispflegeController
+        entity Preis
+        entity "Preis\nWeiblicherKunde" as PreisWeiblicherKunde
+        entity "Preis\nKundeMitFamilie" as PreisKundeMitFamilie
+        entity "Preis\nKundeMitBehinderung" as PreisKundeMitBehinderung
+        entity "Preis\nAbonnent" as PreisAbonnent
+        entity "Preis\nParkhausMitarbeiter" as PreisParkhausMitarbeiter
+
+        boundary "FinanzKennzahlen\nDisplay" as FinanzKennzahlenDisplay
+        control "FinanzKennzahlen\nController" as FinanzKennzahlenController
+        entity Kennzahlen
+        boundary  "FinanzKennzahlen\nInterface" as FinanzKennzahlenInterface
+        boundary "BelegungHistorisch\nDisplay" as BelegungHistorischDisplay
+        control "BelegungHistorisch\nController" as BelegungHistorischController
+        entity BelegungHistorisch
+
+        boundary "Umsatzuebersicht\nDisplay" as UmsatzuebersichtDisplay
+        control "Umsatzuebersicht\nController" as UmsatzuebersichtController
+        entity Umsatz
+    }
+}
+'relations: actors - actors
+'==========================
+WeiblicherKunde -up-|> Kunde
+KundeMitBehinderung -up-|> Kunde
+KundeMitFamilie -up-|> Kunde
+Abonnent -up-|> Kunde
+
+'relations: actors - boundaries
+'==============================
+Kunde - AbonnementVerwaltenDisplay
+Kunde -- ParkplaetzeEinsehenDisplay
+Kunde -- ParkhausTransitDisplay
+
+Betreiber - PreispflegeDisplay
+Betreiber - BelegungHistorischDisplay
+Betreiber -- UmsatzuebersichtDisplay
+Betreiber - FinanzKennzahlenDisplay
+
+Parkhausmitarbeiter -- ParkhausTransitDisplay
+finanzamt - FinanzKennzahlenInterface
+
+
+'relations: boundaries - controllers
+'===================================
+AbonnementVerwaltenDisplay <.right. AbonnementVerwaltenController : <<use>>
+
+ParkplaetzeEinsehenDisplay <.right. ParkplaetzeEinsehenController : <<use>>
+
+ParkhausTransitDisplay <.right. ParkhausTransitController : <<use>>
+
+PreispflegeDisplay <.right. PreispflegeController : <<use>>
+BelegungHistorischDisplay <.right. BelegungHistorischController : <<use>>
+UmsatzuebersichtDisplay <.right. UmsatzuebersichtController : <<use>>
+FinanzKennzahlenDisplay <.right. FinanzKennzahlenController : <<use>>
+FinanzKennzahlenController <.right. FinanzKennzahlenInterface : <<use>>
+
+'relations: controllers - others
+'===============================
+AbonnementVerwaltenController .right.> Abonnement : <<use>>
+ParkplaetzeEinsehenController .right.> BelegungAktuell : <<use>>
+ParkhausTransitController .right.> TicketController : <<use>>
+ParkhausTransitController .up.> ParkhausSchrankeController : <<use>>
+TicketController .right.> Ticket : <<use>>
+TicketController .down.> PreisBerechnungController : <<use>>
+PreisBerechnungController .down.> Preis : <<use>>
+ParkhausTransitController .down.> Parkplatz : <<use>>
+ParkhausSchrankeController .right.> ParkhausSchranke : <<use>>
+
+PreispflegeController .right.> Preis : <<use>>
+BelegungHistorischController .right.> BelegungHistorisch : <<use>>
+UmsatzuebersichtController .right.> Umsatz : <<use>>
+FinanzKennzahlenController .down.> Kennzahlen : <<use>>
+
+' relations: entities - specializations
+'======================================
+Preis <|-down- PreisKundeMitFamilie
+Preis <|-down- PreisKundeMitBehinderung
+Preis <|-down- PreisWeiblicherKunde
+Preis <|-down- PreisParkhausMitarbeiter
+Preis <|-down- PreisAbonnent
+
+Ticket <|-down- TicketKundeMitFamilie
+Ticket <|-down- TicketKundeMitBehinderung
+Ticket <|-down- TicketWeiblicherKunde
+Ticket <|-down- TicketParkhausmitarbeiter
+Ticket <|-down- TicketAbonnent
+
+' relations: controllers - specializations
+'=========================================
+AbonnementVerwaltenController <|-down- AbonnementKuendigenController
+AbonnementVerwaltenController <|-down- AbonnementStartenController
+ParkhausTransitController <|-down- ParkhausEinfahrenController
+ParkhausTransitController <|-down- ParkhausAusfahrenController
+
+' fixing layout
+'==============
+AbonnementVerwaltenDisplay -[hidden]down-- ParkplaetzeEinsehenDisplay
+ParkplaetzeEinsehenDisplay -[hidden]down-- ParkhausTransitDisplay
+ParkhausTransitDisplay -[hidden]down-- ParkhausTransitDisplay
+
+PreispflegeDisplay -[hidden]down-- BelegungHistorischDisplay
+BelegungHistorischDisplay -[hidden]down- UmsatzuebersichtDisplay
+UmsatzuebersichtDisplay -[hidden]down- FinanzKennzahlenDisplay
+
+Betrieb ----[hidden]down---- Verwaltung
+Abonnent -[hidden]up- Kunde
+WeiblicherKunde -[hidden]up- Abonnent
+KundeMitFamilie -[hidden]up- WeiblicherKunde
+KundeMitBehinderung -[hidden]up- KundeMitFamilie
+KundeMitBehinderung -[hidden]up- KundeMitFamilie
+
+
+
+
+
+
+@enduml
