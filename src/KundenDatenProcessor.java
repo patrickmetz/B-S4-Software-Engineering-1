@@ -13,39 +13,36 @@ public class KundenDatenProcessor implements KundenDatenProcessorIF {
 
     @Override
     public float getSumme() {
-        float sum = 0;
-        for (float einnahme : parkhaus.getEinahmen()) {
-            sum += einnahme;
-        }
-
-        return sum;
+        return parkhaus.getEinahmen()
+                .stream()
+                .reduce(0.f, Float::sum);
     }
 
     @Override
     public int getDurchschnittsDauer() {
-        int totalDuration = 0;
-
-        for (float duration : parkhaus.getParkdauerZeiten()) {
-            totalDuration += duration;
-        }
-
-        return totalDuration/parkhaus.getParkdauerZeiten().size();
+        return (int) parkhaus.getParkdauerZeiten()
+                .stream()
+                .mapToInt(i -> i)
+                .average()
+                .getAsDouble();
     }
 
     @Override
     public float getDurschnittsPreis() {
-        return getSumme()/parkhaus.getEinahmen().size();
+        return (float) parkhaus.getEinahmen()
+                .stream()
+                .mapToDouble(i -> i)
+                .average()
+                .getAsDouble();
     }
 
     @Override
     public float getUmsatzSteuer() {
-        float salesTax = 0;
         float taxRate = 0.19f;
 
-        for (float revenue : parkhaus.getEinahmen()) {
-            float baseValue = revenue / (1 + taxRate);
-            salesTax += (revenue - baseValue);
-        }
+        float revenue = getSumme();
+        float baseValue = revenue / (1 + taxRate);
+        float salesTax = (revenue - baseValue);
 
         return salesTax;
     }
