@@ -25,21 +25,22 @@ public class ParkhausChartProcessor implements ParkhausChartProcessorIF {
 
         HashMap<String, Integer> kategorienAufkommen = new HashMap<>();
 
-        for (ParkticketIF parkticket : parkhaus.getAllParktickets().values()) {
-            KundeIF kunde = parkticket.getKunde();
-
-            if(!kategorienAufkommen.containsKey(kunde.getKundenGruppe())) {
-                kategorienAufkommen.put(kunde.getKundenGruppe(), 1);
-                kundenTypArray.add(kunde.getKundenGruppe());
-            } else {
-                kategorienAufkommen.put(kunde.getKundenGruppe(),  kategorienAufkommen.get(kunde.getKundenGruppe())+1);
-            }
-        }
+        parkhaus.getAllParktickets().values()
+                .stream()
+                .map(ParkticketIF::getKunde)
+                .map(KundeIF::getKundenGruppe)
+                .forEach(kundengruppe -> {
+                    if(!kategorienAufkommen.containsKey(kundengruppe)) {
+                        kategorienAufkommen.put(kundengruppe, 1);
+                        kundenTypArray.add(kundengruppe);
+                    } else {
+                        kategorienAufkommen.put(kundengruppe,  kategorienAufkommen.get(kundengruppe)+1);
+                    }
+                });
 
         //Labels hinzufügen
-        for(Map.Entry<String, Integer> entry : kategorienAufkommen.entrySet()) {
-            kundenAufkommenArray.add(entry.getValue());
-        }
+        kategorienAufkommen.values()
+                .forEach(kundenAufkommenArray::add);
 
         JsonObject rootPie = Json.createObjectBuilder()
                 .add("layout", Json.createObjectBuilder()
