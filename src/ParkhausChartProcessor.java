@@ -8,6 +8,7 @@ import java.util.Map;
 
 /**
  * @author Tobias Lohmüller
+ * @author Johannes Kratzsch
  */
 public class ParkhausChartProcessor implements ParkhausChartProcessorIF {
 
@@ -64,14 +65,14 @@ public class ParkhausChartProcessor implements ParkhausChartProcessorIF {
         JsonArrayBuilder kundenParkEnde = Json.createArrayBuilder();
         JsonArrayBuilder kundenParkDauer = Json.createArrayBuilder();
 
-        for(ParkticketIF parkticket : parkhaus.getAllParktickets().values()) {
-            KundeIF kunde = parkticket.getKunde();
-
-            if(parkticket.isBezahlt()) {
-                kundenNummern.add(kunde.getNr());
-                kundenParkDauer.add(kunde.getDauer());
-            }
-        }
+        parkhaus.getAllParktickets().values()
+                .stream()
+                .filter(ParkticketIF::isBezahlt)
+                .map(ParkticketIF::getKunde)
+                .forEach(kunde -> {
+                    kundenNummern.add(kunde.getNr());
+                    kundenParkDauer.add(kunde.getDauer());
+                });
 
         JsonObject rootBar = Json.createObjectBuilder()
                 .add("layout", Json.createObjectBuilder()
