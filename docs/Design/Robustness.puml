@@ -1,5 +1,7 @@
 @startuml
 
+' Author: Patrick Metz
+
 skinparam defaultTextAlignment center
 
 ' actors
