@@ -3,7 +3,7 @@ import java.util.Currency;
 import java.util.Locale;
 
 /**
- * @author Tobias Lohmüller
+ * @author Tobias Lohmüller, Patrick Metz
  */
 public class KundenDatenUtils {
 
