@@ -3,7 +3,7 @@ package preis;
 /**
  * @author Patrick Metz
  */
-public class Preis implements PreisIF {
+class Preis implements PreisIF {
     private final float betrag;
 
     Preis(float betrag) {
