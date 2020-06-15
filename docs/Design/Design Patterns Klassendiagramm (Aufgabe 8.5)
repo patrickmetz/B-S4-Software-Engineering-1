@@ -1,0 +1,63 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface ParkhausChartProcessorIF {
+    +getKundenBarChart(): String
+    +getKundenPieChart(): String
+}
+
+class ParkhausServlet {
+    ~doGet(r: HttpServletRequest, resp: HttpServletResponse)
+}
+
+class ParkhausChartProcessor {
+    +getKundenBarChart(): String
+    +getKundenPieChart(): String
+}
+
+ParkhausChartProcessorIF <|.. ParkhausChartProcessor : <<implements>>
+
+
+ParkhausServlet ..> ParkhausChartProcessorIF : <<use>>
+
+package javax.json {
+    class JsonArrayBuilder {
+        +add(name: String, builder:JsonArrayBuilder): JsonArrayBuilder
+        +build(): JsonArray
+    }
+
+    class JsonObjectBuilder {
+        +add(name: String, builder:JsonObjectBuilder): JsonObjectBuilder
+        +build(): JsonObject
+    }
+
+    class Json {
+        +createArrayBuilder(): JsonArrayBuilder
+        +createObjectBuilder(): JsonObjectBuilder
+    }
+
+    Json ..> JsonObjectBuilder
+    Json ..> JsonArrayBuilder
+
+    class JsonArray {
+    }
+
+    class JsonObject {
+     +values(): Collection<V>
+    }
+
+
+    JsonValue <|-- JsonStructure : <<implements>>
+    JsonStructure <|-- JsonArray : <<implements>>
+    JsonStructure <|-- JsonObject : <<implements>>
+
+    JsonArray <.. JsonArrayBuilder : <<use>>
+    JsonObject <.. JsonObjectBuilder : <<use>>
+
+
+
+}
+
+ParkhausChartProcessor .right.> Json : <<use>>
+
+@enduml
