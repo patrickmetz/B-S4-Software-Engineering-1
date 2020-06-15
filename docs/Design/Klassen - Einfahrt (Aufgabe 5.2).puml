@@ -1,0 +1,25 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+
+class ParkhausController {
++zahlungUberpruefen(p: Parkticket): String
++ausfahren(p: Parkticket, k: Kunde)
+}
+
+class Ausfahrautomat {
++einstecken(p: Parkticket, k: Kunde)
+}
+
+class Ausfahrschranke {
++ausfahren(p: Parkticket, k: Kunde)
+}
+
+
+
+ParkhausController ..> Ausfahrautomat : <<use>>
+ParkhausController ..> Ausfahrschranke : <<use>>
+
+Kunde "1" - "1" Ausfahrautomat : Parkticket einstecken >
+
+@enduml

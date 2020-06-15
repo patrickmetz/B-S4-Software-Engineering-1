@@ -1,6 +1,9 @@
 @startuml
 skinparam classAttributeIconSize 0
 
+' Author: Johannes Kratzsch
+
+
 interface ParkhausChartProcessorIF {
     +getKundenBarChart(): String
     +getKundenPieChart(): String

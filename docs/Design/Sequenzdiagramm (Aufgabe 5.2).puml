@@ -1,0 +1,27 @@
+@startuml
+
+' Author: Johannes Kratzsch
+
+actor Kunde
+
+boundary Ausfahrautomat
+boundary Ausfahrschranke
+boundary ParkhausAPI
+
+control ParkhausController
+
+Kunde -> Ausfahrautomat : Parkticket einstecken
+Ausfahrautomat -> ParkhausController: Zahlung des Parktickets ueberpruefen
+break Parkticket noch nicht bezahlt
+ParkhausController --> Ausfahrautomat: Fehlermeldung "Sie muessen das Parkticket vorher am Bezahlautomaten bezahlen"
+Ausfahrautomat --> Kunde: Fehlermeldung
+end break
+ParkhausController --> Ausfahrautomat: Erfolgsmeldung
+Ausfahrautomat --> Kunde: Erfolgsmeldung
+
+Kunde -> Ausfahrschranke : Ausfahren
+Ausfahrschranke -> ParkhausController : Ausfahren
+ParkhausController --> Ausfahrschranke : Schranke oeffnen
+Ausfahrschranke --> Kunde : Schranke oeffnen
+
+@enduml
