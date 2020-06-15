@@ -28,11 +28,11 @@ public enum KundenTyp {
     },
 
     PersonMitBehinderung {
-        public float getPreis() {return 15.0f;}
+        public float getPreis() {return 7.5f;}
     },
 
     Standard {
-        public float getPreis() {return 15.0f;}
+        public float getPreis() {return 10.0f;}
     };
 
     public float getPreis() {return 0.0f;}
