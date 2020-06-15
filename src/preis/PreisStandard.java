@@ -3,10 +3,10 @@ package preis;
 /**
  * @author Patrick Metz
  */
-class Preis implements PreisIF {
+class PreisStandard implements PreisIF {
     private final float betrag;
 
-    Preis(float betrag) {
+    public PreisStandard(Float betrag) {
         this.betrag = betrag;
     }
 

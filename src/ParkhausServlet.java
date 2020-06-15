@@ -1,10 +1,8 @@
-import kunde.Kunde;
-import kunde.KundeIF;
-import kunde.KundenDaten;
-import kunde.KundenDatenIF;
+import kunde.*;
+import preis.PreisVerwaltungController;
+import preis.PreisVerwaltungControllerIF;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,11 +22,13 @@ public class ParkhausServlet extends HttpServlet {
     private Parkhaus parkhaus;
     private KundenDatenProcessor kundenDatenProcessor;
     private ParkhausChartProcessor parkhausChartProcessor;
+    private PreisVerwaltungControllerIF preisVerwaltungProcessor;
 
     public void init() {
         parkhaus = getParkhaus();
         kundenDatenProcessor = getKundenDatenProcessor();
         parkhausChartProcessor = getParkhausChartProcessor();
+        preisVerwaltungProcessor = getPreisVerwaltungProcessor();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -79,6 +79,9 @@ public class ParkhausServlet extends HttpServlet {
             case "Gruppen%20Diagramm":
                 sendResponse(response, parkhausChartProcessor.getKundenPieChart());
                 break;
+
+            case "PreiseZeigen":
+                sendResponse(response, preisVerwaltungProcessor.getPreiseAlsJson());
 
             default:
                 System.out.println("Invalid GET-command: " + request.getQueryString());
@@ -200,5 +203,18 @@ public class ParkhausServlet extends HttpServlet {
         }
 
         return parkhausChartProcessor;
+    }
+
+    private PreisVerwaltungControllerIF getPreisVerwaltungProcessor() {
+        if (null == preisVerwaltungProcessor) {
+            preisVerwaltungProcessor = (PreisVerwaltungControllerIF) getApplication().getAttribute("preisVerwaltungProcessor");
+
+            if (null == preisVerwaltungProcessor) {
+                preisVerwaltungProcessor = new PreisVerwaltungController(KundenTyp.values());
+                getApplication().setAttribute("chartProcessor", preisVerwaltungProcessor);
+            }
+        }
+
+        return preisVerwaltungProcessor;
     }
 }
