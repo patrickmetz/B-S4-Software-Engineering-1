@@ -12,4 +12,13 @@ public class BezahlAutomat implements BezahlAutomatIF {
         return true;
     }
 
+    @Override
+    public float getPreis(ParkticketIF parkTicket) {
+        if (parkTicket.getKunde().getDauer() < 0) {
+            throw new RuntimeException("Eine negative Parkdauer gibt es nicht");
+        }
+
+        return parkTicket.getStundenPreis() * parkTicket.getKunde().getDauer();
+    }
+
 }
