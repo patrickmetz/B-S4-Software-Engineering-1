@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -56,7 +58,7 @@ class ParkhausIFTest {
     @DisplayName("Ausfahren mit einem Kunden im Parkhaus ist erfolgreich")
     void ausfahren_mitEinemKundenImParkhaus_istErfolgreich() {
         ParkticketIF ticket = parkhaus.einfahren(kunde);
-        automat.bezahlen(ticket);
+        automat.bezahlen(ticket, Optional.empty());
         assertTrue(parkhaus.ausfahren(ticket, kundenAusfahrDatenIF));
     }
 
@@ -64,7 +66,7 @@ class ParkhausIFTest {
     @DisplayName("Ausfahren mit keinem Kunden im Parkhaus schlägt fehl")
     void ausfahren_mitKeinemKundenImParkhaus_schlaegtFehl() {
         ParkticketIF ticket = parkhaus.einfahren(kunde);
-        automat.bezahlen(ticket);
+        automat.bezahlen(ticket, Optional.empty());
         parkhaus.ausfahren(ticket, kundenAusfahrDatenIF); //letzten Kunden ausfahren lassen
 
         RuntimeException exception = assertThrows(RuntimeException.class, ()-> parkhaus.ausfahren(ticket, kundenAusfahrDatenIF));

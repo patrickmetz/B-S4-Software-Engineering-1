@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Date;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -46,12 +48,12 @@ class ParkhausChartProcessorIFTest {
 
         ParkticketIF t1 = parkhaus.einfahren(k1);
         parkhaus.addParkticket("jrjhekjdlfjdsfk", t1);
-        automat.bezahlen(t1);
+        automat.bezahlen(t1, Optional.empty());
         parkhaus.ausfahren(t1, kd1);
 
         ParkticketIF t2 = parkhaus.einfahren(k2);
         parkhaus.addParkticket("kfjien", t2);
-        automat.bezahlen(t2);
+        automat.bezahlen(t2, Optional.empty());
         parkhaus.ausfahren(t2, kd2);
     }
 

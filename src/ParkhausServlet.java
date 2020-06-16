@@ -104,7 +104,7 @@ public class ParkhausServlet extends HttpServlet {
         BezahlAutomatIF automat = new BezahlAutomat();
         ParkticketIF ticket = getParkhaus().getParkticket(kundenDaten.getTickethash());
 
-        automat.bezahlen(ticket);
+        automat.bezahlen(ticket, Optional.empty());
         parkhaus.ausfahren(ticket, kundenDaten);
 
         sendResponse(response, postMap.get("csv"));

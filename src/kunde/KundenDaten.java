@@ -21,7 +21,7 @@ public class KundenDaten implements KundenDatenIF {
         nr = Integer.parseInt(params[0]);
         beginn = new Date(Long.parseLong(params[1]));
 
-        dauer = null;
+        dauer = 0;
         if (! params[2].equals("_")) {
             dauer = Integer.parseInt(params[2]);
         }

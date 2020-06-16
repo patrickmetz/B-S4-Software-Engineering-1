@@ -1,8 +1,11 @@
+import PaymentProvider.CashPayment;
 import kunde.Kunde;
 import kunde.KundenDaten;
 import kunde.KundenDatenIF;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,8 +38,8 @@ class KundenDatenProcessorIFTest {
         //Dann vergeht Zeit
 
         BezahlAutomatIF bezahlAutomatIF = new BezahlAutomat();
-        bezahlAutomatIF.bezahlen(parkticketIF);
-        bezahlAutomatIF.bezahlen(parkticketIF2);
+        bezahlAutomatIF.bezahlen(parkticketIF, Optional.empty());
+        bezahlAutomatIF.bezahlen(parkticketIF2, Optional.empty());
 
         parkhausIF.ausfahren(parkticketIF, ausFahrtDaten1);
         parkhausIF.ausfahren(parkticketIF2, ausFahrtDaten2);

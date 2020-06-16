@@ -1,3 +1,4 @@
+import PaymentProvider.CashPayment;
 import kunde.Kunde;
 import kunde.KundenDaten;
 import org.junit.jupiter.api.BeforeEach;
@@ -5,6 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,14 +23,26 @@ class BezahlAutomatIFTest {
     void setUp() {
         parkhaus = new Parkhaus();
         automat = new BezahlAutomat();
-        ticket = new Parkticket(new Kunde(null));
+
+        KundenDaten kd = new KundenDaten(new String[]{
+                "123456",           //Nr
+                "1590408991325",    //Beginn
+                "20",               //Dauer
+                "5000",             //Preis
+                "jrjhekjdlfjdsfk",  //Tickethash
+                "ff00ff",           //Farbe
+                "7",                //Slot
+                "Familie"           //Kundengruppe
+
+        });
+        ticket = new Parkticket(new Kunde(kd));
     }
 
     @Test
     @DisplayName("Bezahlen eines Parktickets läuft erfolgreich")
     void bezahlen_einesParktickets_laeuftErfolgreich() {
         assertFalse(ticket.isBezahlt());
-        assertTrue(automat.bezahlen(ticket));
+        assertTrue(automat.bezahlen(ticket, Optional.empty()));
         assertTrue(ticket.isBezahlt());
     }
 
