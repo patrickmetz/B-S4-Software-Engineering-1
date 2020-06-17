@@ -2,8 +2,6 @@ package preis;
 
 import kunde.KundenTyp;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,7 +17,7 @@ class PreisFactoryTest {
         for (KundenTyp kundenTyp : KundenTyp.values()) {
             PreisIF preis = PreisFactory.erzeugePreis(
                     kundenTyp.toString(),
-                    kundenTyp.getPreis()
+                    kundenTyp.getInitialPreis()
             );
 
             assertNotNull(preis);
@@ -29,12 +27,16 @@ class PreisFactoryTest {
     @Test
     @DisplayName("Für unbekannte Kundengruppen sollen keine Preise erzeugt werden können.")
     void unbekannte_kundengruppen_erzeugen_keine_preise() {
-        assertNull(PreisFactory.erzeugePreis("ArmerStudent", 1.0f));
+        assertNull(
+                PreisFactory.erzeugePreis("ArmerStudent", 1.0f)
+        );
     }
 
     @Test
     @DisplayName("Negative Preise sollen nicht erzeugt werden können.")
     void negative_betraege_erzeugen_keine_preise() {
-        assertNull(PreisFactory.erzeugePreis("Standard", -1.0f));
+        assertNull(
+                PreisFactory.erzeugePreis("Standard", -1.0f)
+        );
     }
 }

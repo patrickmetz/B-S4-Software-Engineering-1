@@ -16,24 +16,36 @@ package kunde;
 
 public enum KundenTyp {
     Familie {
-        public float getPreis() {return 15.0f;}
+        public float getInitialPreis() {
+            return 15.0f;
+        }
     },
 
     Frau {
-        public float getPreis() {return 9f;}
+        public float getInitialPreis() {
+            return 9f;
+        }
     },
 
     Mitarbeiter {
-        public float getPreis() {return 5.0f;}
+        public float getInitialPreis() {
+            return 5.0f;
+        }
     },
 
     PersonMitBehinderung {
-        public float getPreis() {return 7.5f;}
+        public float getInitialPreis() {
+            return 7.5f;
+        }
     },
 
     Standard {
-        public float getPreis() {return 10.0f;}
+        public float getInitialPreis() {
+            return 10.0f;
+        }
     };
 
-    public float getPreis() {return 0.0f;}
+    public float getInitialPreis() {
+        return 0.0f;
+    }
 }

@@ -3,6 +3,7 @@ package preis;
 import kunde.KundenTyp;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Patrick Metz
@@ -12,11 +13,14 @@ public class PreisVerwaltungController implements PreisVerwaltungControllerIF {
 
     public PreisVerwaltungController(KundenTyp[] kundenTypen) {
         preiseMap = new HashMap<>();
+        inititialisierePreise(kundenTypen);
+    }
 
+    private void inititialisierePreise(KundenTyp[] kundenTypen) {
         for (KundenTyp kundenTyp : kundenTypen) {
             PreisIF preis = PreisFactory.erzeugePreis(
                     kundenTyp.toString(),
-                    kundenTyp.getPreis()
+                    kundenTyp.getInitialPreis()
             );
 
             preiseMap.put(kundenTyp.toString(), preis);
@@ -30,8 +34,17 @@ public class PreisVerwaltungController implements PreisVerwaltungControllerIF {
 
     @Override
     public String getPreiseAlsJson() {
+        String[] strings = new String[preiseMap.size()];
 
-        return null;
+        int i = 0;
+
+        for (Map.Entry<String, PreisIF> eintrag : preiseMap.entrySet()) {
+            strings[i++] =
+                    "\"" + eintrag.getKey() + "\""
+                            + ":" + eintrag.getValue().getBetrag();
+        }
+
+        return "{" + String.join(",", strings) + "}";
     }
 
     @Override
