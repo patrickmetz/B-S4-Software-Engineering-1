@@ -34,17 +34,21 @@ public class PreisVerwaltungController implements PreisVerwaltungControllerIF {
 
     @Override
     public String getPreiseAlsJson() {
-        String[] strings = new String[preiseMap.size()];
+        String[] preiseStrings = new String[preiseMap.size()];
 
         int i = 0;
 
         for (Map.Entry<String, PreisIF> eintrag : preiseMap.entrySet()) {
-            strings[i++] =
+            preiseStrings[i++] =
                     "\"" + eintrag.getKey() + "\""
                             + ":" + eintrag.getValue().getBetrag();
         }
+        String preise = "\"preise\" : {" + String.join(",", preiseStrings) + "}";
 
-        return "{" + String.join(",", strings) + "}";
+        String erfolg = "\"erfolg\" : true";
+        String meldung = "\"meldung\" : \"\"";
+
+        return "{" + preise + "," + erfolg + "," + meldung + "}";
     }
 
     @Override
