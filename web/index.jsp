@@ -1,44 +1,42 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: Patrick
-  Date: 10.05.2020
-  Time: 18:30
-  To change this template use File | Settings | File Templates.
+author: Patrick Metz
 --%>
+
+<%@ page import="kunde.KundenTyp" %>
+
 <%@ page contentType="text/html;charset=UTF-8" %>
+
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Parkhaus-Simulator</title>
     <script src='https://ccmjs.github.io/mkaul-components/parkhaus/versions/ccm.parkhaus-8.0.0.js'></script>
     <ccm-parkhaus-8-0-0
-            key='{"name":"parkhaus","server_url":"http://localhost:8080/ParkhausServlet",
-            "client_categories": ["Familie", "Frau", "Standard", "PersonMitBehinderung", "Mitarbeiter"],
+            key='{"name":"parkhaus","server_url":"http://localhost:8888/ParkhausServlet",
+            "client_categories": <% out.print(KundenTyp.alsJsonArray()); %>,
             "extra_buttons":[{"extra_class":"Umsatzsteuer","extra_inner":"Umsatzsteuer","extra_popup_title":"Umsatzsteuer"},
             {"extra_class":"Summe","extra_inner":"Summe","extra_popup_title":"Summe"},{"extra_class":"Durchschnitt","extra_inner":"Durchschnitt","extra_popup_title":"Durchschnitt"}],
             "extra_charts":[{"extra_class":"Parkdauer Diagramm","extra_inner":"Parkdauer Diagramm","extra_popup_title":"Parkdauer Diagramm"},{"extra_class":"Gruppen Diagramm","extra_inner":"Gruppen Diagramm","extra_popup_title":"Gruppen Diagramm"}]}'></ccm-parkhaus-8-0-0>
-  </head>
-  <body>
-    <h1>Parkhaus-Simulator</h1>
+</head>
+<body>
 
-    <h2>Freie Plätze</h2>
-    <div>todo</div>
+<h1>Preise</h1>
 
+    <form id="PreisFormular" action="ParkhausServlet?cmd=PreiseSpeichern" method="post" enctype="application/x-www-form-urlencoded">
+        <table>
+        <% for (KundenTyp kundenTyp : KundenTyp.values()) {
+            out.println(
+                    "<tr>"+
+                            "<td>" + kundenTyp.getBezeichnung() + "</td>" +
+                            "<td><input type=\"text\" id=\"preis" + kundenTyp.toString() + "\"  name=\"" + kundenTyp.toString() + "\" value=\"" + kundenTyp.getInitialPreis() + "\"></td>" +
+                    "</tr>"
+            );
+        }%>
+        </table>
 
-    <h2>Kunden</h2>
-    <div>todo</div>
+        <br /> <br />
+        <input type="submit" value="Speichern">
+    </form>
 
-
-    <h2>Preise</h2>
-    <div>todo</div>
-
-
-    <h2>Einnahmen</h2>
-    <div>todo</div>
-
-    <h2>Parkhaus-Belegung</h2>
-    <div>todo</div>
-
-  $END$
-  </body>
+</body>
 </html>
