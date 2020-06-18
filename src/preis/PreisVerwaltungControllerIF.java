@@ -8,5 +8,5 @@ public interface PreisVerwaltungControllerIF {
 
     public String getPreiseAlsJson();
 
-    public boolean setPreis(String kundenTyp, float betrag);
+    public void setPreis(String kundenTyp, float betrag);
 }

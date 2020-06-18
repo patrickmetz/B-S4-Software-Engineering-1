@@ -43,24 +43,14 @@ public class PreisVerwaltungController implements PreisVerwaltungControllerIF {
                     "\"" + eintrag.getKey() + "\""
                             + ":" + eintrag.getValue().getBetrag();
         }
-        String preise = "\"preise\" : {" + String.join(",", preiseStrings) + "}";
 
-        String erfolg = "\"erfolg\" : true";
-        String meldung = "\"meldung\" : \"\"";
-
-        return "{" + preise + "," + erfolg + "," + meldung + "}";
+        return "{" + String.join(",", preiseStrings) + "}";
     }
 
     @Override
-    public boolean setPreis(String kundenTyp, float betrag) {
+    public void setPreis(String kundenTyp, float betrag) {
         PreisIF preis = PreisFactory.erzeugePreis(kundenTyp, betrag);
 
-        if (preis == null) {
-            return false;
-        } else {
-            preiseMap.put(kundenTyp, preis);
-
-            return true;
-        }
+        preiseMap.put(kundenTyp, preis);
     }
 }
