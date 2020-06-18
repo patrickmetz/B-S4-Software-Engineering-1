@@ -22,14 +22,14 @@ author: Patrick Metz
 
 <h1>Preise</h1>
 
-<form id="PreisFormular" action="ParkhausServlet?cmd=PreiseSpeichern" method="post"
+<form id="'preisFormular" action="ParkhausServlet?cmd=PreiseSpeichern" method="post"
       enctype="application/x-www-form-urlencoded">
     <table>
         <% for (KundenTyp kundenTyp : KundenTyp.values()) {
             out.println(
                     "<tr>" +
                             "<td>" + kundenTyp.getBezeichnung() + "</td>" +
-                            "<td><input type=\"text\" id=\"preis" + kundenTyp.toString() + "\"  name=\"" + kundenTyp.toString() + "\" value=\"\"></td>" +
+                            "<td><input type='number' step='any' class='preisFeld' id='preis" + kundenTyp.toString() + "'  name='" + kundenTyp.toString() + "' value=''></td>" +
                             "</tr>"
             );
         }%>
@@ -50,16 +50,64 @@ author: Patrick Metz
         }
     }
 
-    function registriereGeladenEreignis() {
+    function zeigePreiseUndMeldung(data) {
+        zeigePreise(data);
+        window.alert("Die Preise wurden gespeichert.")
+    }
+
+    function holeAktuellePreise() {
+        fetch('ParkhausServlet?cmd=PreiseZeigen')
+            .then(response => response.json())
+            .then(json => zeigePreise(json));
+    }
+
+    function sendeNeuePreise(event) {
+        let formular = event.target;
+
+        fetch(formular.action, {
+            method: formular.method,
+            body: erzeugePostBody(),
+        })
+            .then(response => response.json())
+            .then(json => zeigePreiseUndMeldung(json));
+    }
+
+    function erzeugePostBody() {
+        var postBody = [];
+
+        var formularFelder = document.getElementsByClassName("preisFeld");
+
+        for (i = 0; i < formularFelder.length; i++) {
+            feldWert = formularFelder[i].value;
+            feldName = formularFelder[i].getAttribute("name");
+
+            var schluessel = encodeURIComponent(feldName);
+            var wert = encodeURIComponent(feldWert);
+
+            postBody.push(schluessel + "=" + wert);
+        }
+
+        postBody = postBody.join("&");
+
+        return postBody;
+    }
+
+    function setzeSeiteGeladenEreignis() {
         document.addEventListener('DOMContentLoaded', (event) => {
-            fetch('ParkhausServlet?cmd=PreiseZeigen')
-                .then(response => response.json())
-                .then(json => zeigePreise(json));
+            holeAktuellePreise();
         });
     }
 
-    registriereGeladenEreignis();
-    registriereFormularEreignis();
+    function setzeFormularSendenEreignis() {
+        document.getElementById("'preisFormular")
+            .addEventListener('submit', event => {
+                event.preventDefault();
+                sendeNeuePreise(event);
+            });
+    }
+
+    setzeSeiteGeladenEreignis();
+    setzeFormularSendenEreignis();
 </script>
 </body>
 </html>

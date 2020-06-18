@@ -5,6 +5,7 @@ import java.util.stream.Stream;
 
 /**
  * @author Patrick Metz
+ *
  * <p>
  * Für die hier hinterlegten Kundentypen, müssen Preisklassen
  * der Form "PreisTYP" existieren; z.B. "PreisMitarbeiter".
