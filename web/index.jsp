@@ -22,21 +22,44 @@ author: Patrick Metz
 
 <h1>Preise</h1>
 
-    <form id="PreisFormular" action="ParkhausServlet?cmd=PreiseSpeichern" method="post" enctype="application/x-www-form-urlencoded">
-        <table>
+<form id="PreisFormular" action="ParkhausServlet?cmd=PreiseSpeichern" method="post"
+      enctype="application/x-www-form-urlencoded">
+    <table>
         <% for (KundenTyp kundenTyp : KundenTyp.values()) {
             out.println(
-                    "<tr>"+
+                    "<tr>" +
                             "<td>" + kundenTyp.getBezeichnung() + "</td>" +
-                            "<td><input type=\"text\" id=\"preis" + kundenTyp.toString() + "\"  name=\"" + kundenTyp.toString() + "\" value=\"" + kundenTyp.getInitialPreis() + "\"></td>" +
-                    "</tr>"
+                            "<td><input type=\"text\" id=\"preis" + kundenTyp.toString() + "\"  name=\"" + kundenTyp.toString() + "\" value=\"\"></td>" +
+                            "</tr>"
             );
         }%>
-        </table>
+    </table>
 
-        <br /> <br />
-        <input type="submit" value="Speichern">
-    </form>
+    <br/> <br/>
+    <input type="submit" value="Speichern">
+</form>
 
+<script type="text/javascript">
+    // author: Patrick Metz
+
+    function zeigePreise(data) {
+        for (let [kundenTyp, betrag] of Object.entries(data)) {
+            document
+                .getElementById("preis" + kundenTyp)
+                .setAttribute("value", betrag);
+        }
+    }
+
+    function registriereGeladenEreignis() {
+        document.addEventListener('DOMContentLoaded', (event) => {
+            fetch('ParkhausServlet?cmd=PreiseZeigen')
+                .then(response => response.json())
+                .then(json => zeigePreise(json));
+        });
+    }
+
+    registriereGeladenEreignis();
+    registriereFormularEreignis();
+</script>
 </body>
 </html>

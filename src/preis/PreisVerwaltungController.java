@@ -4,6 +4,7 @@ import kunde.KundenTyp;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author Patrick Metz
@@ -33,18 +34,14 @@ public class PreisVerwaltungController implements PreisVerwaltungControllerIF {
     }
 
     @Override
-    public String getPreiseAlsJson() {
-        String[] preiseStrings = new String[preiseMap.size()];
+    public String getPreiseAlsJsonObjekt() {
+        String preise = preiseMap
+                .entrySet()
+                .stream()
+                .map(x -> "\"" + x.getKey() + "\":" + x.getValue().getBetrag())
+                .collect(Collectors.joining(","));
 
-        int i = 0;
-
-        for (Map.Entry<String, PreisIF> eintrag : preiseMap.entrySet()) {
-            preiseStrings[i++] =
-                    "\"" + eintrag.getKey() + "\""
-                            + ":" + eintrag.getValue().getBetrag();
-        }
-
-        return "{" + String.join(",", preiseStrings) + "}";
+        return "{" + preise + "}";
     }
 
     @Override

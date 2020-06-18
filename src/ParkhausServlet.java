@@ -94,7 +94,7 @@ public class ParkhausServlet extends HttpServlet {
                 break;
 
             case "PreiseZeigen":
-                sendResponse(response, preisVerwaltungController.getPreiseAlsJson());
+                sendResponse(response, preisVerwaltungController.getPreiseAlsJsonObjekt());
                 break;
 
             default:
@@ -137,7 +137,7 @@ public class ParkhausServlet extends HttpServlet {
             preisVerwaltungController.setPreis(kundenTyp,betrag);
         }
 
-        sendResponse(response,preisVerwaltungController.getPreiseAlsJson());
+        sendResponse(response,preisVerwaltungController.getPreiseAlsJsonObjekt());
     }
 
     private static HashMap<String, String> getQueryHashMap(HttpServletRequest request) {
@@ -163,9 +163,9 @@ public class ParkhausServlet extends HttpServlet {
 
     private static HashMap<String, String> getPostHashMapForm(String postBody) throws IOException {
         HashMap<String, String> map = new HashMap<>();
-        String[] splitByAmpersand = postBody.split("&");
+        String[] splitByAnd = postBody.split("&");
 
-        for (String split : splitByAmpersand) {
+        for (String split : splitByAnd) {
             String[] splitByEquals = split.split("=");
 
             map.put(splitByEquals[0], splitByEquals[1]);
