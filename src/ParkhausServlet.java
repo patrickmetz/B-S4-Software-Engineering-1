@@ -18,7 +18,9 @@ import java.util.*;
 @WebServlet("/ParkhausServlet")
 public class ParkhausServlet extends HttpServlet {
 
-    //todo: better use application context for true persistent storage
+    public static final String REGEX_POST_REQUEST_FORM = "^(?:(?:[^&]+)\\&)+[^&]+$";
+    public static final String REGEX_POST_REQUEST_CSV = "^(?:(?:[^,]+),)+[^,]+$";
+
     private Parkhaus parkhaus;
     private KundenDatenProcessor kundenDatenProcessor;
     private ParkhausChartProcessor parkhausChartProcessor;
@@ -32,17 +34,33 @@ public class ParkhausServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        HashMap<String, String> postMap = getPostHashMap(request);
+        String postBody = getPostBody(request);
+        HashMap<String, String> postMap = new HashMap<>();
+
+        if(postBody.matches(REGEX_POST_REQUEST_FORM)){
+           postMap = getPostHashMapForm(postBody);
+        }
+        else if(postBody.matches(REGEX_POST_REQUEST_CSV)){
+            postMap = getPostHashMapCsv(postBody);
+        }
 
         System.out.println("POST-command: " + postMap.get("cmd"));
-        System.out.println("POST-csv: " + postMap.get("csv"));
+
+        if(postMap.get("csv") != null){
+            System.out.println("POST-csv: " + postMap.get("csv"));
+        }
 
         switch (postMap.get("cmd")) {
             case "enter":
                 handlePostEnter(response, postMap);
                 break;
+
             case "leave":
                 handlePostLeave(response, postMap);
+                break;
+
+            case "PreiseSpeichern":
+                handlePostPreiseSpeichern(response, postMap);
                 break;
 
             default:
@@ -82,6 +100,7 @@ public class ParkhausServlet extends HttpServlet {
 
             case "PreiseZeigen":
                 sendResponse(response, preisVerwaltungController.getPreiseAlsJson());
+                break;
 
             default:
                 System.out.println("Invalid GET-command: " + request.getQueryString());
@@ -113,6 +132,11 @@ public class ParkhausServlet extends HttpServlet {
         sendResponse(response, postMap.get("csv"));
     }
 
+    private void handlePostPreiseSpeichern(HttpServletResponse response, HashMap<String, String> postMap) {
+
+
+    }
+
     private static HashMap<String, String> getQueryHashMap(HttpServletRequest request) {
         HashMap<String, String> map = new HashMap<>();
 
@@ -124,12 +148,25 @@ public class ParkhausServlet extends HttpServlet {
         return map;
     }
 
-    private static HashMap<String, String> getPostHashMap(HttpServletRequest request) throws IOException {
+    private static HashMap<String, String> getPostHashMapCsv(String postBody) throws IOException {
         HashMap<String, String> map = new HashMap<>();
-        String[] splitByFirstComma = getPostBody(request).split(",", 2);
+        String[] splitByFirstComma = postBody.split(",", 2);
 
         map.put("cmd", splitByFirstComma[0]);
         map.put("csv", splitByFirstComma[1]);
+
+        return map;
+    }
+
+    private static HashMap<String, String> getPostHashMapForm(String postBody) throws IOException {
+        HashMap<String, String> map = new HashMap<>();
+        String[] splitByAmpersand = postBody.split("&");
+
+        for (String split : splitByAmpersand) {
+            String[] splitByEquals = split.split("=");
+
+            map.put(splitByEquals[0], splitByEquals[1]);
+        }
 
         return map;
     }
