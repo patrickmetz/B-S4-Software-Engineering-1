@@ -1,9 +1,9 @@
 import java.util.List;
 
 public interface ModelIF {
-    public void abmelden(ViewIF viewIF);
+    void anmelden(ViewIF viewIF);
 
-    public void anmelden(ViewIF viewIF);
+    List<Object> gibDaten();
 
-    public abstract List<Object> gibDaten();
+    void speichereDaten(List<Object> daten);
 }
