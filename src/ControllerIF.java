@@ -1,3 +1,5 @@
+import java.util.List;
+
 public interface ControllerIF {
-    public void interpretiere (Object[] datenUndEregnisse);
+    public void interpretiere (List<Object> datenUndEregnisse);
 }
