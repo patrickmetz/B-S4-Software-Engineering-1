@@ -2,10 +2,9 @@ package mvc;
 
 import java.util.List;
 
-public abstract class AbstractModel implements ModelIF {
+public abstract class AbstractModel {
     private List<ViewIF> views;
 
-    @Override
     public void anmelden(ViewIF view) {
         views.add(view);
     }
@@ -15,10 +14,4 @@ public abstract class AbstractModel implements ModelIF {
             view.aktualisieren();
         }
     }
-
-    @Override
-    public abstract List<Object> gibDaten();
-
-    @Override
-    public abstract void speichereDaten(List<Object> daten);
 }
