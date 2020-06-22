@@ -6,8 +6,6 @@ import java.util.List;
  */
 public class ParkhausStatistics {
 
-    //Still not good enough
-
     private List<Float> einnahmen = new LinkedList<>();
     private List<Integer> parkdauerZeiten = new LinkedList<>();
 

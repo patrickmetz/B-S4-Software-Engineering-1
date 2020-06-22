@@ -15,7 +15,7 @@ import java.util.*;
  * @author Patrick Metz
  * @author Johannes Kratzsch
  */
-@WebServlet("/ParkhausServlet")
+    @WebServlet("/ParkhausServlet")
 public class ParkhausServlet extends HttpServlet {
 
     public static final String REGEX_POSTBODY_REQUEST_FORM = "^(?:(?:[^&]+)\\&)+[^&]+$";
