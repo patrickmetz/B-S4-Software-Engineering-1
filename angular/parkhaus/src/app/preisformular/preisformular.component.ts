@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PreisIF} from "../preisIF";
 
 @Component({
   selector: 'app-preisformular',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./preisformular.component.css']
 })
 export class PreisformularComponent implements OnInit {
+  preise: PreisIF[];
 
   constructor() { }
 
