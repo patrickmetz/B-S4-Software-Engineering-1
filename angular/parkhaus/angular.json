@@ -30,6 +30,7 @@
           },
           "configurations": {
             "production": {
+              "index": "", // keine index.html erzeugen
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
