@@ -1,2 +1,10 @@
 <p>preisformular works!</p>
 
+<table *ngIf="preise.length">
+  <tr *ngFor="let preis of preise">
+    <td>{{preis.bezeichnung}}</td>
+    <td>
+      <input type='number' step='any' name='{{preis.name}}' value="'{{preis.betrag}}'">
+    </td>
+  </tr>
+</table>
