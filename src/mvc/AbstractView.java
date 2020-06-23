@@ -7,6 +7,7 @@ public abstract class AbstractView {
     public AbstractView(AbstractModel model) {
         this.model = model;
         model.anmelden(this);
+        aktualisieren();
     }
 
     public abstract void aktualisieren();
