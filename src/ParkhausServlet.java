@@ -140,7 +140,7 @@ public class ParkhausServlet extends HttpServlet {
             float betrag = Float.parseFloat(entry.getValue());
 
             for (KundenTypIF kundenTyp : KundenTyp.values()) {
-                if(kundenTyp.getBezeichnung().equals(kundenTypString)){
+                if(kundenTyp.getTyp().equals(kundenTypString)){
                     preisVerwaltungController.setPreis(kundenTyp,betrag);
                 }
             }
