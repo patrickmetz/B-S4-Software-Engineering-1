@@ -17,117 +17,29 @@ author: Patrick Metz
             "extra_buttons":[{"extra_class":"Umsatzsteuer","extra_inner":"Umsatzsteuer","extra_popup_title":"Umsatzsteuer"},
             {"extra_class":"Summe","extra_inner":"Summe","extra_popup_title":"Summe"},{"extra_class":"Durchschnitt","extra_inner":"Durchschnitt","extra_popup_title":"Durchschnitt"}],
             "extra_charts":[{"extra_class":"Parkdauer Diagramm","extra_inner":"Parkdauer Diagramm","extra_popup_title":"Parkdauer Diagramm"},{"extra_class":"Gruppen Diagramm","extra_inner":"Gruppen Diagramm","extra_popup_title":"Gruppen Diagramm"}]}'></ccm-parkhaus-8-0-0>
+
+    <%-- Angular --%>
+    <script src="runtime-es2015.js" type="module"></script>
+    <script src="runtime-es5.js" nomodule defer></script>
+    <script src="polyfills-es5.js" nomodule defer></script>
+    <script src="polyfills-es2015.js" type="module"></script>
+    <script src="main-es2015.js" type="module"></script>
+    <script src="main-es5.js" nomodule defer></script>
+
 </head>
 <body>
 
-<h1>Preise</h1>
+<h1>Preisverwaltung</h1>
 
-<form id="'preisFormular" action="ParkhausServlet?cmd=PreiseSpeichern" method="post"
-      enctype="application/x-www-form-urlencoded">
-    <table>
-        <% for (KundenTyp kundenTyp : KundenTyp.values()) {
-            out.println(
-                    "<tr>" +
-                            "<td>" + kundenTyp.getBezeichnung() + "</td>" +
-                            "<td><input type='number' step='any' class='preisFeld' id='preis" + kundenTyp.toString() + "'  name='" + kundenTyp.toString() + "' value=''></td>" +
-                            "</tr>"
-            );
-        }%>
-    </table>
+<app-root></app-root>
 
-    <br/> <br/>
-    <input type="submit" value="Speichern">
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
 
-    <h2>Manageransicht</h2>
-    <p>
-        <b>Jahreseinnahmen:</b> <span id="JahresEinnahmen"></span>
-    </p>
-</form>
 
-<script type="text/javascript">
-    // author: Patrick Metz
-
-    function zeigePreise(data) {
-        for (let [kundenTyp, betrag] of Object.entries(data)) {
-            document
-                .getElementById("preis" + kundenTyp)
-                .setAttribute("value", betrag);
-        }
-    }
-
-    function zeigePreiseUndMeldung(data) {
-        zeigePreise(data);
-        window.alert("Die Preise wurden gespeichert.")
-    }
-
-    function holeAktuellePreise() {
-        fetch('ParkhausServlet?cmd=PreiseZeigen')
-            .then(response => response.json())
-            .then(json => zeigePreise(json));
-    }
-
-    function sendeNeuePreise(event) {
-        let formular = event.target;
-
-        fetch(formular.action, {
-            method: formular.method,
-            body: erzeugePostBody(),
-        })
-            .then(response => response.json())
-            .then(json => zeigePreiseUndMeldung(json));
-    }
-
-    function erzeugePostBody() {
-        var postBody = [];
-
-        var formularFelder = document.getElementsByClassName("preisFeld");
-
-        for (i = 0; i < formularFelder.length; i++) {
-            feldWert = formularFelder[i].value;
-            feldName = formularFelder[i].getAttribute("name");
-
-            var schluessel = encodeURIComponent(feldName);
-            var wert = encodeURIComponent(feldWert);
-
-            postBody.push(schluessel + "=" + wert);
-        }
-
-        postBody = postBody.join("&");
-
-        return postBody;
-    }
-
-    function setzeSeiteGeladenEreignis() {
-        document.addEventListener('DOMContentLoaded', (event) => {
-            holeAktuellePreise();
-        });
-    }
-
-    function setzeFormularSendenEreignis() {
-        document.getElementById("'preisFormular")
-            .addEventListener('submit', event => {
-                event.preventDefault();
-                sendeNeuePreise(event);
-            });
-    }
-
-    function holeJahresEinnahmen() {
-	    fetch('ParkhausServlet?cmd=ManagersichtJahresEinnahmen')
-		    .then(response => zeigePreise(response));
-    }
-
-    function zeigeJahresEinnahmen(einnahmen) {
-        document
-            .getElementById("JahresEinnahmen")
-            .setAttribute("value", einnahmen);
-    }
-
-    setzeSeiteGeladenEreignis();
-    setzeFormularSendenEreignis();
-
-    //TODO Johannes: Schnittstelle fixen
-    // holeJahresEinnahmen();
-</script>
 </body>
 </html>
