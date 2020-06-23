@@ -1,53 +1,63 @@
 package preis;
 
 import kunde.KundenTyp;
+import kunde.KundenTypIF;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
  * @author Patrick Metz
  */
 public class PreisVerwaltungController implements PreisVerwaltungControllerIF {
+    public static final String JSON_PREIS_OBJEKT = "{\"typ\" : \"%s\", \"bezeichnung\" : \"%s\", \"betrag\" : %s}";
+    public static final String JSON_PREIS_OBJEKT_ARRAY = "[%s]";
+
     HashMap<String, PreisIF> preiseMap;
 
     public PreisVerwaltungController(KundenTyp[] kundenTypen) {
         preiseMap = new HashMap<>();
-        inititialisierePreise(kundenTypen);
+        initialisierePreise(kundenTypen);
     }
 
-    private void inititialisierePreise(KundenTyp[] kundenTypen) {
-        for (KundenTyp kundenTyp : kundenTypen) {
+    private void initialisierePreise(KundenTyp[] kundenTypen) {
+        for (KundenTypIF kundenTyp : kundenTypen) {
             PreisIF preis = PreisFactory.erzeugePreis(
-                    kundenTyp.toString(),
+                    kundenTyp,
                     kundenTyp.getInitialPreis()
             );
 
-            preiseMap.put(kundenTyp.toString(), preis);
+            preiseMap.put(kundenTyp.getTyp(), preis);
         }
     }
 
     @Override
-    public PreisIF getPreis(String kundenTyp) {
-        return preiseMap.get(kundenTyp);
+    public PreisIF getPreis(KundenTypIF kundenTyp) {
+        return preiseMap.get(kundenTyp.getTyp());
     }
 
     @Override
-    public String getPreiseAlsJsonObjekt() {
+    public String getPreiseAlsJsonArray() {
         String preise = preiseMap
                 .entrySet()
                 .stream()
-                .map(x -> "\"" + x.getKey() + "\":" + x.getValue().getBetrag())
+                .map(
+                        x -> String.format(
+                                JSON_PREIS_OBJEKT,
+                                x.getKey(),
+                                x.getValue().getBezeichnung(),
+                                x.getValue().getBetrag()
+                        )
+                )
                 .collect(Collectors.joining(","));
 
-        return "{" + preise + "}";
+        return String.format(JSON_PREIS_OBJEKT_ARRAY, preise);
     }
 
     @Override
-    public void setPreis(String kundenTyp, float betrag) {
+    public void setPreis(KundenTypIF kundenTyp, float betrag) {
         PreisIF preis = PreisFactory.erzeugePreis(kundenTyp, betrag);
 
-        preiseMap.put(kundenTyp, preis);
+        preiseMap.put(kundenTyp.getTyp(), preis);
     }
 }

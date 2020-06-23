@@ -13,7 +13,7 @@ class PreisVerwaltungControllerTest {
         PreisVerwaltungController controller = new PreisVerwaltungController(KundenTyp.values());
 
         for (KundenTyp kundenTyp : KundenTyp.values()) {
-            assertNotNull(controller.getPreis(kundenTyp.toString()));
+            assertNotNull(controller.getPreis(kundenTyp));
         }
     }
 }

@@ -94,7 +94,7 @@ public class ParkhausServlet extends HttpServlet {
                 break;
 
             case "PreiseZeigen":
-                sendResponse(response, preisVerwaltungController.getPreiseAlsJsonObjekt());
+                sendResponse(response, preisVerwaltungController.getPreiseAlsJsonArray());
                 break;
 
             default:
@@ -131,13 +131,17 @@ public class ParkhausServlet extends HttpServlet {
         ArrayList<String> fehler = new ArrayList<>();
 
         for (Map.Entry<String, String> entry : postMap.entrySet()) {
-            String kundenTyp = entry.getKey();
+            String kundenTypString = entry.getKey();
             float betrag = Float.parseFloat(entry.getValue());
 
-            preisVerwaltungController.setPreis(kundenTyp,betrag);
+            for (KundenTypIF kundenTyp : KundenTyp.values()) {
+                if(kundenTyp.getBezeichnung().equals(kundenTypString)){
+                    preisVerwaltungController.setPreis(kundenTyp,betrag);
+                }
+            }
         }
 
-        sendResponse(response,preisVerwaltungController.getPreiseAlsJsonObjekt());
+        sendResponse(response,preisVerwaltungController.getPreiseAlsJsonArray());
     }
 
     private static HashMap<String, String> getQueryHashMap(HttpServletRequest request) {

@@ -20,7 +20,7 @@ import java.util.stream.Stream;
  * Bezeichnungen dienen nur "schöneren" Texten im HTML-Formular
  */
 
-public enum KundenTyp {
+public enum KundenTyp implements KundenTypIF{
     Familie {
         public float getInitialPreis() {
             return 15.0f;
@@ -55,13 +55,19 @@ public enum KundenTyp {
         }
     };
 
-
+    @Override
     public float getInitialPreis() {
         return 0.0f;
     }
 
+    @Override
     public String getBezeichnung() {
         return super.name();
+    }
+
+    @Override
+    public String getTyp() {
+        return this.toString();
     }
 
     public static String alsJsonArray() {
