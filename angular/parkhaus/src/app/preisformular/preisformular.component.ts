@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {PreisIF} from "../preisIF";
 import {PreisService} from "./preis.service";
 
-
 @Component({
   selector: 'app-preisformular',
   templateUrl: './preisformular.component.html',
