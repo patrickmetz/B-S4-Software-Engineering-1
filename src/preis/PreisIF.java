@@ -5,4 +5,5 @@ package preis;
  */
 public interface PreisIF {
     public float getBetrag();
+    public String getBezeichnung();
 }
