@@ -25,12 +25,14 @@ public class ParkhausServlet extends HttpServlet {
     private KundenDatenProcessor kundenDatenProcessor;
     private ParkhausChartProcessor parkhausChartProcessor;
     private PreisVerwaltungControllerIF preisVerwaltungController;
+    private JahresEinnahmenView jahresEinnahmenView;
 
     public void init() {
         parkhaus = getParkhaus();
         kundenDatenProcessor = getKundenDatenProcessor();
         parkhausChartProcessor = getParkhausChartProcessor();
         preisVerwaltungController = getPreisVerwaltungController();
+        jahresEinnahmenView = getJahresEinnahmenView();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -96,6 +98,9 @@ public class ParkhausServlet extends HttpServlet {
             case "PreiseZeigen":
                 sendResponse(response, preisVerwaltungController.getPreiseAlsJsonArray());
                 break;
+
+            case "ManagersichtJahresEinnahmen":
+                sendResponse(response, jahresEinnahmenView.view());
 
             default:
                 System.out.println("Invalid GET-command: " + request.getQueryString());
@@ -260,5 +265,18 @@ public class ParkhausServlet extends HttpServlet {
         }
 
         return preisVerwaltungController;
+    }
+
+    private JahresEinnahmenView getJahresEinnahmenView() {
+        if (null == parkhausChartProcessor) {
+            jahresEinnahmenView = (JahresEinnahmenView) getApplication().getAttribute("jahresEinnahmenView");
+
+            if (null == parkhausChartProcessor) {
+                jahresEinnahmenView = new JahresEinnahmenView(parkhaus.getParkhausStatistics());
+                getApplication().setAttribute("jahresEinnahmenView", parkhausChartProcessor);
+            }
+        }
+
+        return jahresEinnahmenView;
     }
 }

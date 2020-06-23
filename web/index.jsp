@@ -37,6 +37,12 @@ author: Patrick Metz
 
     <br/> <br/>
     <input type="submit" value="Speichern">
+
+
+    <h2>Manageransicht</h2>
+    <p>
+        <b>Jahreseinnahmen:</b> <span id="JahresEinnahmen"></span>
+    </p>
 </form>
 
 <script type="text/javascript">
@@ -106,8 +112,22 @@ author: Patrick Metz
             });
     }
 
+    function holeJahresEinnahmen() {
+	    fetch('ParkhausServlet?cmd=ManagersichtJahresEinnahmen')
+		    .then(response => zeigePreise(response));
+    }
+
+    function zeigeJahresEinnahmen(einnahmen) {
+        document
+            .getElementById("JahresEinnahmen")
+            .setAttribute("value", einnahmen);
+    }
+
     setzeSeiteGeladenEreignis();
     setzeFormularSendenEreignis();
+
+    //TODO Johannes: Schnittstelle fixen
+    // holeJahresEinnahmen();
 </script>
 </body>
 </html>

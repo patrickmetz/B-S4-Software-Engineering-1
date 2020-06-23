@@ -81,5 +81,7 @@ public class Parkhaus implements ParkhausIF {
         return parkhausStatistics.getParkdauerZeiten();
     }
 
-
+    public ParkhausStatistics getParkhausStatistics() {
+        return parkhausStatistics;
+    }
 }

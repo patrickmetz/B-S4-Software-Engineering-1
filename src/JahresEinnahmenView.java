@@ -9,7 +9,7 @@ import java.util.List;
  * @author Johannes Kratzsch
  */
 public class JahresEinnahmenView extends AbstractView {
-    String view = "";
+    private String view = "";
 
     public JahresEinnahmenView(AbstractModel model) {
         super(model);
