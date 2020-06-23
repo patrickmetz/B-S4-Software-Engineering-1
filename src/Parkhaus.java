@@ -73,7 +73,7 @@ public class Parkhaus implements ParkhausIF {
 
     @Override
     public List<Float> getEinahmen() {
-        return parkhausStatistics.getEinnahmen();
+        return parkhausStatistics.getEinnahmenWerte();
     }
 
     @Override

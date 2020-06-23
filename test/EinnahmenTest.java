@@ -49,6 +49,8 @@ public class EinnahmenTest {
         Einnahme example2 = iterator.next();
         assertEquals(new GregorianCalendar(2020, Calendar.FEBRUARY, 6).getTime(), example2.getDate());
         assertEquals(9, example2.getWert());
+
+        assertEquals(35.0, einnahmen.getSumEinnahmen());
     }
 
     @Test
@@ -68,6 +70,8 @@ public class EinnahmenTest {
         Einnahme example3 = iterator.next();
         assertEquals(new GregorianCalendar(2020, Calendar.FEBRUARY, 6).getTime(), example3.getDate());
         assertEquals(9, example3.getWert());
+
+        assertEquals(35.0, einnahmen.getSumEinnahmen());
     }
 
     @Test
@@ -87,6 +91,8 @@ public class EinnahmenTest {
         Einnahme example3 = iterator.next();
         assertEquals(new GregorianCalendar(2020, Calendar.FEBRUARY, 22).getTime(), example3.getDate());
         assertEquals(28, example3.getWert());
+
+        assertEquals(35.0, einnahmen.getSumEinnahmen());
     }
 
     @Test
@@ -102,6 +108,8 @@ public class EinnahmenTest {
         Einnahme example2 = iterator.next();
         assertEquals(new GregorianCalendar(2020, Calendar.FEBRUARY, 22).getTime(), example2.getDate());
         assertEquals(31, example2.getWert());
+
+        assertEquals(35.0, einnahmen.getSumEinnahmen());
     }
 
 }

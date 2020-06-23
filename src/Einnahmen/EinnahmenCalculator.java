@@ -25,6 +25,13 @@ public abstract class EinnahmenCalculator {
         return einnahmenSummen.iterator();
     }
 
+    public float getSumEinnahmen() {
+        return einnahmenSummen
+                .stream()
+                .map(Einnahme::getWert)
+                .reduce(Float::sum).get();
+    }
+
     List<Einnahme> getEinnahmen() {
         return einnahmen;
     }
