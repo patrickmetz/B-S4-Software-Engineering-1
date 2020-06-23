@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author Patrick Metz
+ */
 class PreisVerwaltungModelTest {
     @Test
     @DisplayName("Nach der Instanziierung sollen für alle Kundentypen initiale Preise gesetzt sein.")

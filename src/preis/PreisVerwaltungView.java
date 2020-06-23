@@ -5,6 +5,9 @@ import mvc.AbstractModel;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
+/**
+ * @author Patrick Metz
+ */
 public class PreisVerwaltungView extends mvc.AbstractView{
     public static final String JSON_PREIS_OBJEKT = "{\"typ\" : \"%s\", \"bezeichnung\" : \"%s\", \"betrag\" : %s}";
     public static final String JSON_PREIS_OBJEKT_ARRAY = "[%s]";

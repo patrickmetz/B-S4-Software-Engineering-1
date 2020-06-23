@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+/**
+ * @author Patrick Metz
+ */
 public class PreisVerwaltungMVCTest {
     @Test
     @DisplayName("Der View soll sich, nach Änderung eines Preises im Model, ebenfalls ändern.")

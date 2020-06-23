@@ -1,7 +1,8 @@
 package preis;
 
-import java.util.HashMap;
-
+/**
+ * @author Patrick Metz
+ */
 public interface PreisVerwaltungControllerIF extends PreisVerwaltungIF {
     public PreisVerwaltungView getView();
 }

@@ -6,6 +6,9 @@ import {catchError, tap} from 'rxjs/operators';
 
 import {PreisIF} from "../preisIF";
 
+/**
+ * @author Patrick Metz
+ */
 @Injectable({
   providedIn: 'root'
 })

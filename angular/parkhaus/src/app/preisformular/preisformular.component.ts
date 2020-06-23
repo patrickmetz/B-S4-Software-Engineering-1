@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {PreisIF} from "../preisIF";
 import {PreisService} from "./preis.service";
 
+/**
+ * @author Patrick Metz
+ */
 @Component({
   selector: 'app-preisformular',
   templateUrl: './preisformular.component.html',
