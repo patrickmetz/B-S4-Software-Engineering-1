@@ -21,4 +21,9 @@ export class PreisformularComponent implements OnInit {
       .subscribe(preise => this.preise = preise);
   }
 
+  speicherePreise(): void {
+    this.preisService.speicherePreise(this.preise)
+      .subscribe(preise => this.preise = preise);
+  }
+
 }

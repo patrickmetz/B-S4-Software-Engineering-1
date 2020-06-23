@@ -4,7 +4,9 @@
   <tr *ngFor="let preis of preise">
     <td>{{preis.bezeichnung}}</td>
     <td>
-      <input type='number' step='any' name='{{preis.typ}}' value="{{preis.betrag}}">
+      <input [(ngModel)]='preis.betrag' type='number' step='any' name='{{preis.typ}}' value="{{preis.betrag}}">
     </td>
   </tr>
 </table>
+
+<button (click)="speicherePreise()">Preise speichern</button>
