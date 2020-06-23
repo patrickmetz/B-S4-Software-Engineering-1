@@ -1,5 +1,5 @@
 export interface PreisIF {
-  name: string;
+  typ: string;
   bezeichnung: string;
   betrag: number;
 }

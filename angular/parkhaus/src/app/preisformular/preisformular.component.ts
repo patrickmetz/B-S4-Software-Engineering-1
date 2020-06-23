@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PreisIF} from "../preisIF";
+import {PreisService} from "./preis.service";
+
 
 @Component({
   selector: 'app-preisformular',
@@ -9,9 +11,15 @@ import {PreisIF} from "../preisIF";
 export class PreisformularComponent implements OnInit {
   preise: PreisIF[];
 
-  constructor() { }
+  constructor(private preisService: PreisService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.holePreise();
+  }
+
+  holePreise(): void {
+    this.preisService.gibPreise()
+      .subscribe(preise => this.preise = preise);
   }
 
 }
