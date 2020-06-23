@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PreisVerwaltungControllerTest {
+class PreisVerwaltungModelTest {
     @Test
     @DisplayName("Nach der Instanziierung sollen für alle Kundentypen initiale Preise gesetzt sein.")
     public void PreisInitialisierungTest(){
-        PreisVerwaltungController controller = new PreisVerwaltungController(KundenTyp.values());
+        PreisVerwaltungModel model = new PreisVerwaltungModel(KundenTyp.values());
 
         for (KundenTyp kundenTyp : KundenTyp.values()) {
-            assertNotNull(controller.getPreis(kundenTyp));
+            assertNotNull(model.getPreis(kundenTyp));
         }
     }
 }

@@ -1,14 +1,7 @@
 package preis;
 
-import kunde.KundenTypIF;
+import java.util.HashMap;
 
-/**
- * @author Patrick Metz
- */
-public interface PreisVerwaltungControllerIF {
-    public PreisIF getPreis(KundenTypIF kundenTyp);
-
-    public String getPreiseAlsJsonArray();
-
-    public void setPreis(KundenTypIF kundenTyp, float betrag);
+public interface PreisVerwaltungControllerIF extends PreisVerwaltungIF {
+    public PreisVerwaltungView getView();
 }

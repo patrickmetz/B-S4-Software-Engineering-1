@@ -1,6 +1,7 @@
 import kunde.*;
 import preis.PreisVerwaltungController;
 import preis.PreisVerwaltungControllerIF;
+import preis.PreisVerwaltungIF;
 
 import javax.servlet.ServletContext;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +16,7 @@ import java.util.*;
  * @author Patrick Metz
  * @author Johannes Kratzsch
  */
-    @WebServlet("/ParkhausServlet")
+@WebServlet("/ParkhausServlet")
 public class ParkhausServlet extends HttpServlet {
 
     public static final String REGEX_POSTBODY_REQUEST_FORM = "^(?:(?:[^&]+)\\&)+[^&]+$";
@@ -96,7 +97,7 @@ public class ParkhausServlet extends HttpServlet {
                 break;
 
             case "PreiseZeigen":
-                sendResponse(response, preisVerwaltungController.getPreiseAlsJsonArray());
+                sendResponse(response, preisVerwaltungController.getView().view());
                 break;
 
             case "ManagersichtJahresEinnahmen":
@@ -133,28 +134,9 @@ public class ParkhausServlet extends HttpServlet {
     }
 
     private void handlePostPreiseSpeichern(HttpServletResponse response, HashMap<String, String> postMap) throws IOException {
-        ArrayList<String> fehler = new ArrayList<>();
+        preisVerwaltungController.setPreiseAlsStringMap(postMap);
 
-        for (Map.Entry<String, String> entry : postMap.entrySet()) {
-            String kundenTypString = entry.getKey();
-
-            for (KundenTypIF kundenTyp : KundenTyp.values()) {
-                if(kundenTyp.getTyp().equals(kundenTypString)){
-
-                    float betrag;
-                    try {
-                        betrag = Float.parseFloat(entry.getValue());
-                    }
-                    catch (Exception e){
-                        betrag = kundenTyp.getInitialPreis();
-                    }
-
-                    preisVerwaltungController.setPreis(kundenTyp,betrag);
-                }
-            }
-        }
-
-        sendResponse(response,preisVerwaltungController.getPreiseAlsJsonArray());
+        sendResponse(response, preisVerwaltungController.getView().view());
     }
 
     private static HashMap<String, String> getQueryHashMap(HttpServletRequest request) {
@@ -264,11 +246,11 @@ public class ParkhausServlet extends HttpServlet {
 
     private PreisVerwaltungControllerIF getPreisVerwaltungController() {
         if (null == preisVerwaltungController) {
-            preisVerwaltungController = (PreisVerwaltungControllerIF) getApplication().getAttribute("preisVerwaltungProcessor");
+            preisVerwaltungController = (PreisVerwaltungControllerIF) getApplication().getAttribute("preisVerwaltungController");
 
             if (null == preisVerwaltungController) {
                 preisVerwaltungController = new PreisVerwaltungController(KundenTyp.values());
-                getApplication().setAttribute("chartProcessor", preisVerwaltungController);
+                getApplication().setAttribute("preisVerwaltungController", preisVerwaltungController);
             }
         }
 
