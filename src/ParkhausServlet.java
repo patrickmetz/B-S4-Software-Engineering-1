@@ -137,10 +137,18 @@ public class ParkhausServlet extends HttpServlet {
 
         for (Map.Entry<String, String> entry : postMap.entrySet()) {
             String kundenTypString = entry.getKey();
-            float betrag = Float.parseFloat(entry.getValue());
 
             for (KundenTypIF kundenTyp : KundenTyp.values()) {
                 if(kundenTyp.getTyp().equals(kundenTypString)){
+
+                    float betrag;
+                    try {
+                        betrag = Float.parseFloat(entry.getValue());
+                    }
+                    catch (Exception e){
+                        betrag = kundenTyp.getInitialPreis();
+                    }
+
                     preisVerwaltungController.setPreis(kundenTyp,betrag);
                 }
             }
