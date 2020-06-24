@@ -1,19 +1,30 @@
-import Einnahmen.*;
-
-import java.util.List;
-
 /**
  * @author Johannes Kratzsch
  */
 public class EinnahmenController {
-    private JahresEinnahmenView einnahmenView;
+    private JahresEinnahmenView jahresEinnahmenView;
+    private TagesEinnahmenView tagesEinnahmenView;
+    ParkhausStatistics statistics;
 
-    public void jahresEinnahmen (ParkhausStatistics statistics) {
-        //Subscribe the view to the ParkhausStatistics model
-        einnahmenView = new JahresEinnahmenView(statistics);
+    EinnahmenController (ParkhausStatistics statistics) {
+        this.statistics = statistics;
     }
 
-    public JahresEinnahmenView getView() {
-        return einnahmenView;
+    public JahresEinnahmenView getJahresEinnahmenView() {
+        if (jahresEinnahmenView == null) {
+            //Subscribe the view to the ParkhausStatistics model
+            jahresEinnahmenView = new JahresEinnahmenView(statistics);
+        }
+
+        return jahresEinnahmenView;
+    }
+
+    public TagesEinnahmenView getTagesEinnahmenView() {
+        if (tagesEinnahmenView == null) {
+            //Subscribe the view to the ParkhausStatistics model
+            tagesEinnahmenView = new TagesEinnahmenView(statistics);
+        }
+
+        return tagesEinnahmenView;
     }
 }

@@ -26,14 +26,14 @@ public class ParkhausServlet extends HttpServlet {
     private KundenDatenProcessor kundenDatenProcessor;
     private ParkhausChartProcessor parkhausChartProcessor;
     private PreisVerwaltungControllerIF preisVerwaltungController;
-    private JahresEinnahmenView jahresEinnahmenView;
+    private EinnahmenController einnahmenController;
 
     public void init() {
         parkhaus = getParkhaus();
         kundenDatenProcessor = getKundenDatenProcessor();
         parkhausChartProcessor = getParkhausChartProcessor();
         preisVerwaltungController = getPreisVerwaltungController();
-        jahresEinnahmenView = getJahresEinnahmenView();
+        einnahmenController = getEinnahmenController();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -101,7 +101,12 @@ public class ParkhausServlet extends HttpServlet {
                 break;
 
             case "ManagersichtJahresEinnahmen":
-                sendResponse(response, jahresEinnahmenView.view());
+                sendResponse(response, einnahmenController.getJahresEinnahmenView().view());
+                break;
+
+            case "ManagersichtTagesEinnahmen":
+                sendResponse(response, einnahmenController.getTagesEinnahmenView().view());
+                break;
 
             default:
                 System.out.println("Invalid GET-command: " + request.getQueryString());
@@ -257,16 +262,16 @@ public class ParkhausServlet extends HttpServlet {
         return preisVerwaltungController;
     }
 
-    private JahresEinnahmenView getJahresEinnahmenView() {
-        if (null == jahresEinnahmenView) {
-            jahresEinnahmenView = (JahresEinnahmenView) getApplication().getAttribute("jahresEinnahmenView");
+    private EinnahmenController getEinnahmenController() {
+        if (null == einnahmenController) {
+            einnahmenController = (EinnahmenController) getApplication().getAttribute("einnahmenController");
 
-            if (null == jahresEinnahmenView) {
-                jahresEinnahmenView = new JahresEinnahmenView(parkhaus.getParkhausStatistics());
-                getApplication().setAttribute("jahresEinnahmenView", parkhausChartProcessor);
+            if (null == einnahmenController) {
+                einnahmenController = new EinnahmenController(parkhaus.getParkhausStatistics());
+                getApplication().setAttribute("einnahmenController", parkhausChartProcessor);
             }
         }
 
-        return jahresEinnahmenView;
+        return einnahmenController;
     }
 }

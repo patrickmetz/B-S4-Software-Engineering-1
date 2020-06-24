@@ -39,6 +39,9 @@ author: Patrick Metz
 <p>
     <b>Jahreseinnahmen:</b> <span id="JahresEinnahmen"></span>
 </p>
+<p>
+    <b>Tageseinnahmen:</b> <span id="TagesEinnahmen"></span>
+</p>
 
 <br/><br/><br/><br/><br/>
 </div>
@@ -52,7 +55,16 @@ author: Patrick Metz
 	            .innerHTML = text);
 	}
 
-    const interval = setInterval(() => holeJahresEinnahmen(), 1000);
+    function holeTagesEinnahmen() {
+	    fetch('ParkhausServlet?cmd=ManagersichtTagesEinnahmen')
+		    .then(response => response.text())
+		    .then(text => document
+			    .getElementById("TagesEinnahmen")
+			    .innerHTML = text);
+    }
+
+    const interval1 = setInterval(() => holeJahresEinnahmen(), 1000);
+    const interval2 = setInterval(() => holeTagesEinnahmen(), 1000);
 </script>
 
 </body>

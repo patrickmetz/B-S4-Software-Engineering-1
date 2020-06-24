@@ -1,9 +1,6 @@
 package Einnahmen;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Tobias Lohmüller
@@ -11,7 +8,7 @@ import java.util.Map;
 
 public class TagesEinnahmenCalculator extends EinnahmenCalculator {
 
-    public TagesEinnahmenCalculator(ArrayList<Einnahme> einnahmen) {
+    public TagesEinnahmenCalculator(List<Einnahme> einnahmen) {
         super(einnahmen);
     }
 
