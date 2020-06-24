@@ -35,8 +35,25 @@ author: Patrick Metz
 <%-- Angular: siehe \angular\parkhaus\src\app\preisformular --%>
 <app-root></app-root>
 
+<h2>Manageransicht</h2>
+<p>
+    <b>Jahreseinnahmen:</b> <span id="JahresEinnahmen"></span>
+</p>
+
 <br/><br/><br/><br/><br/>
 </div>
+
+<script type="text/javascript">
+    function holeJahresEinnahmen() {
+		fetch('ParkhausServlet?cmd=ManagersichtJahresEinnahmen')
+			.then(response => response.text())
+            .then(text => document
+	            .getElementById("JahresEinnahmen")
+	            .innerHTML = text);
+	}
+
+    const interval = setInterval(() => holeJahresEinnahmen(), 1000);
+</script>
 
 </body>
 </html>

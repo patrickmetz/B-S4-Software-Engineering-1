@@ -21,7 +21,7 @@ public class JahresEinnahmenView extends AbstractView {
         List<Einnahme> einnahmen = statistics.getEinnahmen();
         JahresEinnahmenCalculator calc = new JahresEinnahmenCalculator(einnahmen);
 
-        view = "" + calc.getSumEinnahmen();
+        view = KundenDatenUtils.floatToEuro(calc.getSumEinnahmen());
     }
 
     @Override

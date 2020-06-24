@@ -29,7 +29,7 @@ public abstract class EinnahmenCalculator {
         return einnahmenSummen
                 .stream()
                 .map(Einnahme::getWert)
-                .reduce(Float::sum).get();
+                .reduce(0.f, Float::sum);
     }
 
     List<Einnahme> getEinnahmen() {
@@ -62,6 +62,10 @@ public abstract class EinnahmenCalculator {
             tempSum += einnahme.getWert();
 
             lastDate.setTime(einnahme.getDate());
+        }
+
+        if (tempSum == 0) {
+            return;
         }
 
         addEinnahmenSumme(lastDate.getTime(), tempSum);

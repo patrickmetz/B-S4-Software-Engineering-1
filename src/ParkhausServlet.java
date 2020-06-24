@@ -258,10 +258,10 @@ public class ParkhausServlet extends HttpServlet {
     }
 
     private JahresEinnahmenView getJahresEinnahmenView() {
-        if (null == parkhausChartProcessor) {
+        if (null == jahresEinnahmenView) {
             jahresEinnahmenView = (JahresEinnahmenView) getApplication().getAttribute("jahresEinnahmenView");
 
-            if (null == parkhausChartProcessor) {
+            if (null == jahresEinnahmenView) {
                 jahresEinnahmenView = new JahresEinnahmenView(parkhaus.getParkhausStatistics());
                 getApplication().setAttribute("jahresEinnahmenView", parkhausChartProcessor);
             }
