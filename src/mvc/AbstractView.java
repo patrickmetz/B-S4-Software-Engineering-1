@@ -1,5 +1,8 @@
 package mvc;
 
+/**
+ * @author Patrick Metz
+ */
 public abstract class AbstractView {
 
     protected final AbstractModel model;

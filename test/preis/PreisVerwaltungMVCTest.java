@@ -14,6 +14,9 @@ public class PreisVerwaltungMVCTest {
     @DisplayName("Der View soll sich, nach Änderung eines Preises im Model, ebenfalls ändern.")
     public void PreisInitialisierungTest() {
 
+        // wir testen absichtlich keine getter und setter
+        // https://stackoverflow.com/questions/6197370/should-unit-tests-be-written-for-getter-and-setters
+
         PreisVerwaltungControllerIF controller = new PreisVerwaltungController(KundenTyp.values());
         String vorher = controller.getView().view();
 
