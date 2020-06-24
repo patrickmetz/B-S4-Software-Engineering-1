@@ -13,13 +13,12 @@ import java.util.Map;
 public class PreisVerwaltungModel extends AbstractModel implements PreisVerwaltungIF {
     HashMap<String, PreisIF> preiseMap;
 
-    // package-private!
     PreisVerwaltungModel(KundenTyp[] kundenTypen) {
         preiseMap = new HashMap<>();
         initialisierePreise(kundenTypen);
     }
 
-    public HashMap<String, PreisIF> getPreiseMap() {
+    HashMap<String, PreisIF> getPreiseMap() {
         return preiseMap;
     }
 
