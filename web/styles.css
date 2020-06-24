@@ -9,6 +9,10 @@ ccm-parkhaus-8-0-0{
     width:20%;
 }
 
+#preisVerwaltung input[type=number]{
+    width:75px;
+}
+
 body * {
     font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
@@ -31,7 +35,13 @@ button {
     cursor: pointer;
 }
 
-
-#preisVerwaltung input[type=number]{
-    width:75px;
+button:hover {
+    border: thin solid black;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
+
+button:active {
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    transform: translateY(4px);
+}
+
