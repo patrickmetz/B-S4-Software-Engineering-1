@@ -13,6 +13,7 @@ public class JahresEinnahmenView extends AbstractView {
 
     public JahresEinnahmenView(AbstractModel model) {
         super(model);
+        aktualisieren();
     }
 
     @Override

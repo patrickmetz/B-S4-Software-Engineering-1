@@ -13,6 +13,7 @@ public class TagesEinnahmenView extends AbstractView {
 
     public TagesEinnahmenView(AbstractModel model) {
         super(model);
+        aktualisieren();
     }
 
     @Override
