@@ -33,5 +33,5 @@ Was verstehen Sie unter Digitalisierung? Einfach nur das Analoge digital nachbau
 # Verzeichnis der eingesetzten Patterns
 | Design Pattern | Links zum Code | Kommentar |
 | ---      |  ------  |-------|
-| Command | [TaxReturn](src/TaxReturn) | Es handelt sich um das funktionale Command Pattern |
-| Singleton | [Finanzamt](src/Finanzamt) | |
+| Command | [TaxReturn](src/TaxReturn.java) | Es handelt sich um das funktionale Command Pattern |
+| Singleton | [Finanzamt](src/Finanzamt.java) | |
