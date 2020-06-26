@@ -35,8 +35,6 @@ Was verstehen Sie unter Digitalisierung? Einfach nur das Analoge digital nachbau
 | ---      |  ------  |-------|
 | Command | [TaxReturn](src/TaxReturn.java) | Es handelt sich um das funktionale Command Pattern |
 | Singleton | [Finanzamt](src/Finanzamt.java) | |
-| MVC / Observer (1) | [Model](src/preis/PreisVerwaltungModel.java) [View](src/preis/PreisVerwaltungView.java) [Model]
-(src/preis/PreisVerwaltungModel.java) [Controller](src/preis/PreisVerwaltungController.java)   | |
-| MVC / Observer (2) | [Model](src/ParkhausStatistics.java) [View](src/JahresEinnahmenView.java) [Model]
-(src/preis/PreisVerwaltungModel.java) [Controller](src/EinnahmenController.java)   | |
+| MVC / Observer (1) | [Model](src/preis/PreisVerwaltungModel.java) [View](src/preis/PreisVerwaltungView.java) [Model] (src/preis/PreisVerwaltungModel.java) [Controller](src/preis/PreisVerwaltungController.java)   | |
+| MVC / Observer (2) | [Model](src/ParkhausStatistics.java) [View](src/JahresEinnahmenView.java) [Model] (src/preis/PreisVerwaltungModel.java) [Controller](src/EinnahmenController.java)   | |
 
