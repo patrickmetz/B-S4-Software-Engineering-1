@@ -1,7 +1,7 @@
 [[_TOC_]]
 
 # Artefakte
-- Digitalisierungskonzept: s.u.
+- Digitalisierungskonzept: [s.u.](#digitalisierungskonzept)
 - User Stories:
 - Kanban-Board: [Link](docs/Kanban Board)
 - Priorisierung der User Stories
@@ -20,7 +20,7 @@
 - Zielkonflikte: Haben Sie Zielkonflikte erkennen können? Wie haben Sie diese aufgelöst?
 - Iterationsbericht:
 - Summarisches Projektprotokoll:
-- Resumée und Fazit: s.u.
+- Resumée und Fazit: [s.u.](#resumee-und-fazit)
 - Präsentation und Demo des Projekts (PPT, PDF, HTML, MP4)
 
 # Digitalisierungskonzept:
