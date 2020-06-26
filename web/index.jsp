@@ -25,7 +25,9 @@ author: Patrick Metz
             key='{"name":"parkhaus","server_url":"http://localhost:8080/ParkhausServlet",
             "client_categories": <% out.print(KundenTyp.alsJsonArray()); %>,
             "extra_buttons":[{"extra_class":"Umsatzsteuer","extra_inner":"Umsatzsteuer","extra_popup_title":"Umsatzsteuer"},
-            {"extra_class":"Summe","extra_inner":"Summe","extra_popup_title":"Summe"},{"extra_class":"Durchschnitt","extra_inner":"Durchschnitt","extra_popup_title":"Durchschnitt"}],
+            {"extra_class":"Summe","extra_inner":"Summe","extra_popup_title":"Summe"},
+            {"extra_class":"Durchschnitt","extra_inner":"Durchschnitt","extra_popup_title":"Durchschnitt"},
+            {"extra_class":"SteuerdatenUebermitteln","extra_inner":"Steuerdaten Übermitteln","extra_popup_title":"Steuerdaten Übermitteln"}],
             "extra_charts":[{"extra_class":"Parkdauer Diagramm","extra_inner":"Parkdauer Diagramm","extra_popup_title":"Parkdauer Diagramm"},{"extra_class":"Gruppen Diagramm","extra_inner":"Gruppen Diagramm","extra_popup_title":"Gruppen Diagramm"}]}'></ccm-parkhaus-8-0-0>
 </head>
 <body>

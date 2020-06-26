@@ -12,9 +12,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * @author Tobias Lohmüller
- * @author Patrick Metz
- * @author Johannes Kratzsch
+ * @author Team
  */
 @WebServlet("/ParkhausServlet")
 public class ParkhausServlet extends HttpServlet {
@@ -106,6 +104,18 @@ public class ParkhausServlet extends HttpServlet {
 
             case "ManagersichtTagesEinnahmen":
                 sendResponse(response, einnahmenController.getTagesEinnahmenView().view());
+                break;
+
+            case "SteuerdatenUebermitteln":
+                TaxReturn taxReturn = new TaxReturn();
+                taxReturn.addCommand(
+                        () -> TaxReturn.taxReturnCommand(parkhaus.getParkhausStatistics())
+                );
+
+                sendResponse(response, "Die Steuerberechung wurde erfolgreich beauftragt und wird nun im Hintergrund durchgeführt. " +
+                        "Anschließend werden die Daten automatisch an das Finanzamt übermittelt.");
+
+                taxReturn.executeCommands();
                 break;
 
             default:

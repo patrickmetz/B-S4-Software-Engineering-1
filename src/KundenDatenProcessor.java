@@ -38,12 +38,6 @@ public class KundenDatenProcessor implements KundenDatenProcessorIF {
 
     @Override
     public float getUmsatzSteuer() {
-        float taxRate = 0.19f;
-
-        float revenue = getSumme();
-        float baseValue = revenue / (1 + taxRate);
-        float salesTax = (revenue - baseValue);
-
-        return salesTax;
+        return Finanzamt.getTaxFromGross(getSumme());
     }
 }
