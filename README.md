@@ -18,7 +18,7 @@
 - lauffähige Java - Klassen: [Link](src)
 - Verzeichnis der eingesetzten Patterns: [s.u.](#verzeichnis-der-eingesetzten-patterns)
 - Zielkonflikte: Haben Sie Zielkonflikte erkennen können? Wie haben Sie diese aufgelöst?
-- Iterationsbericht:
+- Iterationsbericht: [Link](docs/Kanban Board)
 - Summarisches Projektprotokoll:
 - Resumée und Fazit: [s.u.](#resumee-und-fazit)
 - Präsentation und Demo des Projekts (PPT, PDF, HTML, MP4)
