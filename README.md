@@ -33,8 +33,11 @@ Was verstehen Sie unter Digitalisierung? Einfach nur das Analoge digital nachbau
 # Verzeichnis der eingesetzten Patterns
 | Design Pattern | Links zum Code | Kommentar |
 | ---      |  ------  |-------|
-| Command | [TaxReturn](src/TaxReturn.java) | Es handelt sich um das funktionale Command Pattern |
-| Singleton | [Finanzamt](src/Finanzamt.java) | |
-| MVC / Observer (1) | [Model](src/preis/PreisVerwaltungModel.java) [View](src/preis/PreisVerwaltungView.java) [Controller](src/preis/PreisVerwaltungController.java)   | |
-| MVC / Observer (2) | [Model](src/ParkhausStatistics.java) [View](src/JahresEinnahmenView.java) [Controller](src/EinnahmenController.java)   | |
+| Command | [TaxReturn](src/TaxReturn.java) | Die Generierung der monatlichen Steuerdaten an das Finanzamt ist in einem funktionalen Kommando gekapselt. |
+| Singleton | [Finanzamt](src/Finanzamt.java) | Die Schnittstelle zum Finanzamt kann nur einmalig instanziiert werden. |
+| MVC / Observer (1) | [Model](src/preis/PreisVerwaltungModel.java) [View](src/preis/PreisVerwaltungView.java) [Controller](src/preis/PreisVerwaltungController.java)   | PreisVerwaltungModel |
+| MVC / Observer (2) | [Model](src/ParkhausStatistics.java) [View](src/JahresEinnahmenView.java) [Controller](src/EinnahmenController.java)   | ParkhausStatistics |
+| Composite | [ParkhausChartProcessor](src/ParkhausChartProcessor.java) | Die Json-Struktur wird zu einem Kompositum zusammengebaut. |
+| Iterator | [ParkhausServlet](src/ParkhausServlet.java) | Das Iterator-Pattern wird im Rahmen der Enhanced For Loops verwendet, z.B. in Zeile 160 |
+| Adapter | [GirocardAdapter](src/PaymentProvider/GirocardAdapter.java) | Der [GirocardAdapter](src/PaymentProvider/GirocardAdapter.java) löst die Imkompatibilität des Legacy Zahlungsanbieters Girocard mit unserer Schnittstelle [GirocardAdapter](src/PaymentProvider/PaymentProviderIF.java) auf. |
 
