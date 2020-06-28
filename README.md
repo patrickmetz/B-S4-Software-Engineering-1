@@ -17,7 +17,7 @@
 - lauffähige JUnit-Tests: [Link](test)
 - lauffähige Java - Klassen: [Link](src)
 - Verzeichnis der eingesetzten Patterns: [s.u.](#verzeichnis-der-eingesetzten-patterns)
-- Zielkonflikte: Haben Sie Zielkonflikte erkennen können? Wie haben Sie diese aufgelöst?
+- Zielkonflikte: [s.u.](#zielkonflikte)
 - Iterationsbericht: [Link](docs/Kanban Board)
 - Summarisches Projektprotokoll:
 - Resumée und Fazit: [s.u.](#resumee-und-fazit)
@@ -26,6 +26,9 @@
 # Digitalisierungskonzept:
 Was verstehen Sie unter Digitalisierung? Einfach nur das Analoge digital nachbauen? Oder wird
  auch das Geschäftsmodell / der Mehrwert / die Nutzbarkeit im Digitalen transformiert?
+
+# Zielkonflikte
+Haben Sie Zielkonflikte erkennen können? Wie haben Sie diese aufgelöst?
 
 # Resumée und Fazit:
 Was lief gut? Was hat sich bewährt? Was waren Erfolgsrezepte? Was lief schlecht? Was würde man
