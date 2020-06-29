@@ -7,24 +7,24 @@
       "projectType": "application",
       "schematics": {},
       "root": "",
-      "sourceRoot": "source",
+      "sourceRoot": "files",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "../../web",
-            "index": "source/index.html",
-            "main": "source/main.ts",
-            "polyfills": "source/polyfills.ts",
+            "index": "files/index.html",
+            "main": "files/main.ts",
+            "polyfills": "files/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
-              "source/favicon.ico",
-              "source/assets"
+              "files/favicon.ico",
+              "files/assets"
             ],
             "styles": [
-              "source/styles.css"
+              "files/styles.css"
             ],
             "scripts": []
           },
@@ -33,8 +33,8 @@
               "index": "", // keine index.html erzeugen
               "fileReplacements": [
                 {
-                  "replace": "source/environments/environment.ts",
-                  "with": "source/environments/environment.prod.ts"
+                  "replace": "files/environments/environment.ts",
+                  "with": "files/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -80,16 +80,16 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "source/test.ts",
-            "polyfills": "source/polyfills.ts",
+            "main": "files/test.ts",
+            "polyfills": "files/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
-              "source/favicon.ico",
-              "source/assets"
+              "files/favicon.ico",
+              "files/assets"
             ],
             "styles": [
-              "source/styles.css"
+              "files/styles.css"
             ],
             "scripts": []
           }
