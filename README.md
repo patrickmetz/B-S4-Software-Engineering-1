@@ -44,7 +44,7 @@ Was lief gut? Was hat sich bewährt? Was waren Erfolgsrezepte? Was lief schlecht
 | Iterator | [ParkhausServlet](src/ParkhausServlet.java) | Das Iterator-Pattern wird im Rahmen der Enhanced For Loops verwendet, z.B. in Zeile 160 |
 | Multiton | [MultitonFahrzeugTyp](src/Fahrzeuge/MultitonFahrzeugTyp.java) | Die Fahrzeugtypen und ihr dazugehörigen Spezifikationen werden einmalig instanziiert. |
 | MVC / Observer (1) | [Model](src/preis/PreisVerwaltungModel.java), [View](src/preis/PreisVerwaltungView.java), [Controller](src/preis/PreisVerwaltungController.java)   | Serverseite der Preisverwaltung |
-| MVC / Observer (2) | [Model / Controller](src/angular/parkhaus/src/app/preisformular/preisformular.component.ts), [View](src/angular/parkhaus/src/app/preisformular/preisformular.component.html) | Clientseite der Preisverwaltung  |
+| MVC / Observer (2) | [Model / Controller](src/angular/parkhaus/source/app/preisformular/preisformular.component.ts), [View](src/angular/parkhaus/source/app/preisformular/preisformular.component.html) | Clientseite der Preisverwaltung  |
 | MVC / Observer (3) | [Model](src/ParkhausStatistics.java), [View](src/JahresEinnahmenView.java), [Controller](src/EinnahmenController.java)   | ParkhausStatistics |
 | Singleton | [Finanzamt](src/Finanzamt.java) | Die Schnittstelle zum Finanzamt kann nur einmalig instanziiert werden. |
 | Static Factory Method | [PreisFactory](src/preis/PreisFactory.java) | In unserem Fall sinnvoll und OCP. Nutzt Javas "Class.forName(...).getConstructor(...).newInstance(...)" |
