@@ -1,7 +1,5 @@
 import kunde.*;
-import preis.PreisVerwaltungController;
 import preis.PreisVerwaltungControllerIF;
-import preis.PreisVerwaltungIF;
 
 import javax.servlet.ServletContext;
 import javax.servlet.annotation.WebServlet;
