@@ -40,6 +40,7 @@ Was lief gut? Was hat sich bewährt? Was waren Erfolgsrezepte? Was lief schlecht
 | ---      |  ------  |-------|
 | Command | [TaxReturn](src/TaxReturn.java) | Die Generierung der monatlichen Steuerdaten an das Finanzamt ist in einem funktionalen Kommando gekapselt. |
 | Singleton | [Finanzamt](src/Finanzamt.java) | Die Schnittstelle zum Finanzamt kann nur einmalig instanziiert werden. |
+| Multiton | [MultitonFahrzeugTyp](src/Fahrzeuge/MultitonFahrzeugTyp.java) | Die Fahrzeugtypen und ihr dazugehörigen Spezifikationen werden einmalig instanziiert. |
 | MVC / Observer (1) | [Model](src/preis/PreisVerwaltungModel.java) [View](src/preis/PreisVerwaltungView.java) [Controller](src/preis/PreisVerwaltungController.java)   | PreisVerwaltungModel |
 | MVC / Observer (2) | [Model](src/ParkhausStatistics.java) [View](src/JahresEinnahmenView.java) [Controller](src/EinnahmenController.java)   | ParkhausStatistics |
 | Composite | [ParkhausChartProcessor](src/ParkhausChartProcessor.java) | Die Json-Struktur wird zu einem Kompositum zusammengebaut. |

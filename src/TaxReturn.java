@@ -3,6 +3,7 @@ import Einnahmen.MonatsEinnahmenCalculator;
 
 import javax.json.Json;
 import javax.json.JsonObject;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,6 +14,8 @@ public class TaxReturn {
     private static final float exemption = 2000.0f; //Steuerlicher Freibetrag
     private final List<Command> commands = new LinkedList<>();
 
+    public static final List<String> keys = Arrays.asList(new String[]{});
+
     public void addCommand(Command command) {
         commands.add(command);
     }
@@ -21,6 +24,8 @@ public class TaxReturn {
         for(Command c: commands) {
             c.run();
         }
+
+
     }
 
     public static void taxReturnCommand(ParkhausStatistics statistics) {

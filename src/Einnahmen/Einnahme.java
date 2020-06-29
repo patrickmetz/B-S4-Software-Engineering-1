@@ -2,6 +2,10 @@ package Einnahmen;
 
 import java.util.Date;
 
+/**
+ * @author Tobias Lohmüller
+ */
+
 public class Einnahme {
 
     private Date date;

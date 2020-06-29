@@ -3,6 +3,7 @@ import kunde.Kunde;
 import kunde.KundenDaten;
 import kunde.KundenDatenIF;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -48,21 +49,25 @@ class KundenDatenProcessorIFTest {
     }
 
     @Test
+    @DisplayName("Das erhalten der Preisdaten aus dem Datensatz")
     void getSumme() {
         assertEquals(3.22f, kundenDatenProcessorIF.getSumme());
     }
 
     @Test
+    @DisplayName("Das erhalten der Durschnittsparkdauer aus dem Datensatz")
     void getDurchschnittsDauer() {
         assertEquals(1608 , kundenDatenProcessorIF.getDurchschnittsDauer());
     }
 
     @Test
+    @DisplayName("Das erhalten des Durchschnittspreis aus dem Datensatz")
     void getDurschnittsPreis() {
         assertEquals(1.61f, kundenDatenProcessorIF.getDurschnittsPreis());
     }
 
     @Test
+    @DisplayName("Das erhalten der Umsatzsteuer aus dem Datensatz")
     void getUmsatzSteuer() {
         assertEquals(0.51f, (float) Math.round(100 * kundenDatenProcessorIF.getUmsatzSteuer())/100);
     }
