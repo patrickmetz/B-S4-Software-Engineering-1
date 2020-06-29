@@ -38,13 +38,15 @@ Was lief gut? Was hat sich bewährt? Was waren Erfolgsrezepte? Was lief schlecht
 # Verzeichnis der eingesetzten Patterns
 | Design Pattern | Links zum Code | Kommentar |
 | ---      |  ------  |-------|
+| Adapter | [GirocardAdapter](src/PaymentProvider/GirocardAdapter.java) | Der [GirocardAdapter](src/PaymentProvider/GirocardAdapter.java) löst die Imkompatibilität des Legacy Zahlungsanbieters [Girocard](src/PaymentProvider/Girocard.java) mit unserer Schnittstelle [GirocardAdapter](src/PaymentProvider/PaymentProviderIF.java) auf. |
 | Command | [TaxReturn](src/TaxReturn.java) | Die Generierung der monatlichen Steuerdaten an das Finanzamt ist in einem funktionalen Kommando gekapselt. |
-| Singleton | [Finanzamt](src/Finanzamt.java) | Die Schnittstelle zum Finanzamt kann nur einmalig instanziiert werden. |
-| Multiton | [MultitonFahrzeugTyp](src/Fahrzeuge/MultitonFahrzeugTyp.java) | Die Fahrzeugtypen und ihr dazugehörigen Spezifikationen werden einmalig instanziiert. |
-| MVC / Observer (1) | [Model](src/preis/PreisVerwaltungModel.java) [View](src/preis/PreisVerwaltungView.java) [Controller](src/preis/PreisVerwaltungController.java)   | PreisVerwaltungModel |
-| MVC / Observer (2) | [Model](src/ParkhausStatistics.java) [View](src/JahresEinnahmenView.java) [Controller](src/EinnahmenController.java)   | ParkhausStatistics |
 | Composite | [ParkhausChartProcessor](src/ParkhausChartProcessor.java) | Die Json-Struktur wird zu einem Kompositum zusammengebaut. |
 | Iterator | [ParkhausServlet](src/ParkhausServlet.java) | Das Iterator-Pattern wird im Rahmen der Enhanced For Loops verwendet, z.B. in Zeile 160 |
-| Adapter | [GirocardAdapter](src/PaymentProvider/GirocardAdapter.java) | Der [GirocardAdapter](src/PaymentProvider/GirocardAdapter.java) löst die Imkompatibilität des Legacy Zahlungsanbieters [Girocard](src/PaymentProvider/Girocard.java) mit unserer Schnittstelle [GirocardAdapter](src/PaymentProvider/PaymentProviderIF.java) auf. |
+| Multiton | [MultitonFahrzeugTyp](src/Fahrzeuge/MultitonFahrzeugTyp.java) | Die Fahrzeugtypen und ihr dazugehörigen Spezifikationen werden einmalig instanziiert. |
+| MVC / Observer (1) | [Model](src/preis/PreisVerwaltungModel.java), [View](src/preis/PreisVerwaltungView.java), [Controller](src/preis/PreisVerwaltungController.java)   | Serverseite der Preisverwaltung |
+| MVC / Observer (2) | [Model / Controller](src/angular/parkhaus/src/app/preisformular/preisformular.component.ts), [View](src/angular/parkhaus/src/app/preisformular/preisformular.component.html) | Clientseite der Preisverwaltung  |
+| MVC / Observer (3) | [Model](src/ParkhausStatistics.java), [View](src/JahresEinnahmenView.java), [Controller](src/EinnahmenController.java)   | ParkhausStatistics |
+| Singleton | [Finanzamt](src/Finanzamt.java) | Die Schnittstelle zum Finanzamt kann nur einmalig instanziiert werden. |
+| Static Factory Method | [PreisFactory](src/preis/PreisFactory.java) | In unserem Fall sinnvoll und OCP. Nutzt Javas "Class.forName(...).getConstructor(...).newInstance(...)" |
 | Template Method | [EinnahmenCalculator](src/Einnahmen/EinnahmenCalculator.java) | Die abstrakte Klasse  [EinnahmenCalculator](src/Einnahmen/EinnahmenCalculator.java) gibt die Struktur für die Berechung der Einnahmen vor. Die Unterklassen wie [JahresEinnahmenCalculator](src/Einnahmen/JahresEinnahmenCalculator.java) und [MonatsEinnahmenCalculator](src/Einnahmen/MonatsEinnahmenCalculator.java) implementieren die Details des Algorithmus. |
 
