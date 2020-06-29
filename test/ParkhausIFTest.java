@@ -1,11 +1,9 @@
 
-import kunde.Kunde;
-import kunde.KundeIF;
-import kunde.KundenDaten;
-import kunde.KundenDatenIF;
+import kunde.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import preis.PreisVerwaltungController;
 
 import java.util.Optional;
 
@@ -30,7 +28,7 @@ class ParkhausIFTest {
 
         parkhaus = new Parkhaus();
         kunde = new Kunde(kundenEinfahrDatenIF);
-        automat = new BezahlAutomat();
+        automat = parkhaus.getBezahlAutomat();
 
     }
 

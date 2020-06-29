@@ -1,8 +1,11 @@
 import kunde.Kunde;
 import kunde.KundenDaten;
+import kunde.KundenTyp;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import preis.PreisVerwaltungController;
+
 import java.util.Date;
 import java.util.Optional;
 
@@ -17,7 +20,7 @@ class ParkhausChartProcessorIFTest {
     @BeforeEach
     void setUp() {
         Parkhaus parkhaus = new Parkhaus();
-        BezahlAutomatIF automat = new BezahlAutomat();
+        BezahlAutomatIF automat = parkhaus.getBezahlAutomat();
         chartProcessor = new ParkhausChartProcessor(parkhaus);
 
         KundenDaten kd1 = new KundenDaten(new String[]{

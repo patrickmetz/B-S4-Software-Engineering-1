@@ -2,9 +2,11 @@ import PaymentProvider.CashPayment;
 import kunde.Kunde;
 import kunde.KundenDaten;
 import kunde.KundenDatenIF;
+import kunde.KundenTyp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import preis.PreisVerwaltungController;
 
 import java.util.Optional;
 
@@ -38,7 +40,7 @@ class KundenDatenProcessorIFTest {
 
         //Dann vergeht Zeit
 
-        BezahlAutomatIF bezahlAutomatIF = new BezahlAutomat();
+        BezahlAutomatIF bezahlAutomatIF = parkhausIF.getBezahlAutomat();
         bezahlAutomatIF.bezahlen(parkticketIF, Optional.empty());
         bezahlAutomatIF.bezahlen(parkticketIF2, Optional.empty());
 
@@ -51,7 +53,7 @@ class KundenDatenProcessorIFTest {
     @Test
     @DisplayName("Das erhalten der Preisdaten aus dem Datensatz")
     void getSumme() {
-        assertEquals(3.22f, kundenDatenProcessorIF.getSumme());
+        assertEquals(6.7, kundenDatenProcessorIF.getSumme(), 0.00001);
     }
 
     @Test
@@ -63,12 +65,12 @@ class KundenDatenProcessorIFTest {
     @Test
     @DisplayName("Das erhalten des Durchschnittspreis aus dem Datensatz")
     void getDurschnittsPreis() {
-        assertEquals(1.61f, kundenDatenProcessorIF.getDurschnittsPreis());
+        assertEquals(3.35f, kundenDatenProcessorIF.getDurschnittsPreis());
     }
 
     @Test
     @DisplayName("Das erhalten der Umsatzsteuer aus dem Datensatz")
     void getUmsatzSteuer() {
-        assertEquals(0.51f, (float) Math.round(100 * kundenDatenProcessorIF.getUmsatzSteuer())/100);
+        assertEquals(1.07f, (float) Math.round(100 * kundenDatenProcessorIF.getUmsatzSteuer())/100);
     }
 }

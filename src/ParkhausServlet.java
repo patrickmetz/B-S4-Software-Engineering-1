@@ -30,7 +30,7 @@ public class ParkhausServlet extends HttpServlet {
         parkhaus = getParkhaus();
         kundenDatenProcessor = getKundenDatenProcessor();
         parkhausChartProcessor = getParkhausChartProcessor();
-        preisVerwaltungController = getPreisVerwaltungController();
+        preisVerwaltungController = parkhaus.getBezahlAutomat().getPreisVerwaltungController();
         einnahmenController = getEinnahmenController();
     }
 
@@ -139,7 +139,7 @@ public class ParkhausServlet extends HttpServlet {
     private void handlePostLeave(HttpServletResponse response, HashMap<String, String> postMap) throws IOException {
         KundenDatenIF kundenDaten = new KundenDaten(postMap.get("csv").split(","));
 
-        BezahlAutomatIF automat = new BezahlAutomat();
+        BezahlAutomatIF automat = new BezahlAutomat(preisVerwaltungController);
         ParkticketIF ticket = getParkhaus().getParkticket(kundenDaten.getTickethash());
 
         automat.bezahlen(ticket, Optional.empty());
@@ -257,19 +257,6 @@ public class ParkhausServlet extends HttpServlet {
         }
 
         return parkhausChartProcessor;
-    }
-
-    private PreisVerwaltungControllerIF getPreisVerwaltungController() {
-        if (null == preisVerwaltungController) {
-            preisVerwaltungController = (PreisVerwaltungControllerIF) getApplication().getAttribute("preisVerwaltungController");
-
-            if (null == preisVerwaltungController) {
-                preisVerwaltungController = new PreisVerwaltungController(KundenTyp.values());
-                getApplication().setAttribute("preisVerwaltungController", preisVerwaltungController);
-            }
-        }
-
-        return preisVerwaltungController;
     }
 
     private EinnahmenController getEinnahmenController() {

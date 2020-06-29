@@ -22,4 +22,6 @@ public interface ParkhausIF {
 
     List<Float> getEinahmen();
     List<Integer> getParkdauerZeiten();
+
+    BezahlAutomatIF getBezahlAutomat();
 }

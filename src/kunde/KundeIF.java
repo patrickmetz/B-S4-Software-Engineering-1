@@ -8,6 +8,8 @@ import java.util.Date;
 public interface KundeIF {
 
     String getKundenGruppe();
+    KundenTypIF getKundenTyp();
+
     int getNr();
 
     Date getBeginn();
