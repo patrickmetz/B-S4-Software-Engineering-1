@@ -1,7 +1,7 @@
 import PaymentProvider.CashPayment;
 import PaymentProvider.PaymentProviderIF;
 import preis.PreisIF;
-import preis.PreisVerwaltungController;
+import preis.PreisVerwaltungControllerIF;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -11,9 +11,9 @@ import java.util.Optional;
  * @author Tobias Lohmüller
  */
 public class BezahlAutomat implements BezahlAutomatIF {
-    PreisVerwaltungController controller;
+    PreisVerwaltungControllerIF controller;
 
-    public BezahlAutomat(PreisVerwaltungController controller) {
+    public BezahlAutomat(PreisVerwaltungControllerIF controller) {
         this.controller = controller;
     }
 
@@ -45,4 +45,8 @@ public class BezahlAutomat implements BezahlAutomatIF {
         return betrag;
     }
 
+    @Override
+    public PreisVerwaltungControllerIF getPreisVerwaltungController() {
+        return controller;
+    }
 }
