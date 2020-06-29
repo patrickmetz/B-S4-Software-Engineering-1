@@ -3,6 +3,8 @@ import Exceptions.ParkhausLeerException;
 import Exceptions.ParkhausVollException;
 import kunde.KundeIF;
 import kunde.KundenDatenIF;
+import kunde.KundenTyp;
+import preis.PreisVerwaltungController;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +19,7 @@ public class Parkhaus implements ParkhausIF {
     private final int plaetze = 100;
     private int plaetzeFrei;
     private HashMap<String, ParkticketIF> parktickets;
+    private final BezahlAutomat bezahlAutomat;
 
     private ParkhausStatistics parkhausStatistics;
 
@@ -24,6 +27,7 @@ public class Parkhaus implements ParkhausIF {
         plaetzeFrei = plaetze;
         parktickets = new HashMap<>();
         parkhausStatistics = new ParkhausStatistics();
+        bezahlAutomat = new BezahlAutomat(new PreisVerwaltungController(KundenTyp.values()));
     }
 
     @Override
@@ -48,7 +52,7 @@ public class Parkhaus implements ParkhausIF {
             throw new NichtBezahltException();
         }
 
-        parkhausStatistics.addEinahme(kunde.getPreis());
+        parkhausStatistics.addEinahme(bezahlAutomat.getPreis(parkTicket));
         parkhausStatistics.addParkdauer(kunde.getDauer());
 
         plaetzeFrei++;
@@ -83,5 +87,9 @@ public class Parkhaus implements ParkhausIF {
 
     public ParkhausStatistics getParkhausStatistics() {
         return parkhausStatistics;
+    }
+
+    public BezahlAutomat getBezahlAutomat() {
+        return bezahlAutomat;
     }
 }

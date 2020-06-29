@@ -1,5 +1,7 @@
 import PaymentProvider.CashPayment;
 import PaymentProvider.PaymentProviderIF;
+import preis.PreisIF;
+import preis.PreisVerwaltungController;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -9,6 +11,11 @@ import java.util.Optional;
  * @author Tobias Lohmüller
  */
 public class BezahlAutomat implements BezahlAutomatIF {
+    PreisVerwaltungController controller;
+
+    public BezahlAutomat(PreisVerwaltungController controller) {
+        this.controller = controller;
+    }
 
     @Override
     public boolean bezahlen(ParkticketIF parkTicket, Optional<PaymentProviderIF> provider) {
@@ -28,7 +35,14 @@ public class BezahlAutomat implements BezahlAutomatIF {
             throw new RuntimeException("Eine negative Parkdauer gibt es nicht");
         }
 
-        return parkTicket.getStundenPreis() * parkTicket.getKunde().getDauer();
+        PreisIF preis = controller.getPreis(parkTicket.getKunde().getKundenTyp());
+        float stunden = parkTicket.getKunde().getDauer() / (60f * 60f);
+        float betrag = preis.getBetrag() * stunden;
+
+        System.out.println("Berechne für Kunden " + parkTicket.getKunde().getKundenTyp().getBezeichnung() + " den Stundensatz " + preis.getBetrag() + " -> Summe " + betrag);
+
+
+        return betrag;
     }
 
 }

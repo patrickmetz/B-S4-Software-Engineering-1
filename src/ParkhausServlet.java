@@ -139,7 +139,9 @@ public class ParkhausServlet extends HttpServlet {
     private void handlePostLeave(HttpServletResponse response, HashMap<String, String> postMap) throws IOException {
         KundenDatenIF kundenDaten = new KundenDaten(postMap.get("csv").split(","));
 
-        BezahlAutomatIF automat = new BezahlAutomat();
+        BezahlAutomatIF automat = new BezahlAutomat(
+                new PreisVerwaltungController(KundenTyp.values())
+        );
         ParkticketIF ticket = getParkhaus().getParkticket(kundenDaten.getTickethash());
 
         automat.bezahlen(ticket, Optional.empty());

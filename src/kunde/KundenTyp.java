@@ -43,10 +43,6 @@ public enum KundenTyp implements KundenTypIF{
         public float getInitialPreis() {
             return 7.5f;
         }
-
-        public String getBezeichnung() {
-            return "Person mit Behinderung";
-        }
     },
 
     Standard {

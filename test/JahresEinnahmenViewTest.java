@@ -1,7 +1,10 @@
 import kunde.Kunde;
 import kunde.KundenDaten;
+import kunde.KundenTyp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import preis.PreisVerwaltungController;
+
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,12 +27,12 @@ class JahresEinnahmenViewTest {
     @Test
     void view_whenParkhausHadVisitors_ReturnsCorrectValue(){
         parkhaus = new Parkhaus();
-        BezahlAutomat automat = new BezahlAutomat();
+        BezahlAutomat automat = parkhaus.getBezahlAutomat();
 
         KundenDaten kd = new KundenDaten(new String[]{
                 "123456",           //Nr
                 "1590408991325",    //Beginn
-                "100",               //Dauer
+                "998443",               //Dauer
                 "5000",             //Preis
                 "jrjhekjdlfjdsfk",  //Tickethash
                 "ff00ff",           //Farbe
@@ -44,6 +47,6 @@ class JahresEinnahmenViewTest {
 
         JahresEinnahmenView view = new JahresEinnahmenView(parkhaus.getParkhausStatistics());
         view.aktualisieren();
-        assertEquals("50,00 €", view.view());
+        assertEquals("4.160,18 €", view.view());
     }
 }

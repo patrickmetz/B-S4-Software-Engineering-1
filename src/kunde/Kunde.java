@@ -7,18 +7,23 @@ import java.util.Date;
  * @author Tobias Lohmüller
  */
 public class Kunde implements KundeIF {
-
-    private int dauer;
-    private float preis;
     private KundenDatenIF kundenDaten;
+    private final KundenTyp kundenTyp;
 
     public Kunde (KundenDatenIF kundenDaten) {
         this.kundenDaten = kundenDaten;
+
+        kundenTyp = KundenTyp.valueOf(kundenDaten.getKundengruppe());
     }
 
     @Override
     public String getKundenGruppe() {
         return kundenDaten.getKundengruppe();
+    }
+
+    @Override
+    public KundenTypIF getKundenTyp() {
+        return kundenTyp;
     }
 
     @Override

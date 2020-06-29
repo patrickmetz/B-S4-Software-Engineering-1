@@ -1,14 +1,13 @@
 import kunde.KundeIF;
+import kunde.KundenTyp;
 
 /**
- * @author Patrick Metz
  * @author Johannes Kratzsch
  */
 class Parkticket implements ParkticketIF {
 
     private boolean bezahlt = false;
-    private float preisStunde = 5.00f;
-    private KundeIF kunde;
+    private final KundeIF kunde;
 
     Parkticket (KundeIF k) {
         kunde = k;
@@ -22,11 +21,6 @@ class Parkticket implements ParkticketIF {
     @Override
     public boolean isBezahlt() {
         return bezahlt;
-    }
-
-    @Override
-    public float getStundenPreis() {
-        return preisStunde;
     }
 
     @Override
