@@ -33,41 +33,9 @@ author: Patrick Metz
 <body>
 
 <div id="app">
-<h2>Preis&shy;ver&shy;wal&shy;tung</h2>
-<%-- Angular: siehe \angular\parkhaus\src\app\preisformular --%>
+
+<%-- Angular: siehe \angular\parkhaus\files\app --%>
 <app-root></app-root>
-
-<h2>Manageransicht</h2>
-<p>
-    <b>Jahreseinnahmen:</b> <span id="JahresEinnahmen"></span>
-</p>
-<p>
-    <b>Tageseinnahmen:</b> <span id="TagesEinnahmen"></span>
-</p>
-
-<br/><br/><br/><br/><br/>
-</div>
-
-<script type="text/javascript">
-    function holeJahresEinnahmen() {
-		fetch('ParkhausServlet?cmd=ManagersichtJahresEinnahmen')
-			.then(response => response.text())
-            .then(text => document
-	            .getElementById("JahresEinnahmen")
-	            .innerHTML = text);
-	}
-
-    function holeTagesEinnahmen() {
-	    fetch('ParkhausServlet?cmd=ManagersichtTagesEinnahmen')
-		    .then(response => response.text())
-		    .then(text => document
-			    .getElementById("TagesEinnahmen")
-			    .innerHTML = text);
-    }
-
-    const interval1 = setInterval(() => holeJahresEinnahmen(), 1000);
-    const interval2 = setInterval(() => holeTagesEinnahmen(), 1000);
-</script>
 
 </body>
 </html>

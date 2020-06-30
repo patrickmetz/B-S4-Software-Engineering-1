@@ -26,14 +26,12 @@ export class PreisService {
   gibPreise(): Observable<PreisIF[]> {
     return this.http.get<PreisIF[]>(this.getUrl)
       .pipe(
-        tap(_ => console.log('Preise geholt')),
         catchError(this.behandleFehler<PreisIF[]>('gibPreise', []))
       );
   }
 
   speicherePreise(preise: PreisIF[]): Observable<PreisIF[]> {
     return this.http.post<PreisIF[]>(this.postUrl, this.preiseZuPostBody(preise), this.postOptions).pipe(
-      tap((neuePreise: PreisIF[]) => console.log('Preise gespeichert')),
       catchError(this.behandleFehler<PreisIF[]>('speicherePreise'))
     );
   }

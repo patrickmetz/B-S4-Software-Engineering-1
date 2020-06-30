@@ -6,11 +6,13 @@ import { PreisformularComponent } from './preisformular/preisformular.component'
 
 import { HttpClientModule }    from '@angular/common/http';
 import {FormsModule} from "@angular/forms";
+import { ManagerAnsichtComponent } from './manager-ansicht/manager-ansicht.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PreisformularComponent
+    PreisformularComponent,
+    ManagerAnsichtComponent
   ],
   imports: [
     BrowserModule,
