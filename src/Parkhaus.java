@@ -17,7 +17,7 @@ public class Parkhaus implements ParkhausIF {
     private final int plaetze = 100;
     private int plaetzeFrei;
     private HashMap<String, ParkticketIF> parktickets;
-    private final BezahlAutomat bezahlAutomat;
+    private final BezahlAutomatIF bezahlAutomat;
 
     private ParkhausStatistics parkhausStatistics;
 
@@ -87,7 +87,7 @@ public class Parkhaus implements ParkhausIF {
         return parkhausStatistics;
     }
 
-    public BezahlAutomat getBezahlAutomat() {
+    public BezahlAutomatIF getBezahlAutomat() {
         return bezahlAutomat;
     }
 }
