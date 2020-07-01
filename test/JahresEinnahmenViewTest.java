@@ -27,7 +27,7 @@ class JahresEinnahmenViewTest {
     @Test
     void view_whenParkhausHadVisitors_ReturnsCorrectValue(){
         parkhaus = new Parkhaus();
-        BezahlAutomat automat = parkhaus.getBezahlAutomat();
+        BezahlAutomatIF automat = parkhaus.getBezahlAutomat();
 
         KundenDaten kd = new KundenDaten(new String[]{
                 "123456",           //Nr

@@ -10,6 +10,7 @@ public class EinnahmenController implements EinnahmenControllerIF {
         this.statistics = statistics;
     }
 
+    @Override
     public JahresEinnahmenView getJahresEinnahmenView() {
         if (jahresEinnahmenView == null) {
             //Subscribe the view to the ParkhausStatistics model
@@ -19,6 +20,7 @@ public class EinnahmenController implements EinnahmenControllerIF {
         return jahresEinnahmenView;
     }
 
+    @Override
     public TagesEinnahmenView getTagesEinnahmenView() {
         if (tagesEinnahmenView == null) {
             //Subscribe the view to the ParkhausStatistics model
