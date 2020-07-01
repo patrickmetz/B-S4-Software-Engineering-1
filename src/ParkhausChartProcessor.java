@@ -12,9 +12,9 @@ import java.util.Map;
  */
 public class ParkhausChartProcessor implements ParkhausChartProcessorIF {
 
-    private Parkhaus parkhaus;
+    private ParkhausIF parkhaus;
 
-    public ParkhausChartProcessor(Parkhaus parkhaus) {
+    public ParkhausChartProcessor(ParkhausIF parkhaus) {
         this.parkhaus = parkhaus;
     }
 

@@ -1,7 +1,7 @@
 /**
  * @author Johannes Kratzsch
  */
-public class EinnahmenController {
+public class EinnahmenController implements EinnahmenControllerIF {
     private JahresEinnahmenView jahresEinnahmenView;
     private TagesEinnahmenView tagesEinnahmenView;
     ParkhausStatistics statistics;

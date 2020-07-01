@@ -22,4 +22,5 @@ public interface ParkhausIF {
     List<Integer> getParkdauerZeiten();
 
     BezahlAutomatIF getBezahlAutomat();
+    ParkhausStatistics getParkhausStatistics();
 }
