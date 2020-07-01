@@ -18,11 +18,11 @@ public class ParkhausServlet extends HttpServlet {
     public static final String REGEX_POSTBODY_REQUEST_FORM = "^(?:(?:[^&]+)\\&)+[^&]+$";
     public static final String REGEX_POSTBODY_REQUEST_CSV = "^(?:(?:[^,]+),)+[^,]+$";
 
-    private Parkhaus parkhaus;
-    private KundenDatenProcessor kundenDatenProcessor;
-    private ParkhausChartProcessor parkhausChartProcessor;
+    private ParkhausIF parkhaus;
+    private KundenDatenProcessorIF kundenDatenProcessor;
+    private ParkhausChartProcessorIF parkhausChartProcessor;
     private PreisVerwaltungControllerIF preisVerwaltungController;
-    private EinnahmenController einnahmenController;
+    private EinnahmenControllerIF einnahmenController;
 
     public void init() {
         parkhaus = getParkhaus();
@@ -218,7 +218,7 @@ public class ParkhausServlet extends HttpServlet {
         return getServletConfig().getServletContext();
     }
 
-    private Parkhaus getParkhaus() {
+    private ParkhausIF getParkhaus() {
         if (null == parkhaus) {
             parkhaus = (Parkhaus) getApplication().getAttribute("parkhaus");
 
@@ -231,7 +231,7 @@ public class ParkhausServlet extends HttpServlet {
         return parkhaus;
     }
 
-    private KundenDatenProcessor getKundenDatenProcessor() {
+    private KundenDatenProcessorIF getKundenDatenProcessor() {
         if (null == kundenDatenProcessor) {
             kundenDatenProcessor = (KundenDatenProcessor) getApplication().getAttribute("datenProcessor");
 
@@ -244,7 +244,7 @@ public class ParkhausServlet extends HttpServlet {
         return kundenDatenProcessor;
     }
 
-    private ParkhausChartProcessor getParkhausChartProcessor() {
+    private ParkhausChartProcessorIF getParkhausChartProcessor() {
         if (null == parkhausChartProcessor) {
             parkhausChartProcessor = (ParkhausChartProcessor) getApplication().getAttribute("chartProcessor");
 
@@ -257,7 +257,7 @@ public class ParkhausServlet extends HttpServlet {
         return parkhausChartProcessor;
     }
 
-    private EinnahmenController getEinnahmenController() {
+    private EinnahmenControllerIF getEinnahmenController() {
         if (null == einnahmenController) {
             einnahmenController = (EinnahmenController) getApplication().getAttribute("einnahmenController");
 
