@@ -7,7 +7,7 @@
     <tr *ngFor="let preis of preise">
       <td>{{preis.bezeichnung}}</td>
       <td>
-        <input placeholder="Preis" [(ngModel)]='preis.betrag' type='number' step='any' name='{{preis.typ}}' value="{{preis.betrag}}">
+        <input placeholder="Preis" [(ngModel)]='preis.betrag' min='1' onkeydown="validity.valid||(value='1');" onkeyup="validity.valid||(value='1');" type='number' step='any' name='{{preis.typ}}' value="{{preis.betrag}}">
       </td>
     </tr>
   </table>
