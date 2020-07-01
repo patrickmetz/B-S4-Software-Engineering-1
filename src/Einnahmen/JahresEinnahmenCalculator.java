@@ -3,6 +3,9 @@ package Einnahmen;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * @author Tobias Lohmüller
+ */
 public class JahresEinnahmenCalculator extends EinnahmenCalculator {
 
     public JahresEinnahmenCalculator(List<Einnahme> einnahmen) {

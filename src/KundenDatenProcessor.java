@@ -1,7 +1,5 @@
 /**
- * @author Tobias Lohmüller
- * @author Patrick Metz
- * @author Johannes Kratzsch
+ * @author Team
  */
 public class KundenDatenProcessor implements KundenDatenProcessorIF {
 

@@ -5,9 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * @author Tobias Lohmüller
- * @author Patrick Metz
- * @author Johannes Kratzsch
+ * @author Team
  */
 public interface ParkhausIF {
 

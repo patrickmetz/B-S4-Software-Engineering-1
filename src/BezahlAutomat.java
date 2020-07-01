@@ -9,6 +9,7 @@ import java.util.Optional;
 
 /**
  * @author Tobias Lohmüller
+ * @author Johannes Kratzsch
  */
 public class BezahlAutomat implements BezahlAutomatIF {
     PreisVerwaltungControllerIF controller;
