@@ -32,23 +32,26 @@
 - Präsentation und Demo des Projekts (PPT, PDF, HTML, MP4)
 
 # Digitalisierungskonzept:
-Was verstehen Sie unter Digitalisierung? Einfach nur das Analoge digital nachbauen? Oder wird
- auch das Geschäftsmodell / der Mehrwert / die Nutzbarkeit im Digitalen transformiert?
+**Was verstehen Sie unter Digitalisierung? Einfach nur das Analoge digital nachbauen? Oder wird
+ auch das Geschäftsmodell / der Mehrwert / die Nutzbarkeit im Digitalen transformiert?**
 
-## Initiale Produktvision
+**Initiale Produktvision**
+
  Abläufe von vorhandenem Parkhaus durch Simulation digitalisieren.
  Verschiedene Kundengruppen berücksichtigen.
 
-## Zielgruppe
+**Zielgruppe**
+
  Parkhausbesitzer, Parkhauskunden
 
-## Mehrwert (durch Erkenntnisse aus der Simulation)
+**Mehrwert (durch Erkenntnisse aus der Simulation)**
+
  Kosteneinsparungen durch Reduzierung des Personals
  Reduzierung/Verhinderung von menschlichen Fehlern
  Automatisierung von Routineaufgaben
  Weniger Wartezeit für die Kunden durch Beschleunigung der Abläufe
 
- -> Daraus ergab sich dann unser [Anforderungskatalog](docs/Projektmanagement/Anforderungskatalog%20(Aufgabe%204.3).txt)
+ -> Aus diesem Digitalisierungskonzept ergab sich dann unser [Anforderungskatalog](docs/Projektmanagement/Anforderungskatalog%20(Aufgabe%204.3).txt)
 
 
 # Zielkonflikte
@@ -61,15 +64,15 @@ Was lief gut? Was hat sich bewährt? Was waren Erfolgsrezepte? Was lief schlecht
 # Verzeichnis der eingesetzten Patterns
 | Design Pattern | Links zum Code | Kommentar |
 | ---      |  ------  |-------|
-| Adapter | [GirocardAdapter](src/PaymentProvider/GirocardAdapter.java) | Der [GirocardAdapter](src/PaymentProvider/GirocardAdapter.java) löst die Imkompatibilität des Legacy Zahlungsanbieters [Girocard](src/PaymentProvider/Girocard.java) mit unserer Schnittstelle [GirocardAdapter](src/PaymentProvider/PaymentProviderIF.java) auf. |
-| Command | [TaxReturn](src/TaxReturn.java) | Die Generierung der monatlichen Steuerdaten an das Finanzamt ist in einem funktionalen Kommando gekapselt. |
-| Composite | [ParkhausChartProcessor](src/ParkhausChartProcessor.java) | Die Json-Struktur wird zu einem Kompositum zusammengebaut. |
-| Iterator | [ParkhausServlet](src/ParkhausServlet.java) | Das Iterator-Pattern wird im Rahmen der Enhanced For Loops verwendet, z.B. in Zeile 160 |
-| Multiton | [MultitonFahrzeugTyp](src/Fahrzeuge/MultitonFahrzeugTyp.java) | Die Fahrzeugtypen und ihr dazugehörigen Spezifikationen werden einmalig instanziiert. |
-| MVC / Observer (1) | [Model](src/preis/PreisVerwaltungModel.java), [View](src/preis/PreisVerwaltungView.java), [Controller](src/preis/PreisVerwaltungController.java)   | Serverseite der Preisverwaltung |
+| Adapter | [GirocardAdapter](src/main/java/PaymentProvider/GirocardAdapter.java) | Der [GirocardAdapter](src/main/java/PaymentProvider/GirocardAdapter.java) löst die Imkompatibilität des Legacy Zahlungsanbieters [Girocard](src/main/java/PaymentProvider/Girocard.java) mit unserer Schnittstelle [GirocardAdapter](src/main/java/PaymentProvider/PaymentProviderIF.java) auf. |
+| Command | [TaxReturn](src/main/java/TaxReturn.java) | Die Generierung der monatlichen Steuerdaten an das Finanzamt ist in einem funktionalen Kommando gekapselt. |
+| Composite | [ParkhausChartProcessor](src/main/java/ParkhausChartProcessor.java) | Die Json-Struktur wird zu einem Kompositum zusammengebaut. |
+| Iterator | [ParkhausServlet](src/main/java/ParkhausServlet.java) | Das Iterator-Pattern wird im Rahmen der Enhanced For Loops verwendet, z.B. in Zeile 160 |
+| Multiton | [MultitonFahrzeugTyp](src/main/java/Fahrzeuge/MultitonFahrzeugTyp.java) | Die Fahrzeugtypen und ihr dazugehörigen Spezifikationen werden einmalig instanziiert. |
+| MVC / Observer (1) | [Model](src/main/java/preis/PreisVerwaltungModel.java), [View](src/main/java/preis/PreisVerwaltungView.java), [Controller](src/main/java/preis/PreisVerwaltungController.java)   | Serverseite der Preisverwaltung |
 | MVC / Observer (2) | [Model](angular/parkhaus/files/app/preisformular/preis.service.ts),  [View](angular/parkhaus/files/app/preisformular/preisformular.component.html), [Controller](angular/parkhaus/files/app/preisformular/preisformular.component.ts)| Clientseite der Preisverwaltung  |
-| MVC / Observer (3) | [Model](src/ParkhausStatistics.java), [View](src/JahresEinnahmenView.java), [Controller](src/EinnahmenController.java)   | ParkhausStatistics |
-| Singleton | [Finanzamt](src/Finanzamt.java) | Die Schnittstelle zum Finanzamt kann nur einmalig instanziiert werden. |
-| Static Factory Method | [PreisFactory](src/preis/PreisFactory.java) | In unserem Fall sinnvoll und OCP. Nutzt Javas "Class.forName(...).getConstructor(...).newInstance(...)" |
-| Template Method | [EinnahmenCalculator](src/Einnahmen/EinnahmenCalculator.java) | Die abstrakte Klasse  [EinnahmenCalculator](src/Einnahmen/EinnahmenCalculator.java) gibt die Struktur für die Berechung der Einnahmen vor. Die Unterklassen wie [JahresEinnahmenCalculator](src/Einnahmen/JahresEinnahmenCalculator.java) und [MonatsEinnahmenCalculator](src/Einnahmen/MonatsEinnahmenCalculator.java) implementieren die Details des Algorithmus. |
+| MVC / Observer (3) | [Model](src/main/java/ParkhausStatistics.java), [View](src/main/java/JahresEinnahmenView.java), [Controller](src/main/java/EinnahmenController.java)   | ParkhausStatistics |
+| Singleton | [Finanzamt](src/main/java/Finanzamt.java) | Die Schnittstelle zum Finanzamt kann nur einmalig instanziiert werden. |
+| Static Factory Method | [PreisFactory](src/main/java/preis/PreisFactory.java) | In unserem Fall sinnvoll und OCP. Nutzt Javas "Class.forName(...).getConstructor(...).newInstance(...)" |
+| Template Method | [EinnahmenCalculator](src/main/java/Einnahmen/EinnahmenCalculator.java) | Die abstrakte Klasse  [EinnahmenCalculator](src/main/java/Einnahmen/EinnahmenCalculator.java) gibt die Struktur für die Berechung der Einnahmen vor. Die Unterklassen wie [JahresEinnahmenCalculator](src/main/java/Einnahmen/JahresEinnahmenCalculator.java) und [MonatsEinnahmenCalculator](src/main/java/Einnahmen/MonatsEinnahmenCalculator.java) implementieren die Details des Algorithmus. |
 
