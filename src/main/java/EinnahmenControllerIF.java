@@ -1,5 +1,10 @@
+/**
+ * @author Tobias Lohmüller
+ */
+
 public interface EinnahmenControllerIF {
-    JahresEinnahmenView getJahresEinnahmenView();
 
     TagesEinnahmenView getTagesEinnahmenView();
+    JahresEinnahmenView getJahresEinnahmenView();
+
 }
