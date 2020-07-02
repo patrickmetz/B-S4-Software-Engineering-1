@@ -22,18 +22,34 @@
 - UML Sequenzdiagramme: [Link](docs/Design/Sequenzdiagramm%20(Aufgabe%205.2).puml)
 - UML Aktivitätsdiagramme: [Link](docs/Design/Use%20Cases%20(Aufgabe%204.3).puml)
 - Java - Interfaces: [Link](src/main/java)
-- lauffähige JUnit-Tests: [Link](src/test)
+- lauffähige JUnit-Tests: [Link](src/test/java)
 - lauffähige Java - Klassen: [Link](src/main/java)
 - Verzeichnis der eingesetzten Patterns: [s.u.](#verzeichnis-der-eingesetzten-patterns)
 - Zielkonflikte: [s.u.](#zielkonflikte)
 - Iterationsbericht: [Link](docs/Kanban Board)
 - Summarisches Projektprotokoll: [Link](docs/Projektmanagement/Summarisches%20Projektprotokoll.pdf)
-- Resumée und Fazit: [s.u.](#resumee-und-fazit)
+- Resumée und Fazit: [s.u.](#resumée-und-fazit)
 - Präsentation und Demo des Projekts (PPT, PDF, HTML, MP4)
 
 # Digitalisierungskonzept:
 Was verstehen Sie unter Digitalisierung? Einfach nur das Analoge digital nachbauen? Oder wird
  auch das Geschäftsmodell / der Mehrwert / die Nutzbarkeit im Digitalen transformiert?
+
+## Initiale Produktvision
+ Abläufe von vorhandenem Parkhaus durch Simulation digitalisieren.
+ Verschiedene Kundengruppen berücksichtigen.
+
+## Zielgruppe
+ Parkhausbesitzer, Parkhauskunden
+
+## Mehrwert (durch Erkenntnisse aus der Simulation)
+ Kosteneinsparungen durch Reduzierung des Personals
+ Reduzierung/Verhinderung von menschlichen Fehlern
+ Automatisierung von Routineaufgaben
+ Weniger Wartezeit für die Kunden durch Beschleunigung der Abläufe
+
+ -> Daraus ergab sich dann unser [Anforderungskatalog](docs/Projektmanagement/Anforderungskatalog%20(Aufgabe%204.3).txt)
+
 
 # Zielkonflikte
 Haben Sie Zielkonflikte erkennen können? Wie haben Sie diese aufgelöst?
