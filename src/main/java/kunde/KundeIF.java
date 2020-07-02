@@ -1,5 +1,7 @@
 package kunde;
 
+import Fahrzeuge.FahrzeugTyp;
+
 import java.util.Date;
 
 /**
@@ -14,6 +16,8 @@ public interface KundeIF {
 
     Date getBeginn();
     Date getEnde();
+
+    FahrzeugTyp getFahrzeugTyp();
 
     int getDauer();
 

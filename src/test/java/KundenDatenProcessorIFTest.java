@@ -1,3 +1,4 @@
+import Fahrzeuge.FahrzeugTyp;
 import PaymentProvider.CashPayment;
 import kunde.Kunde;
 import kunde.KundenDaten;
@@ -28,10 +29,10 @@ class KundenDatenProcessorIFTest {
 
     @BeforeEach
     void setUp() {
-        einfahrtDaten1 = new KundenDaten(new String[]{"1","1590408991325","_","_","c0e8c5f157d07e3f8658367b37baeac8","#c6c804","6","PersonMitBehinderung"}); // 1,1590408991325,_,_,c0e8c5f157d07e3f8658367b37baeac8,#c6c804,6,PersonMitBehinderung
-        einfahrtDaten2 = new KundenDaten(new String[]{"2","1590408991524","_","_","8c56d532c5f318b73fa90a86016f3065","#959d6c","2","PersonMitBehinderung"}); // 2,1590408991524,_,_,8c56d532c5f318b73fa90a86016f3065,#959d6c,2,PersonMitBehinderung
-        ausFahrtDaten1 = new KundenDaten(new String[]{"1","1590408991325","3015","302","c0e8c5f157d07e3f8658367b37baeac8","#c6c804","7","PersonMitBehinderung"}); // 1,1590408991325,3015,302,c0e8c5f157d07e3f8658367b37baeac8,#c6c804,7,PersonMitBehinderung
-        ausFahrtDaten2 = new KundenDaten(new String[]{"2","1590408991524","201","20","8c56d532c5f318b73fa90a86016f3065","#959d6c","5","PersonMitBehinderung"}); // 2,1590408991524,201,20,8c56d532c5f318b73fa90a86016f3065,#959d6c,5,PersonMitBehinderung
+        einfahrtDaten1 = new KundenDaten(new String[]{"1","1590408991325","_","_","c0e8c5f157d07e3f8658367b37baeac8","#c6c804","6","PersonMitBehinderung"}, FahrzeugTyp.PKW ); // 1,1590408991325,_,_,c0e8c5f157d07e3f8658367b37baeac8,#c6c804,6,PersonMitBehinderung
+        einfahrtDaten2 = new KundenDaten(new String[]{"2","1590408991524","_","_","8c56d532c5f318b73fa90a86016f3065","#959d6c","2","PersonMitBehinderung"}, FahrzeugTyp.PKW); // 2,1590408991524,_,_,8c56d532c5f318b73fa90a86016f3065,#959d6c,2,PersonMitBehinderung
+        ausFahrtDaten1 = new KundenDaten(new String[]{"1","1590408991325","3015","302","c0e8c5f157d07e3f8658367b37baeac8","#c6c804","7","PersonMitBehinderung"}, FahrzeugTyp.PKW); // 1,1590408991325,3015,302,c0e8c5f157d07e3f8658367b37baeac8,#c6c804,7,PersonMitBehinderung
+        ausFahrtDaten2 = new KundenDaten(new String[]{"2","1590408991524","201","20","8c56d532c5f318b73fa90a86016f3065","#959d6c","5","PersonMitBehinderung"}, FahrzeugTyp.PKW); // 2,1590408991524,201,20,8c56d532c5f318b73fa90a86016f3065,#959d6c,5,PersonMitBehinderung
 
         parkhausIF = new Parkhaus();
 
@@ -53,7 +54,7 @@ class KundenDatenProcessorIFTest {
     @Test
     @DisplayName("Das erhalten der Preisdaten aus dem Datensatz")
     void getSumme() {
-        assertEquals(6.7, kundenDatenProcessorIF.getSumme(), 0.00001);
+        assertEquals(10.7, kundenDatenProcessorIF.getSumme(), 0.00001);
     }
 
     @Test
@@ -65,12 +66,12 @@ class KundenDatenProcessorIFTest {
     @Test
     @DisplayName("Das erhalten des Durchschnittspreis aus dem Datensatz")
     void getDurschnittsPreis() {
-        assertEquals(3.35f, kundenDatenProcessorIF.getDurschnittsPreis());
+        assertEquals(5.35f, kundenDatenProcessorIF.getDurschnittsPreis());
     }
 
     @Test
     @DisplayName("Das erhalten der Umsatzsteuer aus dem Datensatz")
     void getUmsatzSteuer() {
-        assertEquals(1.07f, (float) Math.round(100 * kundenDatenProcessorIF.getUmsatzSteuer())/100);
+        assertEquals(1.71f, (float) Math.round(100 * kundenDatenProcessorIF.getUmsatzSteuer())/100);
     }
 }

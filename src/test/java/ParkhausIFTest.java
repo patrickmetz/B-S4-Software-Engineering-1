@@ -1,4 +1,5 @@
 
+import Fahrzeuge.FahrzeugTyp;
 import kunde.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -23,8 +24,8 @@ class ParkhausIFTest {
 
     @BeforeEach
     void setUp() {
-        kundenEinfahrDatenIF = new KundenDaten(new String[]{"1","1590407917444","_","_","5fd73388c8286759fddc1cf53ca744cb","#4d56d8","7","Mitarbeiter"});
-        kundenAusfahrDatenIF = new KundenDaten(new String[]{"1","1590407917444","200","20","5fd73388c8286759fddc1cf53ca744cb","#4d56d8","7","Mitarbeiter"});
+        kundenEinfahrDatenIF = new KundenDaten(new String[]{"1","1590407917444","_","_","5fd73388c8286759fddc1cf53ca744cb","#4d56d8","7","Mitarbeiter"}, FahrzeugTyp.PKW);
+        kundenAusfahrDatenIF = new KundenDaten(new String[]{"1","1590407917444","200","20","5fd73388c8286759fddc1cf53ca744cb","#4d56d8","7","Mitarbeiter"}, FahrzeugTyp.PKW);
 
         parkhaus = new Parkhaus();
         kunde = new Kunde(kundenEinfahrDatenIF);

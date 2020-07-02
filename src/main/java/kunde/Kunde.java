@@ -1,5 +1,7 @@
 package kunde;
 
+import Fahrzeuge.FahrzeugTyp;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -43,6 +45,11 @@ public class Kunde implements KundeIF {
         calendar.add(Calendar.SECOND, kundenDaten.getDauer());
 
         return calendar.getTime();
+    }
+
+    @Override
+    public FahrzeugTyp getFahrzeugTyp() {
+        return kundenDaten.getFahrzeugTyp();
     }
 
     public void updateDaten(KundenDatenIF kundenDaten) {

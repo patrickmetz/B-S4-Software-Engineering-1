@@ -1,3 +1,5 @@
+import Fahrzeuge.FahrzeugTyp;
+import Fahrzeuge.MultitonFahrzeugTyp;
 import PaymentProvider.CashPayment;
 import kunde.Kunde;
 import kunde.KundenDaten;
@@ -37,7 +39,7 @@ class BezahlAutomatIFTest {
                 "7",                //Slot
                 "Familie"           //Kundengruppe
 
-        });
+        }, FahrzeugTyp.PKW);
         ticket = new Parkticket(new Kunde(kd));
     }
 
@@ -57,23 +59,23 @@ class BezahlAutomatIFTest {
     @MethodSource("KundenTypen")
     @DisplayName("Die Preisberechnung des Bezahlautomaten ist für alle Kundentypen korrekt")
     void getPreis_nachDemParkenMitVerschiedenenKundenTypen_rechnetKorrekt(KundenTyp kundenTyp) {
-        Integer dauer = 3000;
+        int dauer = 3000;
 
         KundenDaten kd = new KundenDaten(new String[]{
                 "478349",           //Nr
                 "1590408991325",    //Beginn
-                dauer.toString(),   //Dauer
+                Integer.toString(dauer),   //Dauer
                 "383",              //Preis
                 "kfjien",           //Tickethash
                 "ff00ff",           //Farbe
                 "7",                //Slot
                 kundenTyp.getBezeichnung() //Kundengruppe
-        });
+        }, FahrzeugTyp.PKW);
 
         Kunde k = new Kunde(kd);
         ParkticketIF ticket = parkhaus.einfahren(k);
         parkhaus.addParkticket("jrjhekjdlfjdsfk", ticket);
-        assertEquals(automat.getPreis(ticket), kundenTyp.getInitialPreis() * dauer/ (60f * 60f));
+        assertEquals(automat.getPreis(ticket), kundenTyp.getInitialPreis() * dauer/ (60f * 60f) + MultitonFahrzeugTyp.getInstanz(FahrzeugTyp.PKW).getPreis().getBetrag());
 
     }
 
@@ -90,18 +92,17 @@ class BezahlAutomatIFTest {
                 "ff00ff",           //Farbe
                 "7",                //Slot
                 "PersonMitBehinderung" //Kundengruppe
-        });
+        }, FahrzeugTyp.PKW);
 
         Kunde k = new Kunde(kd);
         ParkticketIF ticket = parkhaus.einfahren(k);
         parkhaus.addParkticket("jrjhekjdlfjdsfk", ticket);
 
         if (dauer >= 0) {
-            assertEquals(automat.getPreis(ticket), k.getKundenTyp().getInitialPreis() * dauer / (60f * 60f), 0.0001);
+            assertEquals(automat.getPreis(ticket), k.getKundenTyp().getInitialPreis() * dauer / (60f * 60f)  + MultitonFahrzeugTyp.getInstanz(FahrzeugTyp.PKW).getPreis().getBetrag() , 0.0001);
         } else {
-            RuntimeException e = assertThrows(RuntimeException.class, () -> {
-                automat.getPreis(ticket);
-            });
+            RuntimeException e = assertThrows(RuntimeException.class, () ->
+                automat.getPreis(ticket));
 
             assertEquals("Eine negative Parkdauer gibt es nicht", e.getMessage());
         }

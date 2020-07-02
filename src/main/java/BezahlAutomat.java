@@ -1,3 +1,5 @@
+import Fahrzeuge.FahrzeugTyp;
+import Fahrzeuge.MultitonFahrzeugTyp;
 import PaymentProvider.CashPayment;
 import PaymentProvider.PaymentProviderIF;
 import preis.PreisIF;
@@ -38,10 +40,13 @@ public class BezahlAutomat implements BezahlAutomatIF {
 
         PreisIF preis = controller.getPreis(parkTicket.getKunde().getKundenTyp());
         float stunden = parkTicket.getKunde().getDauer() / (60f * 60f);
-        float betrag = preis.getBetrag() * stunden;
+        float aufschlag = MultitonFahrzeugTyp.getInstanz(parkTicket.getKunde().getFahrzeugTyp()).getPreis().getBetrag();
 
-        System.out.println("Berechne für Kunden " + parkTicket.getKunde().getKundenTyp().getBezeichnung() + " den Stundensatz " + preis.getBetrag() + " -> Summe " + betrag);
+        float betrag = preis.getBetrag() * stunden + aufschlag;
 
+        if(stunden > 0)
+            System.out.println("Berechne für Kunden " + parkTicket.getKunde().getKundenTyp().getBezeichnung() + " mit dem Fahrzeug " + parkTicket.getKunde().getFahrzeugTyp() + ", den Stundensatz " + KundenDatenUtils.floatToEuro(preis.getBetrag())
+                    + " und den Fahrzeug-Aufschlag von " + KundenDatenUtils.floatToEuro(aufschlag) + " -> Summe " + KundenDatenUtils.floatToEuro(betrag));
 
         return betrag;
     }

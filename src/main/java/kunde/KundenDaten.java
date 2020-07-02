@@ -1,5 +1,7 @@
 package kunde;
 
+import Fahrzeuge.FahrzeugTyp;
+
 import java.util.Date;
 
 /**
@@ -15,6 +17,7 @@ public class KundenDaten implements KundenDatenIF {
     private String farbe;
     private Integer slot;
     private String kundengruppe;
+    private FahrzeugTyp fahrzeugTyp;
 
     public KundenDaten (String[] params) {
         // see https://kaul.inf.h-brs.de/se/#app-content-4-0&03_Technologien=page-61
@@ -37,9 +40,19 @@ public class KundenDaten implements KundenDatenIF {
         kundengruppe = params[7];
     }
 
+    public KundenDaten(String[] params, FahrzeugTyp fahrzeugTyp) {
+        this(params);
+        this.fahrzeugTyp = fahrzeugTyp;
+    }
+
     public void updateDaten(KundenDatenIF kundenDaten) {
         this.dauer = kundenDaten.getDauer();
         this.preis = kundenDaten.getPreis();
+    }
+
+    @Override
+    public FahrzeugTyp getFahrzeugTyp() {
+        return fahrzeugTyp;
     }
 
     public Integer getNr() {

@@ -1,3 +1,4 @@
+import Fahrzeuge.FahrzeugTyp;
 import kunde.*;
 import preis.PreisVerwaltungControllerIF;
 
@@ -15,7 +16,7 @@ import java.util.*;
 @WebServlet("/ParkhausServlet")
 public class ParkhausServlet extends HttpServlet {
 
-    public static final String REGEX_POSTBODY_REQUEST_FORM = "^(?:(?:[^&]+)\\&)+[^&]+$";
+    public static final String REGEX_POSTBODY_REQUEST_FORM = "^(?:(?:[^&]+)&)+[^&]+$";
     public static final String REGEX_POSTBODY_REQUEST_CSV = "^(?:(?:[^,]+),)+[^,]+$";
 
     private ParkhausIF parkhaus;
@@ -127,7 +128,8 @@ public class ParkhausServlet extends HttpServlet {
     }
 
     private void handlePostEnter(HttpServletResponse response, HashMap<String, String> postMap) {
-        KundenDatenIF kundenDaten = new KundenDaten(postMap.get("csv").split(","));
+        FahrzeugTyp fahrzeugTyp = FahrzeugTyp.randomFahrzeugTyp();
+        KundenDatenIF kundenDaten = new KundenDaten(postMap.get("csv").split(","), fahrzeugTyp);
         KundeIF kunde = new Kunde(kundenDaten);
 
         ParkticketIF ticket = getParkhaus().einfahren(kunde);
@@ -163,7 +165,7 @@ public class ParkhausServlet extends HttpServlet {
         return map;
     }
 
-    private static HashMap<String, String> getPostHashMapCsv(String postBody) throws IOException {
+    private static HashMap<String, String> getPostHashMapCsv(String postBody) {
         HashMap<String, String> map = new HashMap<>();
         String[] splitByFirstComma = postBody.split(",", 2);
 
@@ -173,7 +175,7 @@ public class ParkhausServlet extends HttpServlet {
         return map;
     }
 
-    private static HashMap<String, String> getPostHashMapForm(String postBody) throws IOException {
+    private static HashMap<String, String> getPostHashMapForm(String postBody) {
         HashMap<String, String> map = new HashMap<>();
         String[] splitByAnd = postBody.split("&");
 

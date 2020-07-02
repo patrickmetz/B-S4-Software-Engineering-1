@@ -1,3 +1,4 @@
+import Fahrzeuge.FahrzeugTyp;
 import kunde.Kunde;
 import kunde.KundenDaten;
 import kunde.KundenTyp;
@@ -39,7 +40,7 @@ class JahresEinnahmenViewTest {
                 "7",                //Slot
                 "Familie"           //Kundengruppe
 
-        });
+        }, FahrzeugTyp.PKW);
         Kunde k = new Kunde(kd);
         ParkticketIF t = parkhaus.einfahren(k);
         automat.bezahlen(t, Optional.empty());
@@ -47,6 +48,6 @@ class JahresEinnahmenViewTest {
 
         JahresEinnahmenView view = new JahresEinnahmenView(parkhaus.getParkhausStatistics());
         view.aktualisieren();
-        assertEquals("4.160,18 €", view.view());
+        assertEquals("4.162,18 €", view.view());
     }
 }

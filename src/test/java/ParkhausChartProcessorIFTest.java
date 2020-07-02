@@ -1,3 +1,4 @@
+import Fahrzeuge.FahrzeugTyp;
 import kunde.Kunde;
 import kunde.KundenDaten;
 import kunde.KundenTyp;
@@ -33,7 +34,7 @@ class ParkhausChartProcessorIFTest {
                 "7",                //Slot
                 "Familie"           //Kundengruppe
 
-        });
+        }, FahrzeugTyp.PKW);
 
         KundenDaten kd2 = new KundenDaten(new String[]{
                 "478349",           //Nr
@@ -45,7 +46,7 @@ class ParkhausChartProcessorIFTest {
                 "7",                //Slot
                 "PersonMitBehinderung" //Kundengruppe
 
-        });
+        }, FahrzeugTyp.PKW);
         Kunde k1 = new Kunde(kd1);
         Kunde k2 = new Kunde(kd1);
 
