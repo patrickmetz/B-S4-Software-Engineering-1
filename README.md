@@ -12,7 +12,7 @@
 - eventuell Story Map
 - Minimum Viable Product (MVP)
 - UML Use Case-Diagramm
-- Robustheitsdiagramm [Link](docs/Design/Robustheit (Aufgabe 5.2).puml)
+- Robustheitsdiagramm [Link](docs/Design/Robustheit%20(Aufgabe%205.2).puml)
 - UML Klassendiagramme: [Link](docs/Design)
 - UML Sequenzdiagramme: [Link](docs/Design)
 - UML Aktivitätsdiagramme: [Link](docs/Design)
