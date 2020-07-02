@@ -7,7 +7,7 @@
 # Wichtige Ordner
 - [Alle Dokumente](docs)
 - [Sourcecode](src/main)
-- [Tests](src/tests)
+- [Tests](src/test/java)
 - [Selbstgeschriebene Tools](tools)
 
 # Artefakte
