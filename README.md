@@ -1,5 +1,4 @@
-
-[comment]: # Author: Team
+<!--- Author: Team --->
 
 
 # Inhaltsverzeichnis
