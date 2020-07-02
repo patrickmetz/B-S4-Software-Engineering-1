@@ -1,0 +1,42 @@
+@startuml
+title __[Digital] Auto im Parkhaus parken__
+
+|#Beige|Kunde|
+start
+:Plaetze anfragen;
+
+
+|#AntiqueWhite|ParkhausDisplay|
+:Anzahl freier Plaetze anzeigen;
+
+|#Beige|Kunde|
+:Einfahren;
+:Ticket anfordern;
+:KundenTyp]
+
+|#AntiqueWhite|Ticketautomat|
+if (Abonnent or Mitarbeiter) then (True)
+:Rabatt erhalten;
+else (False)
+endif
+:Ticket fuer \n KundenTyp ausgeben;
+
+|#AntiqueWhite|ParkhausDisplay|
+:Anzeige erhoehen;
+
+|#AntiqueWhite|ParkhausSystem|
+
+if(PersonMitBehinderung) then (True)
+:Behindertenparkplatz zuweisen;
+elseif (Familie) then (True)
+:Grossen Parkplatz zuweisen;
+else (False)
+:Freien Platz zuweisen;
+endif
+:KundenDaten]
+:KundenDaten abspeichern;
+
+|#Beige|Kunde|
+
+stop
+@enduml
