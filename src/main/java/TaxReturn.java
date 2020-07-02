@@ -11,7 +11,7 @@ import java.util.List;
  * @author Johannes Kratzsch
  */
 public class TaxReturn {
-    private static final float exemption = 2000.0f; //Steuerlicher Freibetrag
+    private static final float EXEMPTION = 2000.0f; //Steuerlicher Freibetrag
     private final List<Command> commands = new LinkedList<>();
 
     public static final List<String> keys = Arrays.asList(new String[]{});
@@ -42,7 +42,7 @@ public class TaxReturn {
                         .add("Summe der Monatseinnahmen (brutto)", KundenDatenUtils.floatToEuro(sum))
                         .add("Summe der Monatseinnahmen (netto)", KundenDatenUtils.floatToEuro(net))
                         .add("Summe der Steuern", KundenDatenUtils.floatToEuro(tax))
-                        .add("Monatlicher Freibetrag", KundenDatenUtils.floatToEuro(exemption))
+                        .add("Monatlicher Freibetrag", KundenDatenUtils.floatToEuro(EXEMPTION))
                 ).build();
 
         finanzamt.sendTaxReturn(taxReturn);
