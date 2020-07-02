@@ -47,7 +47,7 @@ class TaxReturnTest {
         taxReturn.addCommand(() -> TaxReturn.taxReturnCommand(statistics));
         taxReturn.executeCommands();
 
-        assertEquals("{\"Steuererklärung\":{\"Summe der Monatseinnahmen (brutto)\":\"160,90 €\",\"Summe der Monatseinnahmen (netto)\":\"135,21 €\",\"Summe der Steuern\":\"25,69 €\",\"Monatlicher Freibetrag\":\"2.000,00 €\"}}\n",
+        assertEquals("{\"Steuererklärung\":{\"Summe der Monatseinnahmen (brutto)\":\"160,90 €\",\"Summe der Monatseinnahmen (netto)\":\"135,21 €\",\"Summe der Steuern\":\"25,69 €\",\"Monatlicher Freibetrag\":\"2.000,00 €\"}}\r\n",
                 outContent.toString());
     }
 }
