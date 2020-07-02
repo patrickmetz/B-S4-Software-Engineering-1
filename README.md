@@ -16,7 +16,7 @@
 - Priorisierung der User Stories
 - Minimum Viable Product (MVP)
 - Kanban-Board: [Link](docs/Kanban Board)
-- UML Use Case-Diagramme: [Link](docs/Design/Klassendiagramme)
+- UML Use Case-Diagramme: [Link](docs/Design/Use%20Cases%20(Aufgabe%204.3).puml)
 - Robustheitsdiagramm [Link](docs/Design/Robustheit%20(Aufgabe%205.2).puml)
 - UML Klassendiagramme: [Link](docs/Design/Klassendiagramme)
 - UML Sequenzdiagramme: [Link](docs/Design/Sequenzdiagramm%20(Aufgabe%205.2).puml)
