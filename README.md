@@ -11,12 +11,12 @@
 - Priorisierung der User Stories
 - eventuell Story Map
 - Minimum Viable Product (MVP)
-- UML Use Case-Diagramm
-- Robustheitsdiagramm [Link](docs/Design/Robustheit%20(Aufgabe%205.2).puml)
-- UML Klassendiagramme: [Link](docs/Design)
-- UML Sequenzdiagramme: [Link](docs/Design)
-- UML Aktivitätsdiagramme: [Link](docs/Design)
-- UML Verteilungsdiagramm : [Link](docs/Design)
+- Alle Modellierungsdokumente: [Link](docs/Design)
+    - UML Use Case-Diagramm: [Link](docs/Design)
+    - Robustheitsdiagramm [Link](docs/Design/Robustheit%20(Aufgabe%205.2).puml)
+    - UML Klassendiagramme: [Link](docs/Design/Klassendiagramme)
+    - UML Sequenzdiagramme: [Link](docs/Design/Sequenzdiagramm%20(Aufgabe%205.2).puml)
+    - UML Aktivitätsdiagramme: [Link](docs/Design/Use%20Cases%20(Aufgabe%204.3).puml)
 - Java - Interfaces: [Link](src)
 - lauffähige JUnit-Tests: [Link](test)
 - lauffähige Java - Klassen: [Link](src)
