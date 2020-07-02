@@ -36,13 +36,16 @@
  auch das Geschäftsmodell / der Mehrwert / die Nutzbarkeit im Digitalen transformiert?**
 
 **Initiale Produktvision**
+
  Abläufe von vorhandenem Parkhaus durch Simulation digitalisieren.
  Verschiedene Kundengruppen berücksichtigen.
 
 **Zielgruppe**
+
  Parkhausbesitzer, Parkhauskunden
 
 **Mehrwert (durch Erkenntnisse aus der Simulation)**
+
  Kosteneinsparungen durch Reduzierung des Personals
  Reduzierung/Verhinderung von menschlichen Fehlern
  Automatisierung von Routineaufgaben
