@@ -14,8 +14,6 @@ public class TaxReturn {
     private static final float EXEMPTION = 2000.0f; //Steuerlicher Freibetrag
     private final List<Command> commands = new LinkedList<>();
 
-    public static final List<String> keys = Arrays.asList(new String[]{});
-
     public void addCommand(Command command) {
         commands.add(command);
     }
@@ -24,8 +22,6 @@ public class TaxReturn {
         for(Command c: commands) {
             c.run();
         }
-
-
     }
 
     public static void taxReturnCommand(ParkhausStatistics statistics) {
