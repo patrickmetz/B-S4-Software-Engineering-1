@@ -20,7 +20,7 @@
 - Robustheitsdiagramm [Link](docs/Design/Robustheit%20(Aufgabe%205.2).puml)
 - UML Klassendiagramme: [Link](docs/Design/Klassendiagramme)
 - UML Sequenzdiagramme: [Link](docs/Design/Sequenzdiagramm%20(Aufgabe%205.2).puml)
-- UML Aktivitätsdiagramme: [Link](docs/Design/Use%20Cases%20(Aufgabe%204.3).puml)
+- UML Aktivitätsdiagramme: [Link](docs/Design/Aktivitätsdiagramm%20(Aufgabe%207.1).puml)
 - Java - Interfaces: [Link](src/main/java)
 - lauffähige JUnit-Tests: [Link](src/test/java)
 - lauffähige Java - Klassen: [Link](src/main/java)
