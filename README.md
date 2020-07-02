@@ -32,8 +32,8 @@
 - Präsentation und Demo des Projekts (PPT, PDF, HTML, MP4)
 
 # Digitalisierungskonzept:
-Was verstehen Sie unter Digitalisierung? Einfach nur das Analoge digital nachbauen? Oder wird
- auch das Geschäftsmodell / der Mehrwert / die Nutzbarkeit im Digitalen transformiert?
+**Was verstehen Sie unter Digitalisierung? Einfach nur das Analoge digital nachbauen? Oder wird
+ auch das Geschäftsmodell / der Mehrwert / die Nutzbarkeit im Digitalen transformiert?**
 
 #### Initiale Produktvision
  Abläufe von vorhandenem Parkhaus durch Simulation digitalisieren.
