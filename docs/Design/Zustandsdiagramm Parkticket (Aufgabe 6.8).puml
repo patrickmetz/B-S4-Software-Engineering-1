@@ -1,0 +1,45 @@
+@startuml
+
+' Author: Johannes Kratzsch
+
+title __Zustandsdiagramm Parkhaus-Ticket__
+
+[*] --> Angefordert
+
+Angefordert -> Gedruckt : drucken [Druck erfolgreich]
+
+Angefordert -> [*] : drucken [Druck fehlgeschlagen]
+
+Angefordert : do / Ticket in DB speichern
+
+
+
+Gedruckt -down-> Bezahlt : bezahlen [Bezahlung erfolgreich]
+
+Gedruckt -> Gedruckt : bezahlen [Bezahlung fehlgeschlagen]
+
+Gedruckt: entry / Einfahrtschranke oeffnen
+
+
+
+Bezahlt: entry / Umsatz buchen
+
+Bezahlt: entry / Wechselgeld ausgeben
+
+Bezahlt: entry / DB Eintrag aktualisieren
+
+
+
+Bezahlt -> Zurueckgegeben : beiAusfahrtschrankeAbgeben
+
+
+
+Zurueckgegeben: entry / Ausfahrtschranke oeffnen
+
+Zurueckgegeben: entry / DB Eintrag aktualisieren
+
+
+
+Zurueckgegeben --> [*] : fertig
+
+@enduml

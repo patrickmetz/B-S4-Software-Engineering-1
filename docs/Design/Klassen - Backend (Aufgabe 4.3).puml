@@ -1,0 +1,93 @@
+@startuml
+
+' Author: Johannes Kratzsch
+
+skinparam classAttributeIconSize 0
+
+
+
+package "cd Parkhaus-System" {
+
+class Parkhaus {
+
++einfahren(k: Kunde)
+
++ausfahren(k: Kunde, p: Parkticket)
+
++getFreiePlaetze(): int
+
+}
+
+
+
+class ParkhausBackend {
+
++aendereStundenpreis(preis: int)
+
++erstelleEinnahmendiagramm()
+
++erstelleParkdauerdiagramm()
+
++sendeSteuerberichtAnFinanzamt()
+
+}
+
+
+
+class Parkticket {
+
+  -nr: Integer
+
+  -istBezahlt: boolean
+
+  +getBezahlt(): booelan
+
+}
+
+
+
+class Kunde {
+
+      -nr: Integer
+
+    }
+
+
+
+class Bezahlautomat {
+
+      +bezahlen(p: Parkticket)
+
+    }
+
+
+
+
+
+    Kunde <|-- Frau
+
+    Kunde <|-- Familienkunde
+
+    Kunde <|-- "Person mit Handicap"
+
+
+
+    Kunde "0..*" - "1" Parkhaus : parkt in >
+
+    Parkhaus "1" *-- "1..*" Bezahlautomat : befindet sich in <
+
+Kunde "1" - "1..*" Parkticket : erhaelt >
+
+Parkticket "0..*" - "1" Parkhaus : gehoert zu >
+
+Bezahlautomat "0..1" - "0..*" Parkticket : bezahlt >
+
+ParkhausBackend "1" - "0..*" Bezahlautomat : aendert Preise fuer >
+
+ParkhausBackend "1" - "1" Parkhaus : administriert >
+
+
+
+}
+
+@enduml

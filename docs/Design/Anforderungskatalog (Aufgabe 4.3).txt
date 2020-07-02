@@ -1,0 +1,18 @@
+Author: Johannes Kratzsch
+
+
+Die Abläufe eines vorhandenen Parkhauses sollen digitalisiert werden.
+
+Zu diesem Zweck soll eine Simulation des Parkhauses erstellt werden. Dabei werden die Bedürfnisse der verschiedenen Kundengruppen (Frauen, Familien, Menschen mit Behinderungen) berücksichtigt, indem für sie spezielle Parkplätze reserviert werden. Am Parkhaus ist ein Display angebracht, welches die Kunden über die Anzahl der freien Plätze informiert.
+
+
+
+Das Parkhaus hat eine Schranke, welche die Einfahrt der Kunden  nur zulässt, wenn das Parkhaus nicht voll ist. Bei der Einfahrt erhalten die Kunden ein Parkticket.
+
+Im Parkhaus befindet sich ein Bezahlautomat, an dem die Kunden ihr Parkticket vor der Ausfahrt bezahlen müssen. Der Bezahlautomat berechnet aufgrund des Stundenpreises und der vergangenen Zeit den korrekten Betrag und kassiert diesen vom Kunden.
+
+Zum Ausfahren muss der Kunde an der Ausfahrt sein bezahltes Parkticket in einen Automaten geben. Daraufhin öffnet sich die Ausfahrschranke, um den Kunden ausfahren zu lassen.
+
+
+
+Es erfolgt ein Datenaustausch mit dem Finanzamt. Außerdem kann der Parkhausbetreiber die Preise des Parkhauses pflegen und Statistiken über die Parkzeiten und Einnahmen des Parkhauses einsehen.
