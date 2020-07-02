@@ -3,7 +3,6 @@ import Einnahmen.MonatsEinnahmenCalculator;
 
 import javax.json.Json;
 import javax.json.JsonObject;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
