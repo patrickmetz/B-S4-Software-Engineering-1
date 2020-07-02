@@ -4,26 +4,30 @@
 # Inhaltsverzeichnis
 [[_TOC_]]
 
+# Wichtige Ordner
+- [Alle Dokumente](docs)
+- [Sourcecode](src/main)
+- [Tests](src/tests)
+- [Selbstgeschriebene Tools](tools)
+
 # Artefakte
 - Digitalisierungskonzept: [s.u.](#digitalisierungskonzept)
 - User Stories:
-- Kanban-Board: [Link](docs/Kanban Board)
 - Priorisierung der User Stories
-- eventuell Story Map
 - Minimum Viable Product (MVP)
-- Alle Modellierungsdokumente: [Link](docs/Design)
-    - UML Use Case-Diagramm: [Link](docs/Design)
-    - Robustheitsdiagramm [Link](docs/Design/Robustheit%20(Aufgabe%205.2).puml)
-    - UML Klassendiagramme: [Link](docs/Design/Klassendiagramme)
-    - UML Sequenzdiagramme: [Link](docs/Design/Sequenzdiagramm%20(Aufgabe%205.2).puml)
-    - UML Aktivitätsdiagramme: [Link](docs/Design/Use%20Cases%20(Aufgabe%204.3).puml)
-- Java - Interfaces: [Link](src)
-- lauffähige JUnit-Tests: [Link](test)
-- lauffähige Java - Klassen: [Link](src)
+- Kanban-Board: [Link](docs/Kanban Board)
+- UML Use Case-Diagramme: [Link](docs/Design/Klassendiagramme)
+- Robustheitsdiagramm [Link](docs/Design/Robustheit%20(Aufgabe%205.2).puml)
+- UML Klassendiagramme: [Link](docs/Design/Klassendiagramme)
+- UML Sequenzdiagramme: [Link](docs/Design/Sequenzdiagramm%20(Aufgabe%205.2).puml)
+- UML Aktivitätsdiagramme: [Link](docs/Design/Use%20Cases%20(Aufgabe%204.3).puml)
+- Java - Interfaces: [Link](src/main/java)
+- lauffähige JUnit-Tests: [Link](src/test)
+- lauffähige Java - Klassen: [Link](src/main/java)
 - Verzeichnis der eingesetzten Patterns: [s.u.](#verzeichnis-der-eingesetzten-patterns)
 - Zielkonflikte: [s.u.](#zielkonflikte)
 - Iterationsbericht: [Link](docs/Kanban Board)
-- Summarisches Projektprotokoll:
+- Summarisches Projektprotokoll: [Link](docs/Projektmanagement/Summarisches%20Projektprotokoll.pdf)
 - Resumée und Fazit: [s.u.](#resumee-und-fazit)
 - Präsentation und Demo des Projekts (PPT, PDF, HTML, MP4)
 
