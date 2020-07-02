@@ -6,6 +6,10 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+    @author Tobias Lohmüller
+ */
+
 public class FahrzeugTypTest {
 
     @Test
