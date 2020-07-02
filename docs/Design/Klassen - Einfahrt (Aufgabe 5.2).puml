@@ -1,6 +1,7 @@
 @startuml
 skinparam classAttributeIconSize 0
 
+' Author: Johannes Kratzsch
 
 class ParkhausController {
 +zahlungUberpruefen(p: Parkticket): String
