@@ -1,16 +1,15 @@
 package PaymentProvider;
 
-import kunde.Kunde;
 import kunde.KundeIF;
 
-import java.util.function.Function;
+import java.util.function.ToIntFunction;
 
 /**
  * @author Johannes Kratzsch
  */
 public class GirocardAdapter implements PaymentProviderIF {
     Girocard girocard;
-    static Function<Float, Integer> mapAmountToInt = x -> Float.valueOf(x * 100).intValue();
+    static ToIntFunction<Float> mapAmountToInt = x -> (int) (x * 100);
 
     GirocardAdapter(Girocard girocard) {
         this.girocard = girocard;
@@ -19,7 +18,7 @@ public class GirocardAdapter implements PaymentProviderIF {
     @Override
     public boolean pay(float amount, KundeIF kunde) {
         return girocard.bezahlen(
-                mapAmountToInt.apply(amount),
+                mapAmountToInt.applyAsInt(amount),
                 kunde.getNr());
     }
 }

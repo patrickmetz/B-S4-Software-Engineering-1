@@ -6,7 +6,7 @@ author: Patrick Metz
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
     <title>Parkhaus-Simulator</title>
 
