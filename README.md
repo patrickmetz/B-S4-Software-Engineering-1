@@ -11,6 +11,8 @@
 - [Selbstgeschriebene Tools](tools)
 
 # Artefakte
+Die Autoren sind jeweils ganz oben in den Dateien genannt. Wenn das nicht ging (zum Beispiel bei Bildern) ist der Autor im Dateinamen genannt.
+
 - Digitalisierungskonzept: [s.u.](#digitalisierungskonzept)
 - User Stories:
 - Priorisierung der User Stories
