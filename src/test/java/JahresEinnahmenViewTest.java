@@ -1,15 +1,16 @@
 import Fahrzeuge.FahrzeugTyp;
 import kunde.Kunde;
 import kunde.KundenDaten;
-import kunde.KundenTyp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import preis.PreisVerwaltungController;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * @author Johannes Kratzsch
+ */
 class JahresEinnahmenViewTest {
     Parkhaus parkhaus;
 
