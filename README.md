@@ -34,6 +34,8 @@ Die Autoren sind jeweils ganz oben in den Dateien genannt. Wenn das nicht ging (
 - Präsentation und Demo des Projekts (PPT, PDF, HTML, MP4)
 
 # Digitalisierungskonzept:
+(Autor: Team)
+
 **Was verstehen Sie unter Digitalisierung? Einfach nur das Analoge digital nachbauen? Oder wird
  auch das Geschäftsmodell / der Mehrwert / die Nutzbarkeit im Digitalen transformiert?**
 
@@ -57,13 +59,19 @@ Die Autoren sind jeweils ganz oben in den Dateien genannt. Wenn das nicht ging (
 
 
 # Zielkonflikte
+(Autor: Team)
+
 Haben Sie Zielkonflikte erkennen können? Wie haben Sie diese aufgelöst?
 
 # Resumée und Fazit:
+(Autor: Team)
+
 Was lief gut? Was hat sich bewährt? Was waren Erfolgsrezepte? Was lief schlecht? Was würde man
  anders machen, wenn man noch einmal neu anfangen könnte? Also was hat man daraus gelernt und was würde man im nächsten Projekt besser machen? (Es geht also um die Selbstevaluation, keine zweite Evaluation der Lehrveranstaltung!)
 
 # Verzeichnis der eingesetzten Patterns
+(Autor: Team)
+
 | Design Pattern | Links zum Code | Kommentar |
 | ---      |  ------  |-------|
 | Adapter | [GirocardAdapter](src/main/java/PaymentProvider/GirocardAdapter.java) | Der [GirocardAdapter](src/main/java/PaymentProvider/GirocardAdapter.java) löst die Imkompatibilität des Legacy Zahlungsanbieters [Girocard](src/main/java/PaymentProvider/Girocard.java) mit unserer Schnittstelle [GirocardAdapter](src/main/java/PaymentProvider/PaymentProviderIF.java) auf. |
