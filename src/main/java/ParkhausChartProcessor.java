@@ -83,7 +83,7 @@ public class ParkhausChartProcessor implements ParkhausChartProcessorIF {
                         .add("tick0", 1)
                         .add("dtick", 1))
                     .add("yaxis", Json.createObjectBuilder()
-                        .add("title", "Parkdauer in Sekunden"))
+                        .add("title", "Parkdauer in Millisekunden"))
                 )
                 .add("data", Json.createArrayBuilder()
                     .add(Json.createObjectBuilder()
