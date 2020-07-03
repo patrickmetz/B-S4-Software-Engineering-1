@@ -10,6 +10,10 @@
 - [Tests](src/test/java)
 - [Selbstgeschriebene Tools](tools)
 
+# CI/CD-Links
+- [Unser Projekt bei Jenkins (SEPP)](https://sepp-jenkins.inf.h-brs.de/view/SE1%20SoSe%202020%20(Kaul)/job/Team14/)
+- [Unser Projekt bei Sonar Cube (SEPP)](https://sepp-sonar.inf.h-brs.de/dashboard?id=Team14)
+
 # Artefakte
 Die Autoren sind jeweils ganz oben in den Dateien genannt. Wenn das nicht ging (zum Beispiel bei Bildern) ist der Autor im Dateinamen genannt.
 
@@ -84,4 +88,3 @@ Was lief gut? Was hat sich bewährt? Was waren Erfolgsrezepte? Was lief schlecht
 | Singleton | [Finanzamt](src/main/java/Finanzamt.java) | Die Schnittstelle zum Finanzamt kann nur einmalig instanziiert werden. |
 | Static Factory Method | [PreisFactory](src/main/java/preis/PreisFactory.java) | In unserem Fall sinnvoll und OCP. Nutzt Javas "Class.forName(...).getConstructor(...).newInstance(...)" |
 | Template Method | [EinnahmenCalculator](src/main/java/Einnahmen/EinnahmenCalculator.java) | Die abstrakte Klasse  [EinnahmenCalculator](src/main/java/Einnahmen/EinnahmenCalculator.java) gibt die Struktur für die Berechung der Einnahmen vor. Die Unterklassen wie [JahresEinnahmenCalculator](src/main/java/Einnahmen/JahresEinnahmenCalculator.java) und [MonatsEinnahmenCalculator](src/main/java/Einnahmen/MonatsEinnahmenCalculator.java) implementieren die Details des Algorithmus. |
-
