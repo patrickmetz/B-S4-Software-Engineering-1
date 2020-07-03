@@ -1,3 +1,4 @@
+rem Author: Patrick Metz
 rem kompiliert die angular-app "tutorial" in tomcat's web-ordner
 
 cd ../angular/tutorial

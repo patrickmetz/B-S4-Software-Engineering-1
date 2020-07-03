@@ -1,3 +1,5 @@
+rem Author: Patrick Metz
+
 cd ..
 
 git-fame --excl "angular|docs|lib|web|README"
