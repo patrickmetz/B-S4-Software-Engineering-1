@@ -70,8 +70,9 @@ Haben Sie Zielkonflikte erkennen können? Wie haben Sie diese aufgelöst?
 (Autor: Team)
 
 **Was lief gut? Was hat sich bewährt? Was waren Erfolgsrezepte?  (Es geht also um die Selbstevaluation, keine zweite Evaluation der Lehrveranstaltung!)**
-- Intuitiveres Verständnis für Zusammenarbeit entwickelt durch das Teamwork in den 10 Wochen
 - Einsatz von Design Patterns: sorgen für besseres Verständnis des Codes und führen zu schnelleren Problemlösungen
+- Funktionale Programmierung: sehr viel Logik kann kompakt und trotzdem verständlich gekapselt werden. Die Stream API mit filter-map-reduce gibt hierfür einen einfach zu lernenden Rahmen vor.
+- Intuitiveres Verständnis für Zusammenarbeit entwickelt durch das Teamwork in den 10 Wochen
 - Zeiten und Vereinbarungen eingehalten
 
 
