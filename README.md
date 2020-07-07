@@ -38,16 +38,15 @@ Die Autoren sind jeweils ganz oben in den Dateien genannt. Wenn das nicht ging (
 
 # Digitalisierungskonzept:
 (Autor: Team)
-
 **Was verstehen Sie unter Digitalisierung? Einfach nur das Analoge digital nachbauen? Oder wird
  auch das Geschäftsmodell / der Mehrwert / die Nutzbarkeit im Digitalen transformiert?**
 
-**Initiale Produktvision:** Abläufe von vorhandenem Parkhaus durch Simulation digitalisieren.
+*Initiale Produktvision:* Abläufe von vorhandenem Parkhaus durch Simulation digitalisieren. Dabei soll das analoge Parkhaus nicht einfach 1 zu 1 nachgebaut werden, sondern es soll durch ein tatsächlicher Mehrwert für alle beteiligten entstehen.
  Verschiedene Kundengruppen berücksichtigen.
 
-**Zielgruppe:** Parkhausbesitzer, Parkhauskunden
+*Zielgruppe:* Parkhausbesitzer, Parkhauskunden
 
-**Mehrwert (durch Erkenntnisse aus der Simulation)**
+*Mehrwert (durch Erkenntnisse aus der Simulation)*
 - Kosteneinsparungen durch Reduzierung des Personals
 - Reduzierung/Verhinderung von menschlichen Fehlern
 - Automatisierung von Routineaufgaben
