@@ -18,9 +18,9 @@
 Die Autoren sind jeweils ganz oben in den Dateien genannt. Wenn das nicht ging (zum Beispiel bei Bildern) ist der Autor im Dateinamen genannt.
 
 - Digitalisierungskonzept: [s.u.](#digitalisierungskonzept)
-- User Stories: [Link](docs/Projektmanagement/Userstories%20(Autor:%20Team).jpg)
-- Priorisierung der User Stories: [Link](docs/Projektmanagement/Priorisierte%20Userstories%20(Autor:%20Team).jpg)
-- Minimum Viable Product (MVP): [Link](docs/Projektmanagement/MVP%20(Autor:%20Team).jpg)
+- User Stories: [Link](docs/Projektmanagement/Userstories%20(Autor%20Team).jpg)
+- Priorisierung der User Stories: [Link](docs/Projektmanagement/Priorisierte%20Userstories%20(Autor%20Team).jpg)
+- Minimum Viable Product (MVP): [Link](docs/Projektmanagement/MVP%20(Autor%20Team).jpg)
 - Kanban-Board: [Link](docs/Kanban Board)
 - UML Use Case-Diagramme: [Link](docs/Design/Use%20Cases%20(Aufgabe%204.3).puml)
 - Robustheitsdiagramm [Link](docs/Design/Robustheit%20(Aufgabe%205.2).puml)
