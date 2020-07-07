@@ -42,21 +42,16 @@ Die Autoren sind jeweils ganz oben in den Dateien genannt. Wenn das nicht ging (
 **Was verstehen Sie unter Digitalisierung? Einfach nur das Analoge digital nachbauen? Oder wird
  auch das Geschäftsmodell / der Mehrwert / die Nutzbarkeit im Digitalen transformiert?**
 
-**Initiale Produktvision**
-
- Abläufe von vorhandenem Parkhaus durch Simulation digitalisieren.
+**Initiale Produktvision:** Abläufe von vorhandenem Parkhaus durch Simulation digitalisieren.
  Verschiedene Kundengruppen berücksichtigen.
 
-**Zielgruppe**
-
- Parkhausbesitzer, Parkhauskunden
+**Zielgruppe:** Parkhausbesitzer, Parkhauskunden
 
 **Mehrwert (durch Erkenntnisse aus der Simulation)**
-
- Kosteneinsparungen durch Reduzierung des Personals
- Reduzierung/Verhinderung von menschlichen Fehlern
- Automatisierung von Routineaufgaben
- Weniger Wartezeit für die Kunden durch Beschleunigung der Abläufe
+- Kosteneinsparungen durch Reduzierung des Personals
+- Reduzierung/Verhinderung von menschlichen Fehlern
+- Automatisierung von Routineaufgaben
+- Weniger Wartezeit für die Kunden durch Beschleunigung der Abläufe
 
  -> Aus diesem Digitalisierungskonzept ergab sich dann unser [Anforderungskatalog](docs/Projektmanagement/Anforderungskatalog%20(Aufgabe%204.3).txt)
 
