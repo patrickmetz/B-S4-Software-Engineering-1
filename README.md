@@ -77,13 +77,13 @@ Haben Sie Zielkonflikte erkennen können? Wie haben Sie diese aufgelöst?
 
 **Was lief schlecht? Was würde man
  anders machen, wenn man noch einmal neu anfangen könnte? Also was hat man daraus gelernt und was würde man im nächsten Projekt besser machen?**
-- Wertvolle Features nicht implementiert
-    - keine Abonnements
-    - keine historische Parkhausbelegung
+- Nicht alle ursprünglich geplanten Features konnten implementiert werden
+    - Abschluss von Abonnements nicht möglich
+    - es gibt keine historische Parkhausbelegung
 - Parkhaus-Servlet
-    - nicht besonders refaktoriert
-    - nicht durch Tests abgedeckt
-    - Story und Value Points im späteren Projektverlauf nicht mehr geschätzt
+    - nicht besonders refaktoriert, weil keine Zeit mehr da war. Daraus haben wir gelernt: für Refactoring sollte mehr Zeit eingeplant werden. Außerdem wäre das Refactoring einfacher gefallen, hätten wir das Servlet gut durch Tests abgedeckt.
+    - nicht durch Tests abgedeckt. Nachträglich Tests zu schreiben wäre jetzt sehr zeitaufwändig -> es wäre besser gewesen, die Tests im Rahmen von TDD direkt zu schreiben
+- Story und Value Points wurden im späteren Projektverlauf nicht mehr geschätzt. Dadurch war die Priorisierung der Tasks nicht mehr gegeben und es gab weniger Vorhersagbarkeit über den Verlauf des Sprints.
 
 
 # Verzeichnis der eingesetzten Patterns
