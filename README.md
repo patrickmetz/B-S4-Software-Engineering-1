@@ -69,8 +69,22 @@ Haben Sie Zielkonflikte erkennen können? Wie haben Sie diese aufgelöst?
 # Resumée und Fazit:
 (Autor: Team)
 
-Was lief gut? Was hat sich bewährt? Was waren Erfolgsrezepte? Was lief schlecht? Was würde man
- anders machen, wenn man noch einmal neu anfangen könnte? Also was hat man daraus gelernt und was würde man im nächsten Projekt besser machen? (Es geht also um die Selbstevaluation, keine zweite Evaluation der Lehrveranstaltung!)
+**Was lief gut? Was hat sich bewährt? Was waren Erfolgsrezepte?  (Es geht also um die Selbstevaluation, keine zweite Evaluation der Lehrveranstaltung!)**
+- Intuitiveres Verständnis für Zusammenarbeit entwickelt durch das Teamwork in den 10 Wochen
+- Einsatz von Design Patterns: sorgen für besseres Verständnis des Codes und führen zu schnelleren Problemlösungen
+- Zeiten und Vereinbarungen eingehalten
+
+
+**Was lief schlecht? Was würde man
+ anders machen, wenn man noch einmal neu anfangen könnte? Also was hat man daraus gelernt und was würde man im nächsten Projekt besser machen?**
+- Wertvolle Features nicht implementiert
+    -keine Abonnements
+    -keine historische Parkhausbelegung
+- Parkhaus-Servlet
+    -nicht besonders refaktoriert
+    -nicht durch Tests abgedeckt
+    -Story und Value Points im späteren Projektverlauf nicht mehr geschätzt
+
 
 # Verzeichnis der eingesetzten Patterns
 (Autor: Team)
