@@ -60,7 +60,7 @@ Die Autoren sind jeweils ganz oben in den Dateien genannt. Wenn das nicht ging (
 (Autor: Team)
 
 **Haben Sie Zielkonflikte erkennen können? Wie haben Sie diese aufgelöst?**
-- Es war für uns zeitlich nicht möglich, all unsere Ziele umzusetzen. Einerseits hatten wir die Liste Userstories, die wir zu Beginn des Projekts festgelegt hatten Und andererseits hatten wir eine Liste an Tasks, die wir uns im Verlauf des Projekts gesetzt hatten. Schließlich priorisierten wir Tasks wie die CI/CD Pipeline mit SonarQube und Refactoring und setzten dafür zwei unserer Userstories nicht um (den Abschluss von Abonnements und die Ansicht der historische Parkhausbelegung).
+- Es war für uns zeitlich nicht möglich, all unsere Ziele umzusetzen. Einerseits hatten wir die Liste Userstories, die wir zu Beginn des Projekts festgelegt hatten. Und andererseits hatten wir eine Liste an Tasks, die wir uns im Verlauf des Projekts gesetzt hatten. Schließlich priorisierten wir Tasks wie die CI/CD Pipeline mit SonarQube und Refactoring und setzten dafür zwei unserer Userstories nicht um (den Abschluss von Abonnements und die Ansicht der historische Parkhausbelegung).
 
 # Resumée und Fazit:
 (Autor: Team)
