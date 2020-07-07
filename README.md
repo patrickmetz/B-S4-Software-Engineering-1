@@ -78,12 +78,12 @@ Haben Sie Zielkonflikte erkennen können? Wie haben Sie diese aufgelöst?
 **Was lief schlecht? Was würde man
  anders machen, wenn man noch einmal neu anfangen könnte? Also was hat man daraus gelernt und was würde man im nächsten Projekt besser machen?**
 - Wertvolle Features nicht implementiert
-    -keine Abonnements
-    -keine historische Parkhausbelegung
+    - keine Abonnements
+    - keine historische Parkhausbelegung
 - Parkhaus-Servlet
-    -nicht besonders refaktoriert
-    -nicht durch Tests abgedeckt
-    -Story und Value Points im späteren Projektverlauf nicht mehr geschätzt
+    - nicht besonders refaktoriert
+    - nicht durch Tests abgedeckt
+    - Story und Value Points im späteren Projektverlauf nicht mehr geschätzt
 
 
 # Verzeichnis der eingesetzten Patterns
