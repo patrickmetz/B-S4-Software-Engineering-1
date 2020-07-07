@@ -38,11 +38,12 @@ Die Autoren sind jeweils ganz oben in den Dateien genannt. Wenn das nicht ging (
 
 # Digitalisierungskonzept:
 (Autor: Team)
+
 **Was verstehen Sie unter Digitalisierung? Einfach nur das Analoge digital nachbauen? Oder wird
  auch das Geschäftsmodell / der Mehrwert / die Nutzbarkeit im Digitalen transformiert?**
 
 *Initiale Produktvision:* Abläufe von vorhandenem Parkhaus durch Simulation digitalisieren. Dabei soll das analoge Parkhaus nicht einfach 1 zu 1 nachgebaut werden, sondern es soll durch ein tatsächlicher Mehrwert für alle beteiligten entstehen.
- Verschiedene Kundengruppen berücksichtigen.
+ Es sollen verschiedene Kundengruppen (Familien, Personen mit Handicap, Mitarbeiter) berücksichtigt werden.
 
 *Zielgruppe:* Parkhausbesitzer, Parkhauskunden
 
@@ -58,7 +59,8 @@ Die Autoren sind jeweils ganz oben in den Dateien genannt. Wenn das nicht ging (
 # Zielkonflikte
 (Autor: Team)
 
-Haben Sie Zielkonflikte erkennen können? Wie haben Sie diese aufgelöst?
+**Haben Sie Zielkonflikte erkennen können? Wie haben Sie diese aufgelöst?**
+- Es war für uns zeitlich nicht möglich, all unsere Ziele umzusetzen. Einerseits hatten wir die Liste Userstories, die wir zu Beginn des Projekts festgelegt hatten Und andererseits hatten wir eine Liste an Tasks, die wir uns im Verlauf des Projekts gesetzt hatten. Schließlich priorisierten wir Tasks wie die CI/CD Pipeline mit SonarQube und Refactoring und setzten dafür zwei unserer Userstories nicht um (den Abschluss von Abonnements und die Ansicht der historische Parkhausbelegung).
 
 # Resumée und Fazit:
 (Autor: Team)
@@ -74,7 +76,7 @@ Haben Sie Zielkonflikte erkennen können? Wie haben Sie diese aufgelöst?
  anders machen, wenn man noch einmal neu anfangen könnte? Also was hat man daraus gelernt und was würde man im nächsten Projekt besser machen?**
 - Nicht alle ursprünglich geplanten Features konnten implementiert werden
     - Abschluss von Abonnements nicht möglich
-    - es gibt keine historische Parkhausbelegung
+    - es gibt keine Ansicht der historischen Parkhausbelegung
 - Parkhaus-Servlet
     - nicht besonders refaktoriert, weil keine Zeit mehr da war. Daraus haben wir gelernt: für Refactoring sollte mehr Zeit eingeplant werden. Außerdem wäre das Refactoring einfacher gefallen, hätten wir das Servlet gut durch Tests abgedeckt.
     - nicht durch Tests abgedeckt. Nachträglich Tests zu schreiben wäre jetzt sehr zeitaufwändig -> es wäre besser gewesen, die Tests im Rahmen von TDD direkt zu schreiben
