@@ -26,16 +26,16 @@
   - MVP- und Sprint-Planung
   - Aufwandsschätzung
   - Einhaltung der Qualitäts-Metriken
+- Entwicklung
+    - **beste Beiträge**: 
+      - [Angular-Frontend mit Bi-Direktionaler-Live-Datenbindung ans Backend](angular/parkhaus/files/app/preisformular) 
+      - [MVC-basiertes Backend der Preisverwaltung liefert JSON-View an Angular](src/main/java/preis)
+      - [zentrales Parkhaus-Servlet](src/main/java/ParkhausServlet.java)
 - Architektur / diverse Engineering-Artefakte
   - **beste Beiträge**: 
     - [System: Robustheit-Diagramm](docs/Design/Robustheit%20(Aufgabe%205.2).png)
     - [System: Usecase-Diagramm](docs/Design/Use%20Cases%20(Aufgabe%204.3).png)
     - [Preisverwaltung: Sequenz-Diagramm](docs/Design/Preisverwaltung%20-%20Sequenzdiagramm%20.png)
-- Entwicklung
-    - **beste Beiträge**: 
-      - [Angular-Frontend mit Bi-Direktionaler-Live-Datenbindung ans Backend](angular/parkhaus/files/app) 
-      - [MVC-basierte Preisverwaltung liefert JSON-View an Angular](src/main/java/preis)
-      - [zentrales Parkhaus-Servlet](src/main/java/ParkhausServlet.java)
 
 
  
